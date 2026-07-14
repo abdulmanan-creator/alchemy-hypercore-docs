@@ -1,0 +1,20 @@
+---
+title: "Block data"
+description: "Block data is the authoritative recovery primitive in the draft design."
+hidden: true
+---
+
+<!-- ALCHEMY DOCS COMPONENT: replace with the approved callout component -->
+> **Draft API contract**
+> This interface is proposed and remains subject to engineering validation.
+> **Draft API contract**
+> Block data is the authoritative recovery primitive in the draft design.
+
+# Block data
+
+## Proposed model
+A normalized block has `blockHeight`, `blockTime`, and `isFinal`. Its optional raw material is separated into commands, actions, events, and fills. No EVM-style transaction hash or gas field is implied.
+
+## Chain API cross-link
+
+For raw block representation and block-oriented JSON-RPC methods, see [raw and normalized HyperCore blocks](../../../chains/hyperliquid/hypercore/concepts/raw-and-normalized-blocks.mdx) and [the Chain API JSON-RPC overview](../../../chains/hyperliquid/hypercore/json-rpc/overview.mdx).

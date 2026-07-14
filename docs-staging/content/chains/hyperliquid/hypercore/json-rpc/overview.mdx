@@ -1,0 +1,20 @@
+---
+title: "JSON-RPC block and batch API"
+description: "The `hl_*` namespace is the proposed reconciliation and backfill API. Named parameters are canonical in this draft."
+hidden: true
+---
+
+<!-- ALCHEMY DOCS COMPONENT: replace with the approved callout component -->
+> **Draft API contract**
+> This interface is proposed and remains subject to engineering validation.
+> **Draft API contract**
+> The `hl_*` namespace is the proposed reconciliation and backfill API. Named parameters are canonical in this draft.
+
+# JSON-RPC block and batch API
+
+## Why JSON-RPC
+Block and batch requests need one endpoint, a stable method namespace, predictable error semantics, and ordered partial results. Use this surface after a live-stream gap or when rebuilding from a checkpoint.
+
+## Candidate reference
+
+The six `hl_*` methods are represented by the candidate OpenRPC source at [openrpc.yaml](../../../../../src/openrpc/hypercore/openrpc.yaml).

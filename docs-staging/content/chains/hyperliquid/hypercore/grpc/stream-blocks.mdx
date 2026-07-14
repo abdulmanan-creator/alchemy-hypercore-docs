@@ -1,0 +1,38 @@
+---
+title: "StreamBlocks"
+description: "StreamBlocks is confirmed product intent. The current preferred transport is gRPC, while its protobuf and launch phase require engineering validation."
+hidden: true
+---
+
+<!-- ALCHEMY DOCS COMPONENT: replace with the approved callout component -->
+> **Draft API contract**
+> This interface is proposed and remains subject to engineering validation.
+> **Confirmed product scope**
+> StreamBlocks is confirmed product intent. The current preferred transport is gRPC, while its protobuf and launch phase require engineering validation.
+
+# StreamBlocks
+
+## Proposed RPC
+`rpc StreamBlocks(StreamBlocksRequest) returns (stream BlockEnvelope);`
+
+`StreamBlocksRequest` proposes `start_block_height`, optional `cursor`, and an `include` list for commands, actions, events, and fills.
+
+## Proposed message
+> The values below are illustrative. The contract is a draft pending implementation validation.
+
+```proto
+message BlockEnvelope {
+  string cursor = 1;
+  uint64 block_height = 2;
+  int64 block_time_ms = 3;
+  bool is_final = 4;
+  BlockData block = 5;
+}
+```
+
+## Recovery
+Persist the last fully processed height and cursor. On reconnect, request the next height; use `hl_getBatchBlocks` to repair any reported gap. <!-- ENGINEERING REVIEW: Confirm service, package, field numbers, replay semantics, and transport choice. -->
+
+## Recovery
+
+Use [streaming plus backfill recovery](../../../../data/hypercore/guides/combine-streaming-with-backfill.mdx) to reconcile a missed range.

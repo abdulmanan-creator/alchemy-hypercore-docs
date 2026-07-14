@@ -1,1 +1,23 @@
+# Operating-system and editor artifacts
 .DS_Store
+.idea/
+.vscode/
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Generated dependencies, builds, coverage, and temporary output
+node_modules/
+.next/
+dist/
+build/
+coverage/
+*.log
+*.tmp
+
+# Local office-file locks
+.~lock.*

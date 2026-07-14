@@ -1,0 +1,76 @@
+---
+title: "candles stream"
+description: "P2 scope. OHLCV candle updates for selected markets and intervals. The stream name, filter keys, data fields, and operational guarantees are proposed contr"
+hidden: true
+---
+
+<!-- ALCHEMY DOCS COMPONENT: replace with the approved callout component -->
+> **Draft API contract**
+> This interface is proposed and remains subject to engineering validation.
+> **Confirmed product scope**
+> P2 scope. OHLCV candle updates for selected markets and intervals. The stream name, filter keys, data fields, and operational guarantees are proposed contracts for engineering review.
+
+# candles stream
+
+## Subscribe
+> The values below are illustrative. The contract is a draft pending implementation validation.
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "hypercore_subscribe",
+  "params": {
+    "stream": "candles",
+    "filters": { "markets": ["BTC"] },
+    "cursor": "optional-cursor"
+  }
+}
+```
+
+
+## Acknowledgement
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": { "subscriptionId": "sub_01", "stream": "candles" }
+}
+```
+
+
+## Event envelope
+Every event is ordered within a subscription by `cursor`. `blockHeight` and `blockTime` identify the source block when available; consumers should persist the cursor only after processing the event.
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "hypercore_subscription",
+  "params": {
+    "subscriptionId": "sub_01",
+    "stream": "candles",
+    "cursor": "cursor_000001",
+    "blockHeight": 123456,
+    "blockTime": 1780000000000,
+    "data": { "market":"BTC", "interval":"1m", "openTime":1780000000000, "closeTime":1780000059999, "open":"100000.0", "high":"100010.0", "low":"99990.0", "close":"100005.0", "volume":"12.4", "isFinal":false }
+  }
+}
+```
+
+
+## Proposed filters and behavior
+
+- `markets` selects the consumer's intended scope. Omitted filters request the stream's default market-wide scope, except user and builder streams, which require their identity filter.
+- A supplied `cursor` requests replay after that cursor. Cursor format, retention, and replay window require engineering confirmation.
+- Snapshot-capable streams emit an initial snapshot before deltas. For `l2BookDiff`, consumers must begin from a compatible `l2Book` snapshot.
+- <!-- ENGINEERING REVIEW: Confirm filter cardinality, authorization, ordering scope, replay retention, and slow-consumer policy. -->
+
+## Unsubscribe
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "method": "hypercore_unsubscribe",
+  "params": { "subscriptionId": "sub_01" }
+}
+```
