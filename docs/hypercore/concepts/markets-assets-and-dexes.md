@@ -1,0 +1,14 @@
+---
+status: confirmed-scope
+product: HyperCore
+---
+
+> **Confirmed product scope**
+> This concept is part of the intended HyperCore developer experience. Operational details remain draft until implementation review.
+
+# Markets, assets, and DEXes
+
+A market identifier selects a tradeable HyperCore market. Asset and DEX semantics must be sourced from the native metadata contract. This draft uses `BTC` only as an illustrative market identifier.
+
+## Engineering review
+<!-- ENGINEERING REVIEW: Confirm terminology against the canonical HyperCore schema registry. -->

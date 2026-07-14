@@ -1,0 +1,15 @@
+---
+status: confirmed-scope
+product: HyperCore
+---
+
+> **Confirmed product scope**
+> P0-P2 streams use a common proposed JSON-RPC subscription contract. Stream selection is purpose-built for common HyperCore workflows.
+
+# WebSocket streaming
+
+## Contract
+Connect to `<HYPERCORE_WEBSOCKET_URL>`, authenticate with an Alchemy API key, send `hypercore_subscribe`, process `hypercore_subscription`, persist cursors, and send `hypercore_unsubscribe` when finished.
+
+## Stream classes
+Books: `l2Book`, `l2BookDiff`, `l4BookUpdates`, and `bbo`. Execution: fill, order, liquidation, and ledger streams. Market context: asset, candles, funding, TWAP, and oracle streams.

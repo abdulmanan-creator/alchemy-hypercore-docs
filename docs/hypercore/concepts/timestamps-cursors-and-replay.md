@@ -1,0 +1,14 @@
+---
+status: confirmed-scope
+product: HyperCore
+---
+
+> **Confirmed product scope**
+> This concept is part of the intended HyperCore developer experience. Operational details remain draft until implementation review.
+
+# Timestamps, cursors, and replay
+
+The proposed contract uses Unix milliseconds and opaque cursors. Cursors order events within a subscription and are checkpoints, not business identifiers. Replay begins after the supplied cursor.
+
+## Engineering review
+<!-- ENGINEERING REVIEW: Confirm terminology against the canonical HyperCore schema registry. -->

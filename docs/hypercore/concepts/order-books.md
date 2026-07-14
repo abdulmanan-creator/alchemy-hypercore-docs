@@ -1,0 +1,14 @@
+---
+status: confirmed-scope
+product: HyperCore
+---
+
+> **Confirmed product scope**
+> This concept is part of the intended HyperCore developer experience. Operational details remain draft until implementation review.
+
+# Order books
+
+L2 aggregates resting liquidity by price. L2 diffs modify a compatible snapshot. L4 exposes order-by-order state. Clients must apply ordered diffs, detect gaps, and backfill before trusting local state.
+
+## Engineering review
+<!-- ENGINEERING REVIEW: Confirm terminology against the canonical HyperCore schema registry. -->

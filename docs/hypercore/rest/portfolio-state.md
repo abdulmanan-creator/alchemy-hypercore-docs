@@ -1,0 +1,34 @@
+---
+status: draft-contract
+product: HyperCore
+---
+
+> **Draft API contract**
+> Return a proposed normalized portfolio composite across perpetual and spot state. The route choice, fields, pagination, and retention semantics are draft contracts unless supplied by a native-compatible implementation.
+
+# portfolioState
+
+## Proposed request
+> The values below are illustrative. The contract is a draft pending implementation validation.
+
+```bash
+curl --request POST '<HYPERCORE_HTTP_URL>/v1/hypercore/portfolio-state' \
+  --header 'Authorization: Bearer <ALCHEMY_API_KEY>' \
+  --header 'Content-Type: application/json' \
+  --data '{ "user": "0x1111111111111111111111111111111111111111", "include":"positions,balances,margin" }'
+```
+
+
+## Proposed response
+```json
+{ "user":"0x1111111111111111111111111111111111111111","asOf":1780000000000,"perpetual":{"accountValue":"1000.00","positions":[]},"spot":{"balances":[]},"margin":{"totalMarginUsed":"100.00"} }
+```
+
+
+## Contract notes
+
+- Timestamps are proposed to use Unix milliseconds.
+- Addresses are lower-case EVM-style addresses in examples; server-side normalization requires engineering confirmation.
+- Time-range methods return data ordered by ascending event time and may return `nextCursor`; non-range methods retain native-compatible ordering where applicable.
+- An empty result is an empty array. A malformed address is a JSON error; a valid address with no activity is not an error.
+- <!-- ENGINEERING REVIEW: Confirm native field casing, method availability, maximum range, cursor opacity, finality, and rate/CU behavior. -->

@@ -1,0 +1,14 @@
+---
+status: confirmed-scope
+product: HyperCore
+---
+
+> **Confirmed product scope**
+> This concept is part of the intended HyperCore developer experience. Operational details remain draft until implementation review.
+
+# HyperCore and HyperEVM
+
+HyperCore is the native exchange engine; HyperEVM is a separate EVM environment. HyperCore documentation uses exchange concepts such as markets, fills, orders, commands, and actions rather than EVM transaction terminology.
+
+## Engineering review
+<!-- ENGINEERING REVIEW: Confirm terminology against the canonical HyperCore schema registry. -->
