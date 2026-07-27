@@ -1,0 +1,64 @@
+---
+title: "l2Book stream"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../shared/preview-notice.mdx" />
+
+# l2Book stream
+
+## Subscribe
+> The values below illustrate the intended request shape.
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "subscribe",
+  "subscription": {
+    "type": "l2Book",
+    "filters": { "markets": ["BTC"] },
+    "cursor": "optional-cursor"
+  }
+}
+```
+
+
+## Acknowledgement
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": { "subscriptionId": "sub_01", "type": "l2Book" }
+}
+```
+
+
+## Event envelope
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "subscription",
+  "params": {
+    "subscriptionId": "sub_01",
+    "type": "l2Book",
+    "cursor": "cursor_000001",
+    "blockHeight": 123456,
+    "blockTime": 1780000000000,
+    "data": { "market": "BTC", "levels": [[{"price":"100000.0","size":"1.25","orderCount":3}], [{"price":"100001.0","size":"0.80","orderCount":2}]], "isSnapshot": true }
+  }
+}
+```
+
+
+
+## Unsubscribe
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "method": "unsubscribe",
+  "params": { "subscriptionId": "sub_01" }
+}
+```

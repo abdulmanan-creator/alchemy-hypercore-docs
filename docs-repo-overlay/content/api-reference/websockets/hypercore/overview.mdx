@@ -1,0 +1,16 @@
+---
+title: "WebSocket streaming"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../shared/preview-notice.mdx" />
+
+# WebSocket streaming
+
+## Subscription envelope
+
+Use `subscribe` to open a stream and `unsubscribe` to close it. Stream names are supplied in `subscription.type`.
+
+## Stream classes
+
+Books: `l2Book`, `l2BookDiff`, `l4BookUpdates`, and `bbo`. Execution: fill, order, liquidation, and ledger streams. Market context: asset, candles, funding, TWAP, and oracle streams.

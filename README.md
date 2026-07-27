@@ -1,7 +1,8 @@
-# Alchemy HyperCore Draft Documentation
+# Alchemy HyperCore Documentation
 
-Implementation-oriented developer documentation and proposed API contracts for Alchemy HyperCore.
+This repository publishes HyperCore documentation deliverables.
 
-Start at [docs/hypercore/overview.md](docs/hypercore/overview.md). The draft includes WebSocket, REST, JSON-RPC, gRPC, historical-data, and recovery documentation. Internal scope, coverage, and API-design decisions are in `internal-docs/hypercore-docs/`.
+- [`docs/`](docs/) contains the original design documentation.
+- [`docs-repo-overlay/`](docs-repo-overlay/) contains the current private-preview package prepared for eventual submission to the Alchemy documentation repository.
 
-Each documentation page identifies whether it represents confirmed product scope, a draft contract, or a reference design. It does not assert a production endpoint or production availability.
+The overlay is a documentation package only. It does not assert production endpoint availability.

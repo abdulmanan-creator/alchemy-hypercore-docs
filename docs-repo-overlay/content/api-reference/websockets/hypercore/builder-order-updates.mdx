@@ -1,0 +1,64 @@
+---
+title: "builderOrderUpdates stream"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../shared/preview-notice.mdx" />
+
+# builderOrderUpdates stream
+
+## Subscribe
+> The values below illustrate the intended request shape.
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "subscribe",
+  "subscription": {
+    "type": "builderOrderUpdates",
+    "filters": { "builders": ["0x2222222222222222222222222222222222222222"] },
+    "cursor": "optional-cursor"
+  }
+}
+```
+
+
+## Acknowledgement
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": { "subscriptionId": "sub_01", "type": "builderOrderUpdates" }
+}
+```
+
+
+## Event envelope
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "subscription",
+  "params": {
+    "subscriptionId": "sub_01",
+    "type": "builderOrderUpdates",
+    "cursor": "cursor_000001",
+    "blockHeight": 123456,
+    "blockTime": 1780000000000,
+    "data": { "orders": [{"builder":"0x2222222222222222222222222222222222222222","orderId":"12345","market":"BTC","status":"filled","filledSize":"0.10"}] }
+  }
+}
+```
+
+
+
+## Unsubscribe
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "method": "unsubscribe",
+  "params": { "subscriptionId": "sub_01" }
+}
+```

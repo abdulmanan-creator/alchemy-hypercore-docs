@@ -1,23 +1,20 @@
-# Operating-system and editor artifacts
+# Default: ignore everything in this workspace folder
+*
+
+# Publish only documentation deliverables
+!.gitignore
+!README.md
+!docs/
+!docs/**
+!docs-repo-overlay/
+!docs-repo-overlay/**
+
+# Re-ignore OS, editor, and build artifacts even inside allowlisted paths
 .DS_Store
 .idea/
 .vscode/
-
-# Local configuration and credentials
-.env
-.env.*
-!.env.example
-*.pem
-*.key
-
-# Generated dependencies, builds, coverage, and temporary output
 node_modules/
-.next/
-dist/
-build/
-coverage/
+.venv/
 *.log
 *.tmp
-
-# Local office-file locks
 .~lock.*

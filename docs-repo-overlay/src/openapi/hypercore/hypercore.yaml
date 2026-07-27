@@ -1,0 +1,222 @@
+# yaml-language-server: $schema=https://spec.openapis.org/oas/3.1/schema/2022-10-07
+openapi: 3.1.0
+info:
+  title: "⚡ HyperCore API"
+  version: "1.0"
+  description: |
+    HyperCore read and historical methods for private preview.
+tags:
+  - name: Native-compatible reads
+paths:
+  "/info":
+    post:
+      tags:
+        - Native-compatible reads
+      operationId: hypercoreInfo
+      summary: Execute a native-compatible HyperCore read
+      description: |
+        Private-preview shared POST endpoint using the required `type` discriminator.
+        This operation represents userFills, userFillsByTime, historicalOrders, and clearinghouseState.
+      x-alchemy-reference-operations:
+        - userFills
+        - userFillsByTime
+        - clearinghouseState
+        - historicalOrders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/InfoRequest"
+            examples:
+              userFills:
+                value:
+                  type: userFills
+                  user: "0x1111111111111111111111111111111111111111"
+              userFillsByTime:
+                value:
+                  type: userFillsByTime
+                  user: "0x1111111111111111111111111111111111111111"
+                  startTime: 1780000000000
+                  endTime: 1780086400000
+      responses:
+        "200":
+          description: Successful response. Shape is selected by the requested type.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/InfoResponse"
+              examples:
+                fills:
+                  "$ref": "#/components/examples/UserFillsResponse"
+components:
+  schemas:
+    Address:
+      type: string
+      pattern: "^0x[a-fA-F0-9]{40}$"
+      description: EVM-style account address.
+    Cursor:
+      type: string
+      description: Opaque pagination cursor.
+    TimestampMs:
+      type: integer
+      format: int64
+      description: Unix timestamp in milliseconds.
+    UserRequest:
+      type: object
+      required:
+        - user
+      properties:
+        user:
+          "$ref": "#/components/schemas/Address"
+        startTime:
+          "$ref": "#/components/schemas/TimestampMs"
+        endTime:
+          "$ref": "#/components/schemas/TimestampMs"
+        cursor:
+          "$ref": "#/components/schemas/Cursor"
+        include:
+          type: array
+          items:
+            type: string
+    InfoRequest:
+      oneOf:
+        - "$ref": "#/components/schemas/UserFillsRequest"
+        - "$ref": "#/components/schemas/UserFillsByTimeRequest"
+        - "$ref": "#/components/schemas/ClearinghouseStateRequest"
+        - "$ref": "#/components/schemas/HistoricalOrdersRequest"
+      discriminator:
+        propertyName: type
+        mapping:
+          userFills: "#/components/schemas/UserFillsRequest"
+          userFillsByTime: "#/components/schemas/UserFillsByTimeRequest"
+          clearinghouseState: "#/components/schemas/ClearinghouseStateRequest"
+          historicalOrders: "#/components/schemas/HistoricalOrdersRequest"
+    UserFillsRequest:
+      allOf:
+        - "$ref": "#/components/schemas/UserRequest"
+        - type: object
+          required:
+            - type
+          properties:
+            type:
+              const: userFills
+    UserFillsByTimeRequest:
+      allOf:
+        - "$ref": "#/components/schemas/UserRequest"
+        - type: object
+          required:
+            - type
+            - startTime
+            - endTime
+          properties:
+            type:
+              const: userFillsByTime
+    HistoricalOrdersRequest:
+      allOf:
+        - "$ref": "#/components/schemas/UserRequest"
+        - type: object
+          required:
+            - type
+          properties:
+            type:
+              const: historicalOrders
+    ClearinghouseStateRequest:
+      allOf:
+        - "$ref": "#/components/schemas/UserRequest"
+        - type: object
+          required:
+            - type
+          properties:
+            type:
+              const: clearinghouseState
+    Fill:
+      type: object
+      required:
+        - coin
+        - px
+        - sz
+        - side
+        - time
+        - tid
+      properties:
+        coin:
+          type: string
+        px:
+          type: string
+          description: String-encoded decimal price.
+        sz:
+          type: string
+          description: String-encoded decimal size.
+        side:
+          type: string
+          enum:
+            - B
+            - A
+        time:
+          "$ref": "#/components/schemas/TimestampMs"
+        tid:
+          type: integer
+        oid:
+          type: integer
+        fee:
+          type: string
+    Order:
+      type: object
+      properties:
+        orderId:
+          type: string
+        coin:
+          type: string
+        side:
+          type: string
+        limitPx:
+          type: string
+        sz:
+          type: string
+        status:
+          type: string
+        timestamp:
+          "$ref": "#/components/schemas/TimestampMs"
+    ClearinghouseState:
+      type: object
+      properties:
+        marginSummary:
+          type: object
+          additionalProperties: true
+        assetPositions:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    InfoResponse:
+      oneOf:
+        - type: object
+          properties:
+            fills:
+              type: array
+              items:
+                "$ref": "#/components/schemas/Fill"
+            nextCursor:
+              "$ref": "#/components/schemas/Cursor"
+        - type: object
+          properties:
+            orders:
+              type: array
+              items:
+                "$ref": "#/components/schemas/Order"
+            nextCursor:
+              "$ref": "#/components/schemas/Cursor"
+        - "$ref": "#/components/schemas/ClearinghouseState"
+  examples:
+    UserFillsResponse:
+      value:
+        fills:
+          - coin: BTC
+            px: "100000.0"
+            sz: "0.01"
+            side: B
+            time: 1780000000000
+            tid: 12345
+            oid: 54321
+            fee: "0.20"

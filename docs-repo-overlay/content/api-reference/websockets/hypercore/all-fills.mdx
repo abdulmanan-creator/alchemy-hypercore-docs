@@ -1,0 +1,64 @@
+---
+title: "allFills stream"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../shared/preview-notice.mdx" />
+
+# allFills stream
+
+## Subscribe
+> The values below illustrate the intended request shape.
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "subscribe",
+  "subscription": {
+    "type": "allFills",
+    "filters": { "markets": ["BTC"] },
+    "cursor": "optional-cursor"
+  }
+}
+```
+
+
+## Acknowledgement
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": { "subscriptionId": "sub_01", "type": "allFills" }
+}
+```
+
+
+## Event envelope
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "subscription",
+  "params": {
+    "subscriptionId": "sub_01",
+    "type": "allFills",
+    "cursor": "cursor_000001",
+    "blockHeight": 123456,
+    "blockTime": 1780000000000,
+    "data": { "fills": [{"market":"BTC","price":"100000.0","size":"0.01","side":"buy","tradeId":"trade_01","time":1780000000000}] }
+  }
+}
+```
+
+
+
+## Unsubscribe
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "method": "unsubscribe",
+  "params": { "subscriptionId": "sub_01" }
+}
+```

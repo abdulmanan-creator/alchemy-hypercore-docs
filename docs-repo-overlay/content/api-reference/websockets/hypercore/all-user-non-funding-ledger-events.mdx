@@ -1,0 +1,64 @@
+---
+title: "allUserNonFundingLedgerEvents stream"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../shared/preview-notice.mdx" />
+
+# allUserNonFundingLedgerEvents stream
+
+## Subscribe
+> The values below illustrate the intended request shape.
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "subscribe",
+  "subscription": {
+    "type": "allUserNonFundingLedgerEvents",
+    "filters": { "eventTypes": ["deposit", "transfer"] },
+    "cursor": "optional-cursor"
+  }
+}
+```
+
+
+## Acknowledgement
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": { "subscriptionId": "sub_01", "type": "allUserNonFundingLedgerEvents" }
+}
+```
+
+
+## Event envelope
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "subscription",
+  "params": {
+    "subscriptionId": "sub_01",
+    "type": "allUserNonFundingLedgerEvents",
+    "cursor": "cursor_000001",
+    "blockHeight": 123456,
+    "blockTime": 1780000000000,
+    "data": { "user":"0x1111111111111111111111111111111111111111", "eventType":"transfer", "asset":"USDC", "amount":"25.00", "time":1780000000000 }
+  }
+}
+```
+
+
+
+## Unsubscribe
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "method": "unsubscribe",
+  "params": { "subscriptionId": "sub_01" }
+}
+```
