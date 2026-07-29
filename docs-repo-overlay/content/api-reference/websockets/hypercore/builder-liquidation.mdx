@@ -1,0 +1,26 @@
+---
+title: "builderLiquidation stream"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../shared/preview-notice-september.mdx" />
+
+# builderLiquidation stream
+
+Carries liquidation activity associated with a builder.
+
+## Subscribe
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "subscribe",
+  "subscription": {
+    "type": "builderLiquidation"
+  }
+}
+```
+## Resume
+
+To resume a stream, use `resumeFromCheckpoint`. `cursor` is accepted as an alias for existing client code. The checkpoint is opaque: clients store and return it unmodified, and its format may change.

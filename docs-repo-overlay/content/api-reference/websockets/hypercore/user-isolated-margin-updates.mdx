@@ -1,0 +1,26 @@
+---
+title: "userIsolatedMarginUpdates stream"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../shared/preview-notice-september.mdx" />
+
+# userIsolatedMarginUpdates stream
+
+Carries isolated-margin updates associated with a user.
+
+## Subscribe
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "subscribe",
+  "subscription": {
+    "type": "userIsolatedMarginUpdates"
+  }
+}
+```
+## Resume
+
+To resume a stream, use `resumeFromCheckpoint`. `cursor` is accepted as an alias for existing client code. The checkpoint is opaque: clients store and return it unmodified, and its format may change.

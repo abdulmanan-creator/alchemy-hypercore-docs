@@ -3,8 +3,8 @@ title: "Replay and recovery"
 description: "HyperCore private-preview documentation."
 ---
 
-<Markdown src="../../shared/preview-notice.mdx" />
+<Markdown src="../../shared/preview-notice-september.mdx" />
 
 # Replay and recovery
 
-Recovery behavior will be published as the service is finalized.
+Recovery behavior will be published as the service is finalized. To resume a stream, use `resumeFromCheckpoint`. `cursor` is accepted as an alias for existing client code. The checkpoint is opaque: clients store and return it unmodified, and its format may change.

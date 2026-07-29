@@ -3,7 +3,7 @@ title: "liquidationFills stream"
 description: "HyperCore private-preview documentation."
 ---
 
-<Markdown src="../../shared/preview-notice.mdx" />
+<Markdown src="../../shared/preview-notice-september.mdx" />
 
 # liquidationFills stream
 
@@ -17,12 +17,10 @@ description: "HyperCore private-preview documentation."
   "method": "subscribe",
   "subscription": {
     "type": "liquidationFills",
-    "filters": { "markets": ["BTC"] },
-    "cursor": "optional-cursor"
+    "filters": { "markets": ["BTC"] }
   }
 }
 ```
-
 
 ## Acknowledgement
 ```json
@@ -33,7 +31,6 @@ description: "HyperCore private-preview documentation."
 }
 ```
 
-
 ## Event envelope
 
 ```json
@@ -43,15 +40,12 @@ description: "HyperCore private-preview documentation."
   "params": {
     "subscriptionId": "sub_01",
     "type": "liquidationFills",
-    "cursor": "cursor_000001",
     "blockHeight": 123456,
     "blockTime": 1780000000000,
     "data": { "fills": [{"market":"BTC","price":"99000.0","size":"0.50","side":"sell","isLiquidation":true,"tradeId":"trade_02"}] }
   }
 }
 ```
-
-
 
 ## Unsubscribe
 ```json
@@ -62,3 +56,6 @@ description: "HyperCore private-preview documentation."
   "params": { "subscriptionId": "sub_01" }
 }
 ```
+## Resume
+
+To resume a stream, use `resumeFromCheckpoint`. `cursor` is accepted as an alias for existing client code. The checkpoint is opaque: clients store and return it unmodified, and its format may change.

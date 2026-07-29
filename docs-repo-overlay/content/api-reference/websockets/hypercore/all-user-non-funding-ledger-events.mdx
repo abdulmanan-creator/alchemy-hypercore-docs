@@ -3,7 +3,7 @@ title: "allUserNonFundingLedgerEvents stream"
 description: "HyperCore private-preview documentation."
 ---
 
-<Markdown src="../../shared/preview-notice.mdx" />
+<Markdown src="../../shared/preview-notice-september.mdx" />
 
 # allUserNonFundingLedgerEvents stream
 
@@ -17,12 +17,10 @@ description: "HyperCore private-preview documentation."
   "method": "subscribe",
   "subscription": {
     "type": "allUserNonFundingLedgerEvents",
-    "filters": { "eventTypes": ["deposit", "transfer"] },
-    "cursor": "optional-cursor"
+    "filters": { "eventTypes": ["deposit", "transfer"] }
   }
 }
 ```
-
 
 ## Acknowledgement
 ```json
@@ -33,7 +31,6 @@ description: "HyperCore private-preview documentation."
 }
 ```
 
-
 ## Event envelope
 
 ```json
@@ -43,15 +40,12 @@ description: "HyperCore private-preview documentation."
   "params": {
     "subscriptionId": "sub_01",
     "type": "allUserNonFundingLedgerEvents",
-    "cursor": "cursor_000001",
     "blockHeight": 123456,
     "blockTime": 1780000000000,
     "data": { "user":"0x1111111111111111111111111111111111111111", "eventType":"transfer", "asset":"USDC", "amount":"25.00", "time":1780000000000 }
   }
 }
 ```
-
-
 
 ## Unsubscribe
 ```json
@@ -62,3 +56,6 @@ description: "HyperCore private-preview documentation."
   "params": { "subscriptionId": "sub_01" }
 }
 ```
+## Resume
+
+To resume a stream, use `resumeFromCheckpoint`. `cursor` is accepted as an alias for existing client code. The checkpoint is opaque: clients store and return it unmodified, and its format may change.

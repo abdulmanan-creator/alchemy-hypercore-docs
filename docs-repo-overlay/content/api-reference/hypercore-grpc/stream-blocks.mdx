@@ -3,32 +3,27 @@ title: "StreamBlocks"
 description: "HyperCore private-preview documentation."
 ---
 
-<Markdown src="../shared/preview-notice.mdx" />
-
+<Markdown src="../shared/preview-notice-september.mdx" />
 
 # StreamBlocks
 
-## intended RPC
+## Intended RPC
 `rpc StreamBlocks(StreamBlocksRequest) returns (stream BlockEnvelope);`
 
-`StreamBlocksRequest` proposes `start_block_height`, optional `cursor`, and an `include` list for commands, actions, events, and fills.
+`StreamBlocksRequest` proposes `start_block_height`, optional `resumeFromCheckpoint`, and an `include` list for commands, actions, events, and fills. `cursor` is accepted as an alias for existing client code.
 
-## intended message
+## Intended message
 > The values below illustrate the intended request shape.
 
 ```proto
 message BlockEnvelope {
-  string cursor = 1;
-  uint64 block_height = 2;
-  int64 block_time_ms = 3;
-  bool is_final = 4;
-  BlockData block = 5;
+  string checkpoint = 1;
+  uint64 sequence = 2;
+  bool is_final = 3;
+  BlockData block = 4;
 }
 ```
 
 ## Recovery
-Persist the last fully processed height and cursor. On reconnect, request the next height; use `hl_getBatchBlocks` to repair any reported gap.
 
-## Recovery
-
-Use [streaming plus backfill recovery](../../../data/hypercore/guides/combine-streaming-with-backfill.mdx) to reconcile a missed range.
+Use [streaming plus backfill recovery](../data/hypercore/guides/combine-streaming-with-backfill.mdx) to reconcile a missed range. The checkpoint is opaque: clients store and return it unmodified, and its format may change. Recovery behavior will be published as the service is finalized.

@@ -5,7 +5,6 @@ description: "HyperCore private-preview documentation."
 
 <Markdown src="../../../shared/preview-notice.mdx" />
 
-
 # Retrieve and backfill blocks
 
 Store a recent block-height checkpoint. Query `hl_getLatestBlocks`, identify the missing height range, call `hl_getBatchBlocks` in intended batches of at most 200, and process blocks in ascending height order.

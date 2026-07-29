@@ -3,9 +3,11 @@ title: "l4BookUpdates stream"
 description: "HyperCore private-preview documentation."
 ---
 
-<Markdown src="../../shared/preview-notice.mdx" />
+<Markdown src="../../shared/preview-notice-september.mdx" />
 
 # l4BookUpdates stream
+
+For the corresponding gRPC update stream, see [StreamL4BookUpdates](../../hypercore-grpc/stream-l4-book-updates.mdx).
 
 ## Subscribe
 > The values below illustrate the intended request shape.
@@ -17,12 +19,10 @@ description: "HyperCore private-preview documentation."
   "method": "subscribe",
   "subscription": {
     "type": "l4BookUpdates",
-    "filters": { "markets": ["BTC"] },
-    "cursor": "optional-cursor"
+    "filters": { "markets": ["BTC"] }
   }
 }
 ```
-
 
 ## Acknowledgement
 ```json
@@ -33,7 +33,6 @@ description: "HyperCore private-preview documentation."
 }
 ```
 
-
 ## Event envelope
 
 ```json
@@ -43,15 +42,12 @@ description: "HyperCore private-preview documentation."
   "params": {
     "subscriptionId": "sub_01",
     "type": "l4BookUpdates",
-    "cursor": "cursor_000001",
     "blockHeight": 123456,
     "blockTime": 1780000000000,
     "data": { "market":"BTC", "orders":[{"orderId":"12345","side":"bid","price":"100000.0","size":"0.10","action":"upsert"}] }
   }
 }
 ```
-
-
 
 ## Unsubscribe
 ```json
@@ -62,3 +58,6 @@ description: "HyperCore private-preview documentation."
   "params": { "subscriptionId": "sub_01" }
 }
 ```
+## Resume
+
+To resume a stream, use `resumeFromCheckpoint`. `cursor` is accepted as an alias for existing client code. The checkpoint is opaque: clients store and return it unmodified, and its format may change.

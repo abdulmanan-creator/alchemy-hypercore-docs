@@ -3,7 +3,7 @@ title: "builderOrderUpdates stream"
 description: "HyperCore private-preview documentation."
 ---
 
-<Markdown src="../../shared/preview-notice.mdx" />
+<Markdown src="../../shared/preview-notice-september.mdx" />
 
 # builderOrderUpdates stream
 
@@ -17,12 +17,10 @@ description: "HyperCore private-preview documentation."
   "method": "subscribe",
   "subscription": {
     "type": "builderOrderUpdates",
-    "filters": { "builders": ["0x2222222222222222222222222222222222222222"] },
-    "cursor": "optional-cursor"
+    "filters": { "builders": ["0x2222222222222222222222222222222222222222"] }
   }
 }
 ```
-
 
 ## Acknowledgement
 ```json
@@ -33,7 +31,6 @@ description: "HyperCore private-preview documentation."
 }
 ```
 
-
 ## Event envelope
 
 ```json
@@ -43,15 +40,12 @@ description: "HyperCore private-preview documentation."
   "params": {
     "subscriptionId": "sub_01",
     "type": "builderOrderUpdates",
-    "cursor": "cursor_000001",
     "blockHeight": 123456,
     "blockTime": 1780000000000,
     "data": { "orders": [{"builder":"0x2222222222222222222222222222222222222222","orderId":"12345","market":"BTC","status":"filled","filledSize":"0.10"}] }
   }
 }
 ```
-
-
 
 ## Unsubscribe
 ```json
@@ -62,3 +56,6 @@ description: "HyperCore private-preview documentation."
   "params": { "subscriptionId": "sub_01" }
 }
 ```
+## Resume
+
+To resume a stream, use `resumeFromCheckpoint`. `cursor` is accepted as an alias for existing client code. The checkpoint is opaque: clients store and return it unmodified, and its format may change.
