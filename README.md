@@ -2,7 +2,7 @@
 
 This repository publishes HyperCore documentation deliverables.
 
-- [`docs/`](docs/) contains the original design documentation.
-- [`docs-repo-overlay/`](docs-repo-overlay/) contains the current private-preview package prepared for eventual submission to the Alchemy documentation repository.
+- [`docs-repo-overlay/`](docs-repo-overlay/) contains the current private-preview documentation package, prepared for submission to the Alchemy documentation repository. It mirrors that repository's layout.
+- [`archive/design-docs/`](archive/design-docs/) contains superseded design documentation, retained for context. It is not the current package.
 
 The overlay is a documentation package only. It does not assert production endpoint availability.
