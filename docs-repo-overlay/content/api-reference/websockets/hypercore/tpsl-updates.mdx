@@ -14,12 +14,12 @@ For the corresponding gRPC stream, see [StreamTpslUpdates](../../hypercore-grpc/
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
   "method": "subscribe",
   "subscription": {
     "type": "tpslUpdates",
-    "filters": { "users": ["0x1111111111111111111111111111111111111111"] }
+    "users": [
+      "0x1111111111111111111111111111111111111111"
+    ]
   }
 }
 ```
@@ -27,9 +27,11 @@ For the corresponding gRPC stream, see [StreamTpslUpdates](../../hypercore-grpc/
 ## Acknowledgement
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": { "subscriptionId": "sub_01", "type": "tpslUpdates" }
+  "channel": "subscriptionResponse",
+  "data": {
+    "subscriptionId": "sub_01",
+    "type": "tpslUpdates"
+  }
 }
 ```
 
@@ -37,27 +39,44 @@ For the corresponding gRPC stream, see [StreamTpslUpdates](../../hypercore-grpc/
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "method": "subscription",
-  "params": {
-    "subscriptionId": "sub_01",
-    "type": "tpslUpdates",
-    "blockHeight": 123456,
-    "blockTime": 1780000000000,
-    "data": { "user":"0x1111111111111111111111111111111111111111", "orderId":"12345", "triggerType":"stopLoss", "triggerPrice":"99000.0", "status":"triggered" }
+  "channel": "tpslUpdates",
+  "subscriptionId": "sub_01",
+  "blockHeight": 123456,
+  "blockTime": 1780000000000,
+  "checkpoint": "<opaque checkpoint>",
+  "data": {
+    "user": "0x1111111111111111111111111111111111111111",
+    "orderId": "12345",
+    "triggerType": "stopLoss",
+    "triggerPrice": "99000.0",
+    "status": "triggered"
   }
 }
 ```
 
+## Payload fields
+
+The payload shape is proposed.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| user | string | User identifier. |
+| orderId | string | Illustrative orderId value. |
+| triggerType | string | Illustrative triggerType value. |
+| triggerPrice | string | Illustrative triggerPrice value. |
+| status | string | Illustrative status value. |
 ## Unsubscribe
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 2,
   "method": "unsubscribe",
-  "params": { "subscriptionId": "sub_01" }
+  "subscription": {
+    "type": "tpslUpdates",
+    "users": [
+      "0x1111111111111111111111111111111111111111"
+    ]
+  }
 }
 ```
 ## Resume
 
-To resume a stream, use `resumeFromCheckpoint`. `cursor` is accepted as an alias for existing client code. The checkpoint is opaque: clients store and return it unmodified, and its format may change.
+To resume a stream, supply `checkpoint` in the subscription object. `cursor` is an accepted alias for `checkpoint` both when it is received in a message and when it is supplied for resumption. The checkpoint is opaque: clients store and return it unmodified, and its format may change.

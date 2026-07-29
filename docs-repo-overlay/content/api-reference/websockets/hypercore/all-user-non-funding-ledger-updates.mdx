@@ -1,11 +1,11 @@
 ---
-title: "userFills stream"
+title: "allUserNonFundingLedgerUpdates stream"
 description: "HyperCore private-preview documentation."
 ---
 
 <Markdown src="../../shared/preview-notice-september.mdx" />
 
-# userFills stream
+# allUserNonFundingLedgerUpdates stream
 
 ## Subscribe
 > The values below illustrate the intended request shape.
@@ -14,9 +14,10 @@ description: "HyperCore private-preview documentation."
 {
   "method": "subscribe",
   "subscription": {
-    "type": "userFills",
-    "users": [
-      "0x1111111111111111111111111111111111111111"
+    "type": "allUserNonFundingLedgerUpdates",
+    "eventTypes": [
+      "deposit",
+      "transfer"
     ]
   }
 }
@@ -28,7 +29,7 @@ description: "HyperCore private-preview documentation."
   "channel": "subscriptionResponse",
   "data": {
     "subscriptionId": "sub_01",
-    "type": "userFills"
+    "type": "allUserNonFundingLedgerUpdates"
   }
 }
 ```
@@ -37,24 +38,17 @@ description: "HyperCore private-preview documentation."
 
 ```json
 {
-  "channel": "userFills",
+  "channel": "allUserNonFundingLedgerUpdates",
   "subscriptionId": "sub_01",
   "blockHeight": 123456,
   "blockTime": 1780000000000,
   "checkpoint": "<opaque checkpoint>",
   "data": {
-    "fills": [
-      {
-        "user": "0x1111111111111111111111111111111111111111",
-        "coin": "BTC",
-        "px": "100000.0",
-        "sz": "0.01",
-        "side": "B",
-        "fee": "0.20",
-        "tradeId": "trade_01",
-        "time": 1780000000000
-      }
-    ]
+    "user": "0x1111111111111111111111111111111111111111",
+    "eventType": "transfer",
+    "asset": "USDC",
+    "amount": "25.00",
+    "time": 1780000000000
   }
 }
 ```
@@ -65,24 +59,20 @@ The payload shape is proposed.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| fills | array | Fill records. |
-| fills[] | object | Fill records. |
-| fills[].user | string | User identifier. |
-| fills[].coin | string | Market identifier. |
-| fills[].px | string | Price value. |
-| fills[].sz | string | Size value. |
-| fills[].side | string | Side code: A is ask/sell; B is bid/buy. |
-| fills[].fee | string | Illustrative fee value. |
-| fills[].tradeId | string | Illustrative tradeId value. |
-| fills[].time | integer | Source time. |
+| user | string | User identifier. |
+| eventType | string | Illustrative eventType value. |
+| asset | string | Illustrative asset value. |
+| amount | string | Illustrative amount value. |
+| time | integer | Source time. |
 ## Unsubscribe
 ```json
 {
   "method": "unsubscribe",
   "subscription": {
-    "type": "userFills",
-    "users": [
-      "0x1111111111111111111111111111111111111111"
+    "type": "allUserNonFundingLedgerUpdates",
+    "eventTypes": [
+      "deposit",
+      "transfer"
     ]
   }
 }

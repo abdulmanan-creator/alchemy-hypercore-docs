@@ -1,6 +1,6 @@
 --- a/content/docs.yml
 +++ b/content/docs.yml
-@@ -109,8 +109,127 @@
+@@ -109,8 +109,126 @@
                      path: >-
                        api-reference/websockets/solana-subscription-api-endpoints/slot-subscribe.mdx
                  slug: solana-subscription-api-endpoints
@@ -35,8 +35,8 @@
 +                      - page: allTwapStatusUpdates
 +                        path: api-reference/websockets/hypercore/all-twap-status-updates.mdx
 +                        hidden: true
-+                      - page: allUserNonFundingLedgerEvents
-+                        path: api-reference/websockets/hypercore/all-user-non-funding-ledger-events.mdx
++                      - page: allUserNonFundingLedgerUpdates
++                        path: api-reference/websockets/hypercore/all-user-non-funding-ledger-updates.mdx
 +                        hidden: true
 +                      - page: bbo
 +                        path: api-reference/websockets/hypercore/bbo.mdx
@@ -83,8 +83,8 @@
 +                      - page: userLeverageUpdates
 +                        path: api-reference/websockets/hypercore/user-leverage-updates.mdx
 +                        hidden: true
-+                      - page: userNonFundingLedgerEvents
-+                        path: api-reference/websockets/hypercore/user-non-funding-ledger-events.mdx
++                      - page: userNonFundingLedgerUpdates
++                        path: api-reference/websockets/hypercore/user-non-funding-ledger-updates.mdx
 +                        hidden: true
 +                      - page: userOrderUpdates
 +                        path: api-reference/websockets/hypercore/user-order-updates.mdx
@@ -124,11 +124,10 @@
 +                  - page: StreamTpslUpdates
 +                    path: api-reference/hypercore-grpc/stream-tpsl-updates.mdx
 +                    hidden: true
-+          
            - section: Trace API
              contents:
                - page: Trace API Overview
-@@ -643,6 +762,48 @@
+@@ -643,6 +761,45 @@
              path: api-reference/hyperliquid/hyperliquid-info-endpoint.mdx
            - page: FAQ
              path: api-reference/hyperliquid/hyperliquid-api-faq.mdx
@@ -140,9 +139,6 @@
 +                hidden: true
 +              - page: Getting started
 +                path: api-reference/hyperliquid/hypercore/getting-started.mdx
-+                hidden: true
-+              - page: Authentication
-+                path: api-reference/hyperliquid/hypercore/authentication.mdx
 +                hidden: true
 +              - page: Networks and endpoints
 +                path: api-reference/hyperliquid/hypercore/networks-and-endpoints.mdx
@@ -177,7 +173,7 @@
          slug: hyperliquid
        - section: Injective
          contents:
-@@ -1467,6 +1628,68 @@
+@@ -1467,6 +1624,64 @@
              flattened: true
          slug: beta-apis
  
@@ -209,9 +205,6 @@
 +              - page: Fills, orders, and liquidations
 +                path: api-reference/data/hypercore/concepts/fills-orders-and-liquidations.mdx
 +                hidden: true
-+              - page: Historical data model
-+                path: api-reference/data/hypercore/concepts/historical-data-model.mdx
-+                hidden: true
 +              - page: Markets, assets, and DEXes
 +                path: api-reference/data/hypercore/concepts/markets-assets-and-dexes.mdx
 +                hidden: true
@@ -242,7 +235,7 @@
 +              - page: Stream wallet fills
 +                path: api-reference/data/hypercore/guides/stream-wallet-fills.mdx
 +                hidden: true
-+      
    - tab: wallets
      layout:
        - section: Overview
+

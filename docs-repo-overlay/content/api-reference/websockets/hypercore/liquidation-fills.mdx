@@ -12,12 +12,12 @@ description: "HyperCore private-preview documentation."
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
   "method": "subscribe",
   "subscription": {
     "type": "liquidationFills",
-    "filters": { "markets": ["BTC"] }
+    "coins": [
+      "BTC"
+    ]
   }
 }
 ```
@@ -25,9 +25,11 @@ description: "HyperCore private-preview documentation."
 ## Acknowledgement
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": { "subscriptionId": "sub_01", "type": "liquidationFills" }
+  "channel": "subscriptionResponse",
+  "data": {
+    "subscriptionId": "sub_01",
+    "type": "liquidationFills"
+  }
 }
 ```
 
@@ -35,27 +37,52 @@ description: "HyperCore private-preview documentation."
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "method": "subscription",
-  "params": {
-    "subscriptionId": "sub_01",
-    "type": "liquidationFills",
-    "blockHeight": 123456,
-    "blockTime": 1780000000000,
-    "data": { "fills": [{"market":"BTC","price":"99000.0","size":"0.50","side":"sell","isLiquidation":true,"tradeId":"trade_02"}] }
+  "channel": "liquidationFills",
+  "subscriptionId": "sub_01",
+  "blockHeight": 123456,
+  "blockTime": 1780000000000,
+  "checkpoint": "<opaque checkpoint>",
+  "data": {
+    "fills": [
+      {
+        "coin": "BTC",
+        "px": "99000.0",
+        "sz": "0.50",
+        "side": "A",
+        "isLiquidation": true,
+        "tradeId": "trade_02"
+      }
+    ]
   }
 }
 ```
 
+## Payload fields
+
+The payload shape is proposed.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| fills | array | Fill records. |
+| fills[] | object | Fill records. |
+| fills[].coin | string | Market identifier. |
+| fills[].px | string | Price value. |
+| fills[].sz | string | Size value. |
+| fills[].side | string | Side code: A is ask/sell; B is bid/buy. |
+| fills[].isLiquidation | boolean | Illustrative isLiquidation value. |
+| fills[].tradeId | string | Illustrative tradeId value. |
 ## Unsubscribe
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 2,
   "method": "unsubscribe",
-  "params": { "subscriptionId": "sub_01" }
+  "subscription": {
+    "type": "liquidationFills",
+    "coins": [
+      "BTC"
+    ]
+  }
 }
 ```
 ## Resume
 
-To resume a stream, use `resumeFromCheckpoint`. `cursor` is accepted as an alias for existing client code. The checkpoint is opaque: clients store and return it unmodified, and its format may change.
+To resume a stream, supply `checkpoint` in the subscription object. `cursor` is an accepted alias for `checkpoint` both when it is received in a message and when it is supplied for resumption. The checkpoint is opaque: clients store and return it unmodified, and its format may change.

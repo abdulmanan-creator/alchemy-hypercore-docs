@@ -10,7 +10,7 @@ description: "HyperCore private-preview documentation."
 ## Intended RPC
 `rpc StreamBlocks(StreamBlocksRequest) returns (stream BlockEnvelope);`
 
-`StreamBlocksRequest` proposes `start_block_height`, optional `resumeFromCheckpoint`, and an `include` list for commands, actions, events, and fills. `cursor` is accepted as an alias for existing client code.
+`StreamBlocksRequest` proposes `start_block_height`, optional `checkpoint`, and an `include` list for commands, actions, events, and fills. `cursor` is an accepted alias for `checkpoint` both when it is received in a message and when it is supplied for resumption.
 
 ## Intended message
 > The values below illustrate the intended request shape.

@@ -12,12 +12,12 @@ description: "HyperCore private-preview documentation."
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
   "method": "subscribe",
   "subscription": {
     "type": "activeAssetCtx",
-    "filters": { "markets": ["BTC"] }
+    "coins": [
+      "BTC"
+    ]
   }
 }
 ```
@@ -25,9 +25,11 @@ description: "HyperCore private-preview documentation."
 ## Acknowledgement
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": { "subscriptionId": "sub_01", "type": "activeAssetCtx" }
+  "channel": "subscriptionResponse",
+  "data": {
+    "subscriptionId": "sub_01",
+    "type": "activeAssetCtx"
+  }
 }
 ```
 
@@ -35,27 +37,44 @@ description: "HyperCore private-preview documentation."
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "method": "subscription",
-  "params": {
-    "subscriptionId": "sub_01",
-    "type": "activeAssetCtx",
-    "blockHeight": 123456,
-    "blockTime": 1780000000000,
-    "data": { "market":"BTC", "markPrice":"100000.0", "oraclePrice":"99995.0", "fundingRate":"0.00001", "openInterest":"25000000" }
+  "channel": "activeAssetCtx",
+  "subscriptionId": "sub_01",
+  "blockHeight": 123456,
+  "blockTime": 1780000000000,
+  "checkpoint": "<opaque checkpoint>",
+  "data": {
+    "coin": "BTC",
+    "markPrice": "100000.0",
+    "oraclePrice": "99995.0",
+    "fundingRate": "0.00001",
+    "openInterest": "25000000"
   }
 }
 ```
 
+## Payload fields
+
+The payload shape is proposed.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| coin | string | Market identifier. |
+| markPrice | string | Illustrative markPrice value. |
+| oraclePrice | string | Illustrative oraclePrice value. |
+| fundingRate | string | Illustrative fundingRate value. |
+| openInterest | string | Illustrative openInterest value. |
 ## Unsubscribe
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 2,
   "method": "unsubscribe",
-  "params": { "subscriptionId": "sub_01" }
+  "subscription": {
+    "type": "activeAssetCtx",
+    "coins": [
+      "BTC"
+    ]
+  }
 }
 ```
 ## Resume
 
-To resume a stream, use `resumeFromCheckpoint`. `cursor` is accepted as an alias for existing client code. The checkpoint is opaque: clients store and return it unmodified, and its format may change.
+To resume a stream, supply `checkpoint` in the subscription object. `cursor` is an accepted alias for `checkpoint` both when it is received in a message and when it is supplied for resumption. The checkpoint is opaque: clients store and return it unmodified, and its format may change.

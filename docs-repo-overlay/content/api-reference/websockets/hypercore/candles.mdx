@@ -12,12 +12,15 @@ description: "HyperCore private-preview documentation."
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
   "method": "subscribe",
   "subscription": {
     "type": "candles",
-    "filters": { "markets": ["BTC"] }
+    "coins": [
+      "BTC"
+    ],
+    "intervals": [
+      "1m"
+    ]
   }
 }
 ```
@@ -25,9 +28,11 @@ description: "HyperCore private-preview documentation."
 ## Acknowledgement
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": { "subscriptionId": "sub_01", "type": "candles" }
+  "channel": "subscriptionResponse",
+  "data": {
+    "subscriptionId": "sub_01",
+    "type": "candles"
+  }
 }
 ```
 
@@ -35,27 +40,57 @@ description: "HyperCore private-preview documentation."
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "method": "subscription",
-  "params": {
-    "subscriptionId": "sub_01",
-    "type": "candles",
-    "blockHeight": 123456,
-    "blockTime": 1780000000000,
-    "data": { "market":"BTC", "interval":"1m", "openTime":1780000000000, "closeTime":1780000059999, "open":"100000.0", "high":"100010.0", "low":"99990.0", "close":"100005.0", "volume":"12.4", "isFinal":false }
+  "channel": "candles",
+  "subscriptionId": "sub_01",
+  "blockHeight": 123456,
+  "blockTime": 1780000000000,
+  "checkpoint": "<opaque checkpoint>",
+  "data": {
+    "coin": "BTC",
+    "interval": "1m",
+    "openTime": 1780000000000,
+    "closeTime": 1780000059999,
+    "open": "100000.0",
+    "high": "100010.0",
+    "low": "99990.0",
+    "close": "100005.0",
+    "volume": "12.4",
+    "isFinal": false
   }
 }
 ```
 
+## Payload fields
+
+The payload shape is proposed.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| coin | string | Market identifier. |
+| interval | string | Candle interval. |
+| openTime | integer | Illustrative openTime value. |
+| closeTime | integer | Illustrative closeTime value. |
+| open | string | Illustrative open value. |
+| high | string | Illustrative high value. |
+| low | string | Illustrative low value. |
+| close | string | Illustrative close value. |
+| volume | string | Illustrative volume value. |
+| isFinal | boolean | Finality indicator. |
 ## Unsubscribe
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 2,
   "method": "unsubscribe",
-  "params": { "subscriptionId": "sub_01" }
+  "subscription": {
+    "type": "candles",
+    "coins": [
+      "BTC"
+    ],
+    "intervals": [
+      "1m"
+    ]
+  }
 }
 ```
 ## Resume
 
-To resume a stream, use `resumeFromCheckpoint`. `cursor` is accepted as an alias for existing client code. The checkpoint is opaque: clients store and return it unmodified, and its format may change.
+To resume a stream, supply `checkpoint` in the subscription object. `cursor` is an accepted alias for `checkpoint` both when it is received in a message and when it is supplied for resumption. The checkpoint is opaque: clients store and return it unmodified, and its format may change.

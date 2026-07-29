@@ -12,12 +12,12 @@ description: "HyperCore private-preview documentation."
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
   "method": "subscribe",
   "subscription": {
     "type": "allTwapStatusUpdates",
-    "filters": { "markets": ["BTC"] }
+    "coins": [
+      "BTC"
+    ]
   }
 }
 ```
@@ -25,9 +25,11 @@ description: "HyperCore private-preview documentation."
 ## Acknowledgement
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": { "subscriptionId": "sub_01", "type": "allTwapStatusUpdates" }
+  "channel": "subscriptionResponse",
+  "data": {
+    "subscriptionId": "sub_01",
+    "type": "allTwapStatusUpdates"
+  }
 }
 ```
 
@@ -35,27 +37,44 @@ description: "HyperCore private-preview documentation."
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "method": "subscription",
-  "params": {
-    "subscriptionId": "sub_01",
-    "type": "allTwapStatusUpdates",
-    "blockHeight": 123456,
-    "blockTime": 1780000000000,
-    "data": { "twapId":"twap_01", "market":"BTC", "status":"active", "executedSize":"0.20", "remainingSize":"0.80" }
+  "channel": "allTwapStatusUpdates",
+  "subscriptionId": "sub_01",
+  "blockHeight": 123456,
+  "blockTime": 1780000000000,
+  "checkpoint": "<opaque checkpoint>",
+  "data": {
+    "twapId": "twap_01",
+    "coin": "BTC",
+    "status": "active",
+    "executedSize": "0.20",
+    "remainingSize": "0.80"
   }
 }
 ```
 
+## Payload fields
+
+The payload shape is proposed.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| twapId | string | Illustrative twapId value. |
+| coin | string | Market identifier. |
+| status | string | Illustrative status value. |
+| executedSize | string | Illustrative executedSize value. |
+| remainingSize | string | Illustrative remainingSize value. |
 ## Unsubscribe
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 2,
   "method": "unsubscribe",
-  "params": { "subscriptionId": "sub_01" }
+  "subscription": {
+    "type": "allTwapStatusUpdates",
+    "coins": [
+      "BTC"
+    ]
+  }
 }
 ```
 ## Resume
 
-To resume a stream, use `resumeFromCheckpoint`. `cursor` is accepted as an alias for existing client code. The checkpoint is opaque: clients store and return it unmodified, and its format may change.
+To resume a stream, supply `checkpoint` in the subscription object. `cursor` is an accepted alias for `checkpoint` both when it is received in a message and when it is supplied for resumption. The checkpoint is opaque: clients store and return it unmodified, and its format may change.

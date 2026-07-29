@@ -12,12 +12,12 @@ description: "HyperCore private-preview documentation."
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
   "method": "subscribe",
   "subscription": {
     "type": "userOrderUpdates",
-    "filters": { "users": ["0x1111111111111111111111111111111111111111"] }
+    "users": [
+      "0x1111111111111111111111111111111111111111"
+    ]
   }
 }
 ```
@@ -25,9 +25,11 @@ description: "HyperCore private-preview documentation."
 ## Acknowledgement
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": { "subscriptionId": "sub_01", "type": "userOrderUpdates" }
+  "channel": "subscriptionResponse",
+  "data": {
+    "subscriptionId": "sub_01",
+    "type": "userOrderUpdates"
+  }
 }
 ```
 
@@ -35,27 +37,56 @@ description: "HyperCore private-preview documentation."
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "method": "subscription",
-  "params": {
-    "subscriptionId": "sub_01",
-    "type": "userOrderUpdates",
-    "blockHeight": 123456,
-    "blockTime": 1780000000000,
-    "data": { "orders": [{"user":"0x1111111111111111111111111111111111111111","orderId":"12345","market":"BTC","side":"buy","limitPrice":"100000.0","size":"0.10","status":"open","filledSize":"0"}] }
+  "channel": "userOrderUpdates",
+  "subscriptionId": "sub_01",
+  "blockHeight": 123456,
+  "blockTime": 1780000000000,
+  "checkpoint": "<opaque checkpoint>",
+  "data": {
+    "orders": [
+      {
+        "user": "0x1111111111111111111111111111111111111111",
+        "orderId": "12345",
+        "coin": "BTC",
+        "side": "B",
+        "limitPrice": "100000.0",
+        "sz": "0.10",
+        "status": "open",
+        "filledSize": "0"
+      }
+    ]
   }
 }
 ```
 
+## Payload fields
+
+The payload shape is proposed.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| orders | array | Order records. |
+| orders[] | object | Order records. |
+| orders[].user | string | User identifier. |
+| orders[].orderId | string | Illustrative orderId value. |
+| orders[].coin | string | Market identifier. |
+| orders[].side | string | Side code: A is ask/sell; B is bid/buy. |
+| orders[].limitPrice | string | Illustrative limitPrice value. |
+| orders[].sz | string | Size value. |
+| orders[].status | string | Illustrative status value. |
+| orders[].filledSize | string | Illustrative filledSize value. |
 ## Unsubscribe
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 2,
   "method": "unsubscribe",
-  "params": { "subscriptionId": "sub_01" }
+  "subscription": {
+    "type": "userOrderUpdates",
+    "users": [
+      "0x1111111111111111111111111111111111111111"
+    ]
+  }
 }
 ```
 ## Resume
 
-To resume a stream, use `resumeFromCheckpoint`. `cursor` is accepted as an alias for existing client code. The checkpoint is opaque: clients store and return it unmodified, and its format may change.
+To resume a stream, supply `checkpoint` in the subscription object. `cursor` is an accepted alias for `checkpoint` both when it is received in a message and when it is supplied for resumption. The checkpoint is opaque: clients store and return it unmodified, and its format may change.

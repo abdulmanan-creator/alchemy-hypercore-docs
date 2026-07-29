@@ -42,7 +42,11 @@ paths:
                   endTime: 1780086400000
       responses:
         "200":
-          description: Successful response. Shape is selected by the requested type.
+          description: Successful response. The currently modeled shapes are selected by the requested type.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/InfoResponse"
   "/{apiKey}/user-fills":
     post:
       tags:
@@ -69,6 +73,13 @@ paths:
       responses:
         "200":
           description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/UserFillsResponse"
+              examples:
+                default:
+                  "$ref": "#/components/examples/UserFillsResponse"
   "/{apiKey}/user-fills-by-time":
     post:
       tags:
@@ -97,6 +108,13 @@ paths:
       responses:
         "200":
           description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/UserFillsByTimeResponse"
+              examples:
+                default:
+                  "$ref": "#/components/examples/UserFillsByTimeResponse"
   "/{apiKey}/clearinghouse-state":
     post:
       tags:
@@ -118,6 +136,13 @@ paths:
       responses:
         "200":
           description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ClearinghouseStateResponse"
+              examples:
+                default:
+                  "$ref": "#/components/examples/ClearinghouseStateResponse"
   "/{apiKey}/historical-orders":
     post:
       tags:
@@ -139,6 +164,13 @@ paths:
       responses:
         "200":
           description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HistoricalOrdersResponse"
+              examples:
+                default:
+                  "$ref": "#/components/examples/HistoricalOrdersResponse"
   "/{apiKey}/portfolio-state":
     post:
       tags:
@@ -265,6 +297,12 @@ components:
           clearinghouseState: "#/components/schemas/ClearinghouseStateRequest"
           spotClearinghouseState: "#/components/schemas/SpotClearinghouseStateRequest"
           frontendOpenOrders: "#/components/schemas/FrontendOpenOrdersRequest"
+    InfoResponse:
+      oneOf:
+        - "$ref": "#/components/schemas/UserFillsResponse"
+        - "$ref": "#/components/schemas/UserFillsByTimeResponse"
+        - "$ref": "#/components/schemas/ClearinghouseStateResponse"
+        - "$ref": "#/components/schemas/HistoricalOrdersResponse"
     UserFillsRequest:
       allOf:
         - "$ref": "#/components/schemas/UserRequest"
@@ -357,6 +395,97 @@ components:
           properties:
             type:
               const: frontendOpenOrders
+    Fill:
+      type: object
+      properties:
+        coin:
+          type: string
+        px:
+          type: string
+        sz:
+          type: string
+        side:
+          type: string
+          enum: [A, B]
+        time:
+          "$ref": "#/components/schemas/TimestampMs"
+        tid:
+          type: integer
+        oid:
+          type: integer
+        closedPnl:
+          type: string
+        fee:
+          type: string
+        feeToken:
+          type: string
+    UserFillsResponse:
+      type: object
+      properties:
+        fills:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Fill"
+    UserFillsByTimeResponse:
+      type: object
+      properties:
+        fills:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Fill"
+        nextCursor:
+          type: string
+    HistoricalOrder:
+      type: object
+      properties:
+        orderId:
+          type: string
+        coin:
+          type: string
+        side:
+          type: string
+          enum: [A, B]
+        limitPx:
+          type: string
+        sz:
+          type: string
+        status:
+          type: string
+        timestamp:
+          "$ref": "#/components/schemas/TimestampMs"
+    HistoricalOrdersResponse:
+      type: object
+      properties:
+        orders:
+          type: array
+          items:
+            "$ref": "#/components/schemas/HistoricalOrder"
+    ClearinghouseStateResponse:
+      type: object
+      properties:
+        marginSummary:
+          type: object
+          properties:
+            accountValue:
+              type: string
+            totalMarginUsed:
+              type: string
+        assetPositions:
+          type: array
+          items:
+            type: object
+            properties:
+              position:
+                type: object
+                properties:
+                  coin:
+                    type: string
+                  szi:
+                    type: string
+                  entryPx:
+                    type: string
+                  unrealizedPnl:
+                    type: string
     PortfolioState:
       type: object
       properties:
@@ -394,6 +523,50 @@ components:
           items:
             "$ref": "#/components/schemas/Agent"
   examples:
+    UserFillsResponse:
+      value:
+        fills:
+          - coin: BTC
+            px: "100000.0"
+            sz: "0.01"
+            side: B
+            time: 1780000000000
+            tid: 12345
+            oid: 54321
+            closedPnl: "0"
+            fee: "0.20"
+            feeToken: USDC
+    UserFillsByTimeResponse:
+      value:
+        fills:
+          - coin: BTC
+            px: "100000.0"
+            sz: "0.01"
+            side: B
+            time: 1780000000000
+            tid: 12345
+        nextCursor: optional-cursor
+    HistoricalOrdersResponse:
+      value:
+        orders:
+          - orderId: "54321"
+            coin: BTC
+            side: B
+            limitPx: "100000.0"
+            sz: "0.10"
+            status: filled
+            timestamp: 1780000000000
+    ClearinghouseStateResponse:
+      value:
+        marginSummary:
+          accountValue: "1000.00"
+          totalMarginUsed: "100.00"
+        assetPositions:
+          - position:
+              coin: BTC
+              szi: "0.10"
+              entryPx: "99000.0"
+              unrealizedPnl: "100.0"
     PortfolioStateResponse:
       value:
         user: "0x1111111111111111111111111111111111111111"

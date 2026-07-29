@@ -7,19 +7,20 @@ description: "HyperCore private-preview documentation."
 
 # l4BookUpdates stream
 
-For the corresponding gRPC update stream, see [StreamL4BookUpdates](../../hypercore-grpc/stream-l4-book-updates.mdx).
+For the corresponding gRPC update stream, see [StreamL4BookUpdates](../../hypercore-grpc/stream-l4-book-updates.mdx). For the snapshot-to-diff recovery pattern, see [l2BookDiff](l2-book-diff.mdx#snapshot-to-diff-bootstrap).
 
 ## Subscribe
 > The values below illustrate the intended request shape.
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
   "method": "subscribe",
   "subscription": {
     "type": "l4BookUpdates",
-    "filters": { "markets": ["BTC"] }
+    "coins": [
+      "BTC",
+      "ETH"
+    ]
   }
 }
 ```
@@ -27,9 +28,11 @@ For the corresponding gRPC update stream, see [StreamL4BookUpdates](../../hyperc
 ## Acknowledgement
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": { "subscriptionId": "sub_01", "type": "l4BookUpdates" }
+  "channel": "subscriptionResponse",
+  "data": {
+    "subscriptionId": "sub_01",
+    "type": "l4BookUpdates"
+  }
 }
 ```
 
@@ -37,27 +40,56 @@ For the corresponding gRPC update stream, see [StreamL4BookUpdates](../../hyperc
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "method": "subscription",
-  "params": {
-    "subscriptionId": "sub_01",
-    "type": "l4BookUpdates",
-    "blockHeight": 123456,
-    "blockTime": 1780000000000,
-    "data": { "market":"BTC", "orders":[{"orderId":"12345","side":"bid","price":"100000.0","size":"0.10","action":"upsert"}] }
+  "channel": "l4BookUpdates",
+  "subscriptionId": "sub_01",
+  "blockHeight": 123456,
+  "blockTime": 1780000000000,
+  "checkpoint": "<opaque checkpoint>",
+  "data": {
+    "coin": "BTC",
+    "orders": [
+      {
+        "orderId": "12345",
+        "px": "100000.0",
+        "sz": "0.10",
+        "action": "upsert"
+      }
+    ]
   }
 }
 ```
 
+## Filters and behavior
+
+- `coins` is an array of market symbols. One subscription can cover several markets. Omitting `coins` requests the stream's default market-wide scope.
+- Supply `checkpoint` in the subscription object to request replay after that checkpoint. `cursor` is an accepted alias for `checkpoint` both when it is received in a message and when it is supplied for resumption. The checkpoint is opaque: clients store and return it unmodified, and its format may change.
+
+## Payload fields
+
+The payload shape is proposed.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| coin | string | Market identifier. |
+| orders | array | Order records. |
+| orders[] | object | Order records. |
+| orders[].orderId | string | Illustrative orderId value. |
+| orders[].px | string | Price value. |
+| orders[].sz | string | Size value. |
+| orders[].action | string | Illustrative action value. |
 ## Unsubscribe
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 2,
   "method": "unsubscribe",
-  "params": { "subscriptionId": "sub_01" }
+  "subscription": {
+    "type": "l4BookUpdates",
+    "coins": [
+      "BTC",
+      "ETH"
+    ]
+  }
 }
 ```
 ## Resume
 
-To resume a stream, use `resumeFromCheckpoint`. `cursor` is accepted as an alias for existing client code. The checkpoint is opaque: clients store and return it unmodified, and its format may change.
+To resume a stream, supply `checkpoint` in the subscription object. `cursor` is an accepted alias for `checkpoint` both when it is received in a message and when it is supplied for resumption. The checkpoint is opaque: clients store and return it unmodified, and its format may change.

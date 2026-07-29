@@ -12,12 +12,12 @@ description: "HyperCore private-preview documentation."
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
   "method": "subscribe",
   "subscription": {
     "type": "builderFills",
-    "filters": { "builders": ["0x2222222222222222222222222222222222222222"] }
+    "builders": [
+      "0x2222222222222222222222222222222222222222"
+    ]
   }
 }
 ```
@@ -25,9 +25,11 @@ description: "HyperCore private-preview documentation."
 ## Acknowledgement
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": { "subscriptionId": "sub_01", "type": "builderFills" }
+  "channel": "subscriptionResponse",
+  "data": {
+    "subscriptionId": "sub_01",
+    "type": "builderFills"
+  }
 }
 ```
 
@@ -35,27 +37,50 @@ description: "HyperCore private-preview documentation."
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "method": "subscription",
-  "params": {
-    "subscriptionId": "sub_01",
-    "type": "builderFills",
-    "blockHeight": 123456,
-    "blockTime": 1780000000000,
-    "data": { "fills": [{"builder":"0x2222222222222222222222222222222222222222","market":"BTC","price":"100000.0","size":"0.01","tradeId":"trade_03"}] }
+  "channel": "builderFills",
+  "subscriptionId": "sub_01",
+  "blockHeight": 123456,
+  "blockTime": 1780000000000,
+  "checkpoint": "<opaque checkpoint>",
+  "data": {
+    "fills": [
+      {
+        "builder": "0x2222222222222222222222222222222222222222",
+        "coin": "BTC",
+        "px": "100000.0",
+        "sz": "0.01",
+        "tradeId": "trade_03"
+      }
+    ]
   }
 }
 ```
 
+## Payload fields
+
+The payload shape is proposed.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| fills | array | Fill records. |
+| fills[] | object | Fill records. |
+| fills[].builder | string | Illustrative builder value. |
+| fills[].coin | string | Market identifier. |
+| fills[].px | string | Price value. |
+| fills[].sz | string | Size value. |
+| fills[].tradeId | string | Illustrative tradeId value. |
 ## Unsubscribe
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 2,
   "method": "unsubscribe",
-  "params": { "subscriptionId": "sub_01" }
+  "subscription": {
+    "type": "builderFills",
+    "builders": [
+      "0x2222222222222222222222222222222222222222"
+    ]
+  }
 }
 ```
 ## Resume
 
-To resume a stream, use `resumeFromCheckpoint`. `cursor` is accepted as an alias for existing client code. The checkpoint is opaque: clients store and return it unmodified, and its format may change.
+To resume a stream, supply `checkpoint` in the subscription object. `cursor` is an accepted alias for `checkpoint` both when it is received in a message and when it is supplied for resumption. The checkpoint is opaque: clients store and return it unmodified, and its format may change.
