@@ -4,8 +4,8 @@
 # Publish only documentation deliverables
 !.gitignore
 !README.md
-!docs/
-!docs/**
+!archive/
+!archive/**
 !docs-repo-overlay/
 !docs-repo-overlay/**
 
