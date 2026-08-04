@@ -1,6 +1,6 @@
 --- a/content/docs.yml
 +++ b/content/docs.yml
-@@ -109,8 +109,136 @@
+@@ -109,8 +109,128 @@
                      path: >-
                        api-reference/websockets/solana-subscription-api-endpoints/slot-subscribe.mdx
                  slug: solana-subscription-api-endpoints
@@ -105,39 +105,31 @@
 +                contents:
 +                  - page: Overview
 +                    path: api-reference/hypercore-grpc/overview.mdx
-+                    hidden: true
 +              - section: API Reference
 +                hidden: true
 +                contents:
 +                  - page: StreamBlocks
 +                    path: api-reference/hypercore-grpc/stream-blocks.mdx
-+                    hidden: true
 +                  - page: StreamL2Book
 +                    slug: stream-l2-book
 +                    path: api-reference/hypercore-grpc/stream-l2-book.mdx
-+                    hidden: true
 +                  - page: StreamL2BookDiff
 +                    slug: stream-l2-book-diff
 +                    path: api-reference/hypercore-grpc/stream-l2-book-diff.mdx
-+                    hidden: true
 +                  - page: StreamL4Book
 +                    slug: stream-l4-book
 +                    path: api-reference/hypercore-grpc/stream-l4-book.mdx
-+                    hidden: true
 +                  - page: StreamL4BookUpdates
 +                    slug: stream-l4-book-updates
 +                    path: api-reference/hypercore-grpc/stream-l4-book-updates.mdx
-+                    hidden: true
 +                  - page: StreamBboBook
 +                    path: api-reference/hypercore-grpc/stream-bbo-book.mdx
-+                    hidden: true
 +                  - page: StreamTpslUpdates
 +                    path: api-reference/hypercore-grpc/stream-tpsl-updates.mdx
-+                    hidden: true
            - section: Trace API
              contents:
                - page: Trace API Overview
-@@ -643,6 +771,47 @@
+@@ -643,6 +763,47 @@
              path: api-reference/hyperliquid/hyperliquid-info-endpoint.mdx
            - page: FAQ
              path: api-reference/hyperliquid/hyperliquid-api-faq.mdx
@@ -185,7 +177,7 @@
          slug: hyperliquid
        - section: Injective
          contents:
-@@ -1467,6 +1636,67 @@
+@@ -1467,6 +1628,67 @@
              flattened: true
          slug: beta-apis
  
