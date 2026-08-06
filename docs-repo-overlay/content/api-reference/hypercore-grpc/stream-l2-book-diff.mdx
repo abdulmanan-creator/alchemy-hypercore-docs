@@ -18,7 +18,7 @@ latency-sensitive consumers that need continuous book state.
 * Each message contains changes for the markets that changed in its block
 * The initial snapshot supplies current levels unless `skip_initial_snapshot` is set
 * Diffs carry absolute level sizes, not size deltas
-* Per-market positions identify continuity for each local book
+* Per-market sequence values identify continuity for each local book
 
 ## Request structure
 
@@ -115,7 +115,7 @@ message CoinDiff {
 
 **`diffs`**: One entry per market that changed in this block.
 
-**`seq`** / **`prev_seq`**: Per-market position and its predecessor. If `prev_seq` does
+**`seq`** / **`prev_seq`**: Per-market sequence and its predecessor. If `prev_seq` does
 not match your current position for that market, you have a gap.
 
 **`bids`** / **`asks`**: Changed levels only.
