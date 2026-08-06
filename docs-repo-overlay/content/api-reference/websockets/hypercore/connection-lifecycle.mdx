@@ -21,9 +21,11 @@ description: "HyperCore private-preview documentation."
 
 The connection uses WebSocket ping and pong frames. Clients must respond promptly and should treat a missed pong as a dead connection, then reconnect.
 
-## Replay-capable subscriptions
+## Sequencing and recovery
 
-For replay-capable subscriptions, resume is per subscription: supply the last persisted cursor in that subscription's subscribe frame. Complete-snapshot streams resubscribe without a cursor. `l2Book` and `bbo` are complete-snapshot streams; every message is self-contained, so recovery is a resubscribe.
+For the sequencing and recovery model, see [timestamps, cursors, and replay](/docs/data/hypercore/concepts/timestamps-cursors-and-replay).
+
+> For replay-capable subscriptions, resume is per subscription: supply the last persisted cursor in that subscription's subscribe frame. Complete-snapshot streams resubscribe without a cursor.
 
 ## Backpressure and slow consumers
 

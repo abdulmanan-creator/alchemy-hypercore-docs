@@ -7,8 +7,10 @@ description: "HyperCore private-preview documentation."
 
 # Replay and recovery
 
-Replay-capable streams deliver incremental updates. Persist the latest cursor after processing a message, then supply it in that subscription's next subscribe frame to request replay. Complete-snapshot streams — `l2Book` and `bbo` — carry no cursor; every message is self-contained, so recovery is a resubscribe.
+For the sequencing and recovery model, see [timestamps, cursors, and replay](/docs/data/hypercore/concepts/timestamps-cursors-and-replay).
 
-Resume is per subscription, so subscriptions sharing a connection can resume from different cursors. A replay response indicates whether a gap occurred. When a cursor is invalid or a gap is reported, discard the affected local state and resynchronize from a fresh snapshot before trusting subsequent updates.
-
-Replay depth is bounded by node block-data retention, currently approximately 48 hours. For block-derived streams, gaps that replay cannot bridge can be recovered with the block lookup methods.
+1. Persist the cursor after processing each message on a replay-capable stream.
+2. On disconnect, reconnect with exponential backoff and jitter.
+3. Resubscribe, supplying the last persisted cursor in each replay-capable subscription object. Complete-snapshot streams resubscribe without a cursor.
+4. Deduplicate overlapping messages using the identity documented for that stream — per-market sequence for book diffs, block height or round for block streams, and the event identity fields where a stream provides them.
+5. For stateful snapshot-and-diff streams, a message with `isSnapshot: true` replaces local state for that market.
