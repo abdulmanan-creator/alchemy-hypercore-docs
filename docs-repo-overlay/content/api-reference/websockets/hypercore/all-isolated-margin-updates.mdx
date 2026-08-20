@@ -11,18 +11,18 @@ Streams isolated-margin and isolated-margin top-up updates across users.
 
 ## Subscribe
 
-~~~json
+```json
 {
   "method": "subscribe",
   "subscription": {
     "type": "allIsolatedMarginUpdates"
   }
 }
-~~~
+```
 
 ## Event envelope
 
-~~~json
+```json
 {
   "type": "allIsolatedMarginUpdates",
   "channel": "allIsolatedMarginUpdates",
@@ -38,7 +38,7 @@ Streams isolated-margin and isolated-margin top-up updates across users.
     "tx_index": 0
   }]
 }
-~~~
+```
 
 An isolated-margin top-up update uses update_type top_up_isolated_margin and includes target_leverage instead of is_buy and ntli.
 
@@ -67,14 +67,14 @@ The stream batches update records. The cursor identifies the event position for 
 
 ## Unsubscribe
 
-~~~json
+```json
 {
   "method": "unsubscribe",
   "subscription": {
     "type": "allIsolatedMarginUpdates"
   }
 }
-~~~
+```
 
 ## Resume
 

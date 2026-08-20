@@ -11,7 +11,7 @@ Streams leverage, isolated-margin, and isolated-margin top-up updates for the re
 
 ## Subscribe
 
-~~~json
+```json
 {
   "method": "subscribe",
   "subscription": {
@@ -19,11 +19,11 @@ Streams leverage, isolated-margin, and isolated-margin top-up updates for the re
     "addresses": ["0x1111111111111111111111111111111111111111"]
   }
 }
-~~~
+```
 
 ## Event envelope
 
-~~~json
+```json
 {
   "type": "userLeverageUpdates",
   "channel": "userLeverageUpdates",
@@ -39,7 +39,7 @@ Streams leverage, isolated-margin, and isolated-margin top-up updates for the re
     "tx_index": 0
   }]
 }
-~~~
+```
 
 The stream also emits isolated_margin records with is_buy and ntli, and top_up_isolated_margin records with target_leverage.
 
@@ -70,7 +70,7 @@ The stream batches updates for the subscribed addresses. The cursor identifies t
 
 ## Unsubscribe
 
-~~~json
+```json
 {
   "method": "unsubscribe",
   "subscription": {
@@ -78,7 +78,7 @@ The stream batches updates for the subscribed addresses. The cursor identifies t
     "addresses": ["0x1111111111111111111111111111111111111111"]
   }
 }
-~~~
+```
 
 ## Resume
 

@@ -11,7 +11,7 @@ Streams liquidation fills associated with a builder.
 
 ## Subscribe
 
-~~~json
+```json
 {
   "method": "subscribe",
   "subscription": {
@@ -20,11 +20,11 @@ Streams liquidation fills associated with a builder.
     "aggregateByTime": true
   }
 }
-~~~
+```
 
 ## Event envelope
 
-~~~json
+```json
 {
   "type": "builderLiquidations",
   "channel": "builderLiquidations",
@@ -61,7 +61,7 @@ Streams liquidation fills associated with a builder.
     }
   ]]
 }
-~~~
+```
 
 ## Payload fields
 
@@ -73,32 +73,32 @@ Streams liquidation fills associated with a builder.
 | cursor | string | Resume cursor for the event position. | Extended-provider |
 | liquidations | array | Pairs of user address and liquidation fill. | Extended-provider |
 | liquidations[] | tuple | User address followed by a liquidation fill. | Extended-provider |
-| liquidations[][0] | string | Address associated with the fill. | Extended-provider |
-| liquidations[][1] | object | Liquidation fill record. | Extended-provider |
-| liquidations[][1].coin | string | Market symbol. | Foundation-native |
-| liquidations[][1].px | string | Fill price. | Foundation-native |
-| liquidations[][1].sz | string | Filled size. | Foundation-native |
-| liquidations[][1].side | string | Side code: A is ask/sell; B is bid/buy. | Foundation-native |
-| liquidations[][1].time | integer | Fill time in milliseconds. | Foundation-native |
-| liquidations[][1].startPosition | string | Position size before the fill. | Foundation-native |
-| liquidations[][1].dir | string | Position-direction classification for the fill. | Foundation-native |
-| liquidations[][1].closedPnl | string | Realized profit and loss from the fill. | Foundation-native |
-| liquidations[][1].hash | string | Transaction hash containing the fill. | Foundation-native |
-| liquidations[][1].oid | integer | Order identifier. | Foundation-native |
-| liquidations[][1].crossed | boolean | Whether the fill crossed the book. | Foundation-native |
-| liquidations[][1].fee | string | Fee charged for the fill. | Foundation-native |
-| liquidations[][1].tid | integer | Trade identifier. | Foundation-native |
-| liquidations[][1].cloid | string | Client-supplied order identifier, when present. | Extended-provider |
-| liquidations[][1].builderFee | string | Builder fee charged for the fill, when present. | Foundation-native |
-| liquidations[][1].deployerFee | string | Deployer fee charged for the fill, when present. | Extended-provider |
-| liquidations[][1].feeToken | string | Token used to pay the fee. | Foundation-native |
-| liquidations[][1].builder | string | Builder address associated with the fill. | Extended-provider |
-| liquidations[][1].twapId | integer \| null | TWAP identifier, when the fill belongs to a TWAP. | Extended-provider |
-| liquidations[][1].txIndex | integer | Index of the transaction within its block. | Extended-provider |
-| liquidations[][1].liquidation | object | Liquidation details. | Extended-provider |
-| liquidations[][1].liquidation.liquidatedUser | string | Address of the liquidated user. | Extended-provider |
-| liquidations[][1].liquidation.markPx | string | Mark price at liquidation. | Extended-provider |
-| liquidations[][1].liquidation.method | string | Liquidation method: market or backstop. | Extended-provider |
+| liquidations[]\[0] | string | Address associated with the fill. | Extended-provider |
+| liquidations[]\[1] | object | Liquidation fill record. | Extended-provider |
+| liquidations[]\[1].coin | string | Market symbol. | Foundation-native |
+| liquidations[]\[1].px | string | Fill price. | Foundation-native |
+| liquidations[]\[1].sz | string | Filled size. | Foundation-native |
+| liquidations[]\[1].side | string | Side code: A is ask/sell; B is bid/buy. | Foundation-native |
+| liquidations[]\[1].time | integer | Fill time in milliseconds. | Foundation-native |
+| liquidations[]\[1].startPosition | string | Position size before the fill. | Foundation-native |
+| liquidations[]\[1].dir | string | Position-direction classification for the fill. | Foundation-native |
+| liquidations[]\[1].closedPnl | string | Realized profit and loss from the fill. | Foundation-native |
+| liquidations[]\[1].hash | string | Transaction hash containing the fill. | Foundation-native |
+| liquidations[]\[1].oid | integer | Order identifier. | Foundation-native |
+| liquidations[]\[1].crossed | boolean | Whether the fill crossed the book. | Foundation-native |
+| liquidations[]\[1].fee | string | Fee charged for the fill. | Foundation-native |
+| liquidations[]\[1].tid | integer | Trade identifier. | Foundation-native |
+| liquidations[]\[1].cloid | string | Client-supplied order identifier, when present. | Extended-provider |
+| liquidations[]\[1].builderFee | string | Builder fee charged for the fill, when present. | Foundation-native |
+| liquidations[]\[1].deployerFee | string | Deployer fee charged for the fill, when present. | Extended-provider |
+| liquidations[]\[1].feeToken | string | Token used to pay the fee. | Foundation-native |
+| liquidations[]\[1].builder | string | Builder address associated with the fill. | Extended-provider |
+| liquidations[]\[1].twapId | integer \| null | TWAP identifier, when the fill belongs to a TWAP. | Extended-provider |
+| liquidations[]\[1].txIndex | integer | Index of the transaction within its block. | Extended-provider |
+| liquidations[]\[1].liquidation | object | Liquidation details. | Extended-provider |
+| liquidations[]\[1].liquidation.liquidatedUser | string | Address of the liquidated user. | Extended-provider |
+| liquidations[]\[1].liquidation.markPx | string | Mark price at liquidation. | Extended-provider |
+| liquidations[]\[1].liquidation.method | string | Liquidation method: market or backstop. | Extended-provider |
 
 ## Behavior
 
@@ -106,7 +106,7 @@ The stream batches liquidation fills for the requested builder. The aggregateByT
 
 ## Unsubscribe
 
-~~~json
+```json
 {
   "method": "unsubscribe",
   "subscription": {
@@ -115,7 +115,7 @@ The stream batches liquidation fills for the requested builder. The aggregateByT
     "aggregateByTime": true
   }
 }
-~~~
+```
 
 ## Resume
 
