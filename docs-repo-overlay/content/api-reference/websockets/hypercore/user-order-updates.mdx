@@ -8,22 +8,20 @@ description: "HyperCore private-preview documentation."
 # userOrderUpdates stream
 
 ## Subscribe
-> The values below illustrate the intended request shape.
 
-```json
+~~~json
 {
   "method": "subscribe",
   "subscription": {
     "type": "userOrderUpdates",
-    "users": [
-      "0x1111111111111111111111111111111111111111"
-    ]
+    "users": ["0x1111111111111111111111111111111111111111"]
   }
 }
-```
+~~~
 
 ## Acknowledgement
-```json
+
+~~~json
 {
   "channel": "subscriptionResponse",
   "data": {
@@ -31,11 +29,11 @@ description: "HyperCore private-preview documentation."
     "type": "userOrderUpdates"
   }
 }
-```
+~~~
 
 ## Event envelope
 
-```json
+~~~json
 {
   "channel": "userOrderUpdates",
   "subscriptionId": "sub_01",
@@ -43,48 +41,48 @@ description: "HyperCore private-preview documentation."
   "blockTime": 1780000000000,
   "cursor": "<opaque cursor>",
   "data": {
-    "orders": [
-      {
-        "user": "0x1111111111111111111111111111111111111111",
-        "orderId": "12345",
+    "orders": [{
+      "user": "0x1111111111111111111111111111111111111111",
+      "status": "open",
+      "order": {
+        "oid": 12345,
         "coin": "BTC",
         "side": "B",
-        "limitPrice": "100000.0",
-        "sz": "0.10",
-        "status": "open",
-        "filledSize": "0"
+        "limitPx": "100000.0",
+        "sz": "0.10"
       }
-    ]
+    }]
   }
 }
-```
+~~~
 
 ## Payload fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| orders | array | Order records. |
-| orders[] | object | Order records. |
+| orders | array | Order status records. |
+| orders[] | object | Order status record. |
 | orders[].user | string | User identifier. |
-| orders[].orderId | string | Identifier assigned to the order. |
-| orders[].coin | string | Market symbol for the order. |
-| orders[].side | string | Side code: A is ask/sell; B is bid/buy. |
-| orders[].limitPrice | string | Limit price for the order. |
-| orders[].sz | string | Order size. |
 | orders[].status | string | Current state of the order. |
-| orders[].filledSize | string |  |
+| orders[].order | object | Order fields. |
+| orders[].order.oid | integer | Identifier assigned to the order. |
+| orders[].order.coin | string | Market symbol for the order. |
+| orders[].order.side | string | Side code: A is ask/sell; B is bid/buy. |
+| orders[].order.limitPx | string | Limit price for the order. |
+| orders[].order.sz | string | Filled size for the order status. |
+
 ## Unsubscribe
-```json
+
+~~~json
 {
   "method": "unsubscribe",
   "subscription": {
     "type": "userOrderUpdates",
-    "users": [
-      "0x1111111111111111111111111111111111111111"
-    ]
+    "users": ["0x1111111111111111111111111111111111111111"]
   }
 }
-```
+~~~
+
 ## Resume
 
-To resume a stream, supply `cursor` in the subscription object. The cursor is opaque: clients store and return it unmodified, and its format may change.
+To resume a stream, supply cursor in the subscription object. The cursor is opaque: clients store and return it unmodified, and its format may change.

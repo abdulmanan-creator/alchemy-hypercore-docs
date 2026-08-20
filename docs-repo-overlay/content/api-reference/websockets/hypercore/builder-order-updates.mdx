@@ -8,22 +8,20 @@ description: "HyperCore private-preview documentation."
 # builderOrderUpdates stream
 
 ## Subscribe
-> The values below illustrate the intended request shape.
 
-```json
+~~~json
 {
   "method": "subscribe",
   "subscription": {
     "type": "builderOrderUpdates",
-    "builders": [
-      "0x2222222222222222222222222222222222222222"
-    ]
+    "builders": ["0x2222222222222222222222222222222222222222"]
   }
 }
-```
+~~~
 
 ## Acknowledgement
-```json
+
+~~~json
 {
   "channel": "subscriptionResponse",
   "data": {
@@ -31,11 +29,11 @@ description: "HyperCore private-preview documentation."
     "type": "builderOrderUpdates"
   }
 }
-```
+~~~
 
 ## Event envelope
 
-```json
+~~~json
 {
   "channel": "builderOrderUpdates",
   "subscriptionId": "sub_01",
@@ -43,42 +41,44 @@ description: "HyperCore private-preview documentation."
   "blockTime": 1780000000000,
   "cursor": "<opaque cursor>",
   "data": {
-    "orders": [
-      {
-        "builder": "0x2222222222222222222222222222222222222222",
-        "orderId": "12345",
+    "orders": [{
+      "builder": "0x2222222222222222222222222222222222222222",
+      "status": "filled",
+      "order": {
+        "oid": 12345,
         "coin": "BTC",
-        "status": "filled",
-        "filledSize": "0.10"
+        "sz": "0.10"
       }
-    ]
+    }]
   }
 }
-```
+~~~
 
 ## Payload fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| orders | array | Order records. |
-| orders[] | object | Order records. |
+| orders | array | Order status records. |
+| orders[] | object | Order status record. |
 | orders[].builder | string | Builder address associated with the order update. |
-| orders[].orderId | string | Identifier assigned to the order. |
-| orders[].coin | string | Market symbol for the order. |
 | orders[].status | string | Current state of the order. |
-| orders[].filledSize | string |  |
+| orders[].order | object | Order fields. |
+| orders[].order.oid | integer | Identifier assigned to the order. |
+| orders[].order.coin | string | Market symbol for the order. |
+| orders[].order.sz | string | Filled size for the order status. |
+
 ## Unsubscribe
-```json
+
+~~~json
 {
   "method": "unsubscribe",
   "subscription": {
     "type": "builderOrderUpdates",
-    "builders": [
-      "0x2222222222222222222222222222222222222222"
-    ]
+    "builders": ["0x2222222222222222222222222222222222222222"]
   }
 }
-```
+~~~
+
 ## Resume
 
-To resume a stream, supply `cursor` in the subscription object. The cursor is opaque: clients store and return it unmodified, and its format may change.
+To resume a stream, supply cursor in the subscription object. The cursor is opaque: clients store and return it unmodified, and its format may change.
