@@ -54,15 +54,13 @@ description: "HyperCore private-preview documentation."
 
 ## Payload fields
 
-The payload shape is proposed.
-
 | Field | Type | Description |
 | --- | --- | --- |
-| twapId | string | — |
+| twapId | string | Identifier for the TWAP order. |
 | coin | string | Market symbol for the TWAP order. |
-| status | string | — |
-| executedSize | string | — |
-| remainingSize | string | — |
+| status | string | Current state of the TWAP order. |
+| executedSize | string | Cumulative size executed by the TWAP order. |
+| remainingSize | string |  |
 ## Unsubscribe
 ```json
 {

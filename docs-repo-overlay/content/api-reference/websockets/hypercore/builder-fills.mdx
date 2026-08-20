@@ -58,8 +58,6 @@ description: "HyperCore private-preview documentation."
 
 ## Payload fields
 
-The payload shape is proposed.
-
 | Field | Type | Description |
 | --- | --- | --- |
 | fills | array | Fill records. |
@@ -68,7 +66,7 @@ The payload shape is proposed.
 | fills[].coin | string | Market symbol for the fill. |
 | fills[].px | string | Execution price. |
 | fills[].sz | string | Executed size. |
-| fills[].tradeId | string | — |
+| fills[].tradeId | string | Identifier for the trade execution. |
 ## Unsubscribe
 ```json
 {

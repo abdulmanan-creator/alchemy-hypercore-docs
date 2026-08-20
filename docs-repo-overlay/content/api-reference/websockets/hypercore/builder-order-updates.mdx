@@ -58,17 +58,15 @@ description: "HyperCore private-preview documentation."
 
 ## Payload fields
 
-The payload shape is proposed.
-
 | Field | Type | Description |
 | --- | --- | --- |
 | orders | array | Order records. |
 | orders[] | object | Order records. |
 | orders[].builder | string | Builder address associated with the order update. |
-| orders[].orderId | string | — |
+| orders[].orderId | string | Identifier assigned to the order. |
 | orders[].coin | string | Market symbol for the order. |
 | orders[].status | string | Current state of the order. |
-| orders[].filledSize | string | — |
+| orders[].filledSize | string |  |
 ## Unsubscribe
 ```json
 {

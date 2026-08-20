@@ -64,17 +64,15 @@ Multi-interval delivery and per-subscription interval limits are still being fin
 
 ## Payload fields
 
-The payload shape is proposed.
-
 | Field | Type | Description |
 | --- | --- | --- |
 | interval | string | Candle interval. |
 | candles | array | Candle records. |
 | candles[] | object | Candle records. |
-| candles[].coin | string | — |
-| candles[].openTime | integer | — |
-| candles[].close | string | — |
-| candles[].volume | string | — |
+| candles[].coin | string | Market symbol for the candle. |
+| candles[].openTime | integer | Start time of the candle interval, in milliseconds. |
+| candles[].close | string | Closing price for the candle interval. |
+| candles[].volume | string | Volume traded in the base asset during the candle interval. |
 | candles[].isFinal | boolean | Finality indicator. |
 ## Unsubscribe
 ```json
