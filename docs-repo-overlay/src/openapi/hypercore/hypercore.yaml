@@ -232,6 +232,41 @@ paths:
               examples:
                 default:
                   "$ref": "#/components/examples/ExtraAgentsResponse"
+  "/{apiKey}/l2-book-diff-snapshot":
+    post:
+      tags:
+        - HyperCore Data API Endpoints
+      operationId: get-l2-book-diff-snapshot
+      summary: Get an L2 book snapshot for diff-stream bootstrap
+      description: |
+        This API is in private preview. Target October 2026; timing is subject to change.
+
+        Retrieve aggregated L2 books at a common block height with each market's diff sequence. Use this operation to bootstrap the l2BookDiff stream.
+      parameters:
+        - "$ref": "#/components/parameters/apiKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/L2BookDiffSnapshotRequest"
+            examples:
+              default:
+                value:
+                  coins: [BTC, ETH]
+                  nSigFigs: 5
+                  mantissa: 2
+                  nLevels: 20
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/L2BookDiffSnapshotResponse"
+              examples:
+                default:
+                  "$ref": "#/components/examples/L2BookDiffSnapshotResponse"
 components:
   parameters:
     apiKey:
@@ -519,6 +554,84 @@ components:
           type: array
           items:
             "$ref": "#/components/schemas/Agent"
+    L2BookDiffSnapshotRequest:
+      type: object
+      required:
+        - coins
+      properties:
+        coins:
+          type: array
+          minItems: 1
+          items:
+            type: string
+          description: Markets to include in the snapshot.
+        nSigFigs:
+          type: integer
+          enum: [2, 3, 4, 5]
+          description: Significant-figure aggregation for price levels.
+        mantissa:
+          type: integer
+          enum: [2, 5]
+          description: Mantissa step. Valid only when nSigFigs is 5.
+        nLevels:
+          type: integer
+          enum: [1, 10, 20, 50]
+          description: Levels per side. Defaults to 20.
+    L2BookLevel:
+      type: object
+      required:
+        - px
+        - sz
+        - n
+      properties:
+        px:
+          type: string
+          description: Price as a decimal string.
+        sz:
+          type: string
+          description: Total size at the price level.
+        n:
+          type: integer
+          description: Number of orders at the price level.
+    L2BookDiffSnapshotBook:
+      type: object
+      required:
+        - coin
+        - time
+        - levels
+        - seq
+      properties:
+        coin:
+          type: string
+          description: Market symbol.
+        time:
+          "$ref": "#/components/schemas/TimestampMs"
+        levels:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            type: array
+            items:
+              "$ref": "#/components/schemas/L2BookLevel"
+          description: Two-element tuple of bids and asks.
+        seq:
+          type: integer
+          minimum: 0
+          description: Per-market l2BookDiff sequence at the snapshot height.
+    L2BookDiffSnapshotResponse:
+      type: object
+      required:
+        - height
+        - books
+      properties:
+        height:
+          type: integer
+          description: Block height reflected by every returned book.
+        books:
+          type: array
+          items:
+            "$ref": "#/components/schemas/L2BookDiffSnapshotBook"
   examples:
     UserFillsResponse:
       value:
@@ -582,3 +695,17 @@ components:
           - address: "0x4444444444444444444444444444444444444444"
             name: market-maker
             permissions: [trade]
+    L2BookDiffSnapshotResponse:
+      value:
+        height: 123456
+        books:
+          - coin: BTC
+            time: 1780000000000
+            levels:
+              - - px: "100000.0"
+                  sz: "1.25"
+                  n: 3
+              - - px: "100001.0"
+                  sz: "0.80"
+                  n: 2
+            seq: 42

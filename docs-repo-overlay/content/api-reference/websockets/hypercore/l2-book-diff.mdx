@@ -11,7 +11,7 @@ description: "HyperCore private-preview documentation."
 local order book without receiving a complete snapshot on every update. This is
 ideal for latency-sensitive consumers needing continuous book state.
 
-For the corresponding gRPC diff stream, see [StreamL2BookDiff](/docs/chains/hypercore-grpc/api-reference/stream-l2-book-diff). [l2Book](/docs/chains/websockets/hypercore/streams/l2-book) is the snapshot representation.
+For the corresponding gRPC diff stream, see [StreamL2BookDiff](/docs/chains/hypercore-grpc/api-reference/stream-l2-book-diff). [l2Book](/docs/chains/websockets/hypercore/streams/l2-book) provides standalone snapshots for displays; use l2BookDiffSnapshot to bootstrap a diff-maintained book.
 
 ## Subscribe
 
@@ -77,10 +77,14 @@ Aggregation rounds bids down and asks up. With `nSigFigs: 5` and `mantissa: 2`, 
 
 ## Snapshot-to-diff bootstrap
 
-1. Subscribe to `l2Book` and install the received snapshot as local book state.
-2. The snapshot establishes the local book state.
-3. Subscribe to `l2BookDiff` for the same coin scope and apply its diffs to that state.
-4. If continuity is broken, discard local state and start again from a fresh snapshot.
+1. Subscribe to `l2BookDiff` for your markets and begin buffering messages.
+2. Fetch a snapshot from `l2BookDiffSnapshot`. Note the `height` and each market's `seq`.
+3. Discard buffered messages whose `height` is at or below the snapshot's `height`.
+4. Apply the remaining diffs in height order. The first diff for each market must carry `prev_seq` equal to that market's snapshot `seq`.
+5. Continue checking `prev_seq` against your position for each market on every diff.
+6. If continuity is broken, a message with `isSnapshot: true` is pushed to you. Discard local state for the affected markets and adopt it.
+
+`l2Book` is not a bootstrap source. It carries no per-market sequence, so diffs cannot be anchored to it. Use `l2BookDiffSnapshot`.
 
 ## Choosing a book stream
 
