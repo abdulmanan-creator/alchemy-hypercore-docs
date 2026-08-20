@@ -95,4 +95,4 @@ The default never grows. New market types must be added to `marketTypes` explici
 * Persist `cursor` after applying a message.
 * On reconnect, supply `cursor` in the subscription object.
 * A message with `isSnapshot: true` replaces your local state. Any message without it is a diff that must chain onto your previous state.
-* If continuity is broken, a fresh message with `isSnapshot: true` is pushed to you. There is no separate resynchronization message or identifier to track — `isSnapshot: true` is the signal to discard local state and adopt the supplied snapshot.
+* If continuity is broken, a fresh message with `isSnapshot: true` is pushed to you. `isSnapshot` is the only continuity signal you need to handle — receiving it means discard local state and adopt the supplied snapshot.
