@@ -43,7 +43,7 @@ The default never grows. New market types must be added to `marketTypes` explici
 ## Event envelope
 
 ```json
-{"channel":"l4BookUpdates","subscriptionId":"sub_01","blockHeight":123456,"blockTime":1780000000000,"cursor":"<opaque cursor>","data":{"height":123456,"time":1780000000000,"isSnapshot":false,"diffs":[{"type":"new","coin":"BTC","oid":12345,"user":"0x1111111111111111111111111111111111111111","side":"B","px":"100000.0","sz":"0.10","insertBefore":12346}]}}
+{"channel":"l4BookUpdates","subscriptionId":"sub_01","blockHeight":123456,"blockTime":1780000000000,"cursor":"<opaque cursor>","data":{"height":123456,"timestamp":1780000000000,"isSnapshot":false,"diffs":[{"type":"new","coin":"BTC","oid":12345,"user":"0x1111111111111111111111111111111111111111","side":"B","px":"100000.0","sz":"0.10","insertBefore":12346}]}}
 ```
 
 ## Payload fields
@@ -51,7 +51,7 @@ The default never grows. New market types must be added to `marketTypes` explici
 | Field | Type | Description |
 | --- | --- | --- |
 | `height` | integer | Block height. |
-| `time` | integer | Block timestamp in milliseconds. |
+| `timestamp` | integer | Block timestamp in milliseconds. |
 | `isSnapshot` | boolean | `true` when the message contains a complete replacement snapshot; absent or `false` for an incremental update. |
 | `diffs` | array | Per-order changes in this block. |
 | `diffs[].type` | string | `new`, `update`, or `remove`. |
