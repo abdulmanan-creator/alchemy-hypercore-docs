@@ -68,13 +68,13 @@ The payload shape is proposed.
 | fills | array | Fill records. |
 | fills[] | object | Fill records. |
 | fills[].user | string | User identifier. |
-| fills[].coin | string | Market identifier. |
-| fills[].px | string | Price value. |
-| fills[].sz | string | Size value. |
+| fills[].coin | string | Market symbol for the fill. |
+| fills[].px | string | Execution price. |
+| fills[].sz | string | Executed size. |
 | fills[].side | string | Side code: A is ask/sell; B is bid/buy. |
-| fills[].fee | string | Illustrative fee value. |
-| fills[].tradeId | string | Illustrative tradeId value. |
-| fills[].time | integer | Source time. |
+| fills[].fee | string | Fee charged for the fill; a negative value is a rebate. |
+| fills[].tradeId | string | — |
+| fills[].time | integer | Time of the fill, in milliseconds. |
 ## Unsubscribe
 ```json
 {

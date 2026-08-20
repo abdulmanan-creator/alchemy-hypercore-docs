@@ -68,13 +68,13 @@ The payload shape is proposed.
 | orders | array | Order records. |
 | orders[] | object | Order records. |
 | orders[].user | string | User identifier. |
-| orders[].orderId | string | Illustrative orderId value. |
-| orders[].coin | string | Market identifier. |
+| orders[].orderId | string | — |
+| orders[].coin | string | Market symbol for the order. |
 | orders[].side | string | Side code: A is ask/sell; B is bid/buy. |
-| orders[].limitPrice | string | Illustrative limitPrice value. |
-| orders[].sz | string | Size value. |
-| orders[].status | string | Illustrative status value. |
-| orders[].filledSize | string | Illustrative filledSize value. |
+| orders[].limitPrice | string | — |
+| orders[].sz | string | Order size. |
+| orders[].status | string | Current state of the order. |
+| orders[].filledSize | string | — |
 ## Unsubscribe
 ```json
 {
