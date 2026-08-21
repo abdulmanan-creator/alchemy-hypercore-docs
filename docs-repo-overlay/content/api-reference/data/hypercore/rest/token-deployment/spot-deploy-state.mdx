@@ -27,27 +27,27 @@ Returns the caller's spot-token deployment states and the current deployment auc
 
 ## Response fields
 
-| Field                                   | Type   | Description                                           |
-| --------------------------------------- | ------ | ----------------------------------------------------- |
-| `states[]`                              | varies | Deployment-state entries.                             |
-| `states[].token`                        | varies | Token index.                                          |
-| `states[].spec`                         | varies | `spec` value in the response.                         |
-| `states[].spec.name`                    | varies | Name.                                                 |
-| `states[].spec.szDecimals`              | varies | `szDecimals` value in the response.                   |
-| `states[].spec.weiDecimals`             | varies | `weiDecimals` value in the response.                  |
-| `states[].fullName`                     | varies | `fullName` value in the response.                     |
-| `states[].spots`                        | varies | `spots` value in the response.                        |
-| `states[].maxSupply`                    | varies | `maxSupply` value in the response.                    |
-| `states[].hyperliquidityGenesisBalance` | varies | `hyperliquidityGenesisBalance` value in the response. |
-| `states[].totalGenesisBalanceWei`       | varies | `totalGenesisBalanceWei` value in the response.       |
-| `states[].userGenesisBalances`          | varies | `userGenesisBalances` value in the response.          |
-| `states[].existingTokenGenesisBalances` | varies | `existingTokenGenesisBalances` value in the response. |
-| `gasAuction`                            | varies | `gasAuction` value in the response.                   |
-| `gasAuction.startTimeSeconds`           | varies | `startTimeSeconds` value in the response.             |
-| `gasAuction.durationSeconds`            | varies | `durationSeconds` value in the response.              |
-| `gasAuction.startGas`                   | varies | `startGas` value in the response.                     |
-| `gasAuction.currentGas`                 | varies | `currentGas` value in the response.                   |
-| `gasAuction.endGas`                     | varies | `endGas` value in the response.                       |
+| Field                                   | Type           | Description                                                  |
+| --------------------------------------- | -------------- | ------------------------------------------------------------ |
+| `states[]`                              | array          | Deployment-state entries.                                    |
+| `states[].token`                        | integer        | Token index.                                                 |
+| `states[].spec`                         | object         | `spec` value in the response.                                |
+| `states[].spec.name`                    | string         | Name.                                                        |
+| `states[].spec.szDecimals`              | integer        | `szDecimals` value in the response.                          |
+| `states[].spec.weiDecimals`             | integer        | `weiDecimals` value in the response.                         |
+| `states[].fullName`                     | string \| null | Full token name, or `null` when not supplied.                |
+| `states[].spots`                        | array          | `spots` value in the response.                               |
+| `states[].maxSupply`                    | integer        | `maxSupply` value in the response.                           |
+| `states[].hyperliquidityGenesisBalance` | string         | `hyperliquidityGenesisBalance` value in the response.        |
+| `states[].totalGenesisBalanceWei`       | string         | `totalGenesisBalanceWei` value in the response.              |
+| `states[].userGenesisBalances`          | array          | `userGenesisBalances` value in the response.                 |
+| `states[].existingTokenGenesisBalances` | array          | `existingTokenGenesisBalances` value in the response.        |
+| `gasAuction`                            | object         | `gasAuction` value in the response.                          |
+| `gasAuction.startTimeSeconds`           | integer        | `startTimeSeconds` value in the response.                    |
+| `gasAuction.durationSeconds`            | integer        | `durationSeconds` value in the response.                     |
+| `gasAuction.startGas`                   | string         | `startGas` value in the response.                            |
+| `gasAuction.currentGas`                 | string \| null | Current auction gas price, or `null` before it is available. |
+| `gasAuction.endGas`                     | string \| null | Auction end gas price, or `null` while the auction is open.  |
 
 ## Response example
 

@@ -27,14 +27,14 @@ Returns a user's spot balances for account-state and balance checks.
 
 ## Response fields
 
-| Field                 | Type   | Description                       |
-| --------------------- | ------ | --------------------------------- |
-| `balances[]`          | varies | Balance entries.                  |
-| `balances[].coin`     | varies | Market identifier.                |
-| `balances[].token`    | varies | Token index.                      |
-| `balances[].hold`     | varies | Amount reserved by orders.        |
-| `balances[].total`    | varies | Total amount.                     |
-| `balances[].entryNtl` | varies | `entryNtl` value in the response. |
+| Field                 | Type    | Description                       |
+| --------------------- | ------- | --------------------------------- |
+| `balances[]`          | array   | Balance entries.                  |
+| `balances[].coin`     | string  | Market identifier.                |
+| `balances[].token`    | integer | Token index.                      |
+| `balances[].hold`     | string  | Amount reserved by orders.        |
+| `balances[].total`    | string  | Total amount.                     |
+| `balances[].entryNtl` | string  | `entryNtl` value in the response. |
 
 ## Response example
 

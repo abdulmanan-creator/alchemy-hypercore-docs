@@ -31,13 +31,13 @@ Returns deposits, transfers, withdrawals, and other non-funding ledger activity 
 
 ## Response fields
 
-| Field               | Type   | Description                    |
-| ------------------- | ------ | ------------------------------ |
-| `data[]`            | varies | Response object.               |
-| `data[].delta`      | varies | `delta` value in the response. |
-| `data[].delta.type` | varies | Selected read type.            |
-| `data[].hash`       | varies | Transaction hash.              |
-| `data[].time`       | varies | Timestamp in milliseconds.     |
+| Field           | Type    | Description                    |
+| --------------- | ------- | ------------------------------ |
+| `[]`            | array   | Ledger-update entries.         |
+| `[].delta`      | object  | `delta` value in the response. |
+| `[].delta.type` | string  | Selected read type.            |
+| `[].hash`       | string  | Transaction hash.              |
+| `[].time`       | integer | Timestamp in milliseconds.     |
 
 ## Response example
 

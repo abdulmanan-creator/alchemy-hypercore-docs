@@ -25,17 +25,17 @@ Returns registered outcome-market specifications and questions.
 
 ## Response fields
 
-| Field                         | Type   | Description                        |
-| ----------------------------- | ------ | ---------------------------------- |
-| `outcomes[]`                  | varies | `outcomes` value in the response.  |
-| `outcomes[].outcome`          | varies | `outcome` value in the response.   |
-| `outcomes[].name`             | varies | Name.                              |
-| `outcomes[].description`      | varies | Description.                       |
-| `outcomes[].sideSpecs[]`      | varies | `sideSpecs` value in the response. |
-| `outcomes[].sideSpecs[].name` | varies | Name.                              |
-| `questions[]`                 | varies | `questions` value in the response. |
-| `deployers`                   | varies | `deployers` value in the response. |
-| `feeScale`                    | varies | `feeScale` value in the response.  |
+| Field                         | Type    | Description                        |
+| ----------------------------- | ------- | ---------------------------------- |
+| `outcomes[]`                  | array   | `outcomes` value in the response.  |
+| `outcomes[].outcome`          | integer | `outcome` value in the response.   |
+| `outcomes[].name`             | string  | Name.                              |
+| `outcomes[].description`      | string  | Description.                       |
+| `outcomes[].sideSpecs[]`      | array   | `sideSpecs` value in the response. |
+| `outcomes[].sideSpecs[].name` | string  | Name.                              |
+| `questions[]`                 | array   | `questions` value in the response. |
+| `deployers`                   | array   | `deployers` value in the response. |
+| `feeScale`                    | integer | `feeScale` value in the response.  |
 
 ## Response example
 

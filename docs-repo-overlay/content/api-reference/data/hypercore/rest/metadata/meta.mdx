@@ -27,22 +27,22 @@ Returns perpetual market definitions and margin tiers for a selected DEX.
 
 ## Response fields
 
-| Field                                         | Type   | Description                                |
-| --------------------------------------------- | ------ | ------------------------------------------ |
-| `universe[]`                                  | varies | `universe` value in the response.          |
-| `universe[].name`                             | varies | Name.                                      |
-| `universe[].szDecimals`                       | varies | `szDecimals` value in the response.        |
-| `universe[].maxLeverage`                      | varies | `maxLeverage` value in the response.       |
-| `universe[].marginTableId`                    | varies | `marginTableId` value in the response.     |
-| `universe[].onlyIsolated`                     | varies | `onlyIsolated` value in the response.      |
-| `universe[].isDelisted`                       | varies | `isDelisted` value in the response.        |
-| `universe[].marginMode`                       | varies | `marginMode` value in the response.        |
-| `marginTables`                                | varies | `marginTables` value in the response.      |
-| `marginTables[][0]`                           | varies | `marginTables[][0]` value in the response. |
-| `marginTables[][1].description`               | varies | Description.                               |
-| `marginTables[][1].marginTiers[]`             | varies | `marginTiers` value in the response.       |
-| `marginTables[][1].marginTiers[].lowerBound`  | varies | `lowerBound` value in the response.        |
-| `marginTables[][1].marginTiers[].maxLeverage` | varies | `maxLeverage` value in the response.       |
+| Field                                         | Type              | Description                                |
+| --------------------------------------------- | ----------------- | ------------------------------------------ |
+| `universe[]`                                  | array             | `universe` value in the response.          |
+| `universe[].name`                             | string            | Name.                                      |
+| `universe[].szDecimals`                       | integer           | `szDecimals` value in the response.        |
+| `universe[].maxLeverage`                      | integer           | `maxLeverage` value in the response.       |
+| `universe[].marginTableId`                    | integer           | `marginTableId` value in the response.     |
+| `universe[].onlyIsolated`                     | boolean           | `onlyIsolated` value in the response.      |
+| `universe[].isDelisted`                       | boolean           | `isDelisted` value in the response.        |
+| `universe[].marginMode`                       | cross \| isolated | `marginMode` value in the response.        |
+| `marginTables`                                | array             | `marginTables` value in the response.      |
+| `marginTables[][0]`                           | integer           | `marginTables[][0]` value in the response. |
+| `marginTables[][1].description`               | string            | Description.                               |
+| `marginTables[][1].marginTiers[]`             | array             | `marginTiers` value in the response.       |
+| `marginTables[][1].marginTiers[].lowerBound`  | string            | `lowerBound` value in the response.        |
+| `marginTables[][1].marginTiers[].maxLeverage` | integer           | `maxLeverage` value in the response.       |
 
 ## Response example
 

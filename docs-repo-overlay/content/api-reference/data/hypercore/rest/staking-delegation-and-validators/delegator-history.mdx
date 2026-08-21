@@ -27,16 +27,16 @@ Returns a user's delegation, deposit, and withdrawal history.
 
 ## Response fields
 
-| Field                                | Type   | Description                           |
-| ------------------------------------ | ------ | ------------------------------------- |
-| `data[]`                             | varies | Response entries.                     |
-| `data[].time`                        | varies | `time` value in the response.         |
-| `data[].hash`                        | varies | `hash` value in the response.         |
-| `data[].delta`                       | varies | Activity-specific delta.              |
-| `data[].delta.delegate`              | varies | `delegate` value in the response.     |
-| `data[].delta.delegate.validator`    | varies | Validator address.                    |
-| `data[].delta.delegate.amount`       | varies | Delegated amount.                     |
-| `data[].delta.delegate.isUndelegate` | varies | `isUndelegate` value in the response. |
+| Field                            | Type    | Description                           |
+| -------------------------------- | ------- | ------------------------------------- |
+| `[]`                             | array   | Response entries.                     |
+| `[].time`                        | integer | `time` value in the response.         |
+| `[].hash`                        | string  | `hash` value in the response.         |
+| `[].delta`                       | object  | Activity-specific delta.              |
+| `[].delta.delegate`              | object  | `delegate` value in the response.     |
+| `[].delta.delegate.validator`    | string  | Validator address.                    |
+| `[].delta.delegate.amount`       | string  | Delegated amount.                     |
+| `[].delta.delegate.isUndelegate` | boolean | `isUndelegate` value in the response. |
 
 ## Response example
 

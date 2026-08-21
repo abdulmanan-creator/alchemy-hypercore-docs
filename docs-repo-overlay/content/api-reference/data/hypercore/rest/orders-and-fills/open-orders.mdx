@@ -29,15 +29,15 @@ Returns a user's current open orders for a selected perpetual DEX.
 
 ## Response fields
 
-| Field              | Type   | Description                      |
-| ------------------ | ------ | -------------------------------- |
-| `data[]`           | varies | Response object.                 |
-| `data[].coin`      | varies | Market identifier.               |
-| `data[].limitPx`   | varies | `limitPx` value in the response. |
-| `data[].oid`       | varies | Order identifier.                |
-| `data[].side`      | varies | Order side.                      |
-| `data[].sz`        | varies | Size.                            |
-| `data[].timestamp` | varies | Timestamp in milliseconds.       |
+| Field          | Type    | Description                      |
+| -------------- | ------- | -------------------------------- |
+| `[]`           | array   | Open-order entries.              |
+| `[].coin`      | string  | Market identifier.               |
+| `[].limitPx`   | string  | `limitPx` value in the response. |
+| `[].oid`       | integer | Order identifier.                |
+| `[].side`      | string  | Order side.                      |
+| `[].sz`        | string  | Size.                            |
+| `[].timestamp` | integer | Timestamp in milliseconds.       |
 
 ## Response example
 

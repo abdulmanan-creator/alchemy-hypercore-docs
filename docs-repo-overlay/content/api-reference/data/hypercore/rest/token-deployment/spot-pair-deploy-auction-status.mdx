@@ -25,13 +25,13 @@ Returns the current spot-pair deployment auction state.
 
 ## Response fields
 
-| Field              | Type   | Description                               |
-| ------------------ | ------ | ----------------------------------------- |
-| `startTimeSeconds` | varies | `startTimeSeconds` value in the response. |
-| `durationSeconds`  | varies | `durationSeconds` value in the response.  |
-| `startGas`         | varies | `startGas` value in the response.         |
-| `currentGas`       | varies | `currentGas` value in the response.       |
-| `endGas`           | varies | `endGas` value in the response.           |
+| Field              | Type           | Description                                                  |
+| ------------------ | -------------- | ------------------------------------------------------------ |
+| `startTimeSeconds` | integer        | `startTimeSeconds` value in the response.                    |
+| `durationSeconds`  | integer        | `durationSeconds` value in the response.                     |
+| `startGas`         | string         | `startGas` value in the response.                            |
+| `currentGas`       | string \| null | Current auction gas price, or `null` before it is available. |
+| `endGas`           | string \| null | Auction end gas price, or `null` while the auction is open.  |
 
 ## Response example
 

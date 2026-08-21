@@ -31,18 +31,18 @@ Returns a user's funding-payment history over a time range.
 
 ## Response fields
 
-| Field                      | Type   | Description                       |
-| -------------------------- | ------ | --------------------------------- |
-| `data[]`                   | varies | Response object.                  |
-| `data[].delta`             | varies | `delta` value in the response.    |
-| `data[].delta.type`        | varies | Selected read type.               |
-| `data[].delta.coin`        | varies | Market identifier.                |
-| `data[].delta.usdc`        | varies | `usdc` value in the response.     |
-| `data[].delta.szi`         | varies | `szi` value in the response.      |
-| `data[].delta.fundingRate` | varies | Funding rate.                     |
-| `data[].delta.nSamples`    | varies | `nSamples` value in the response. |
-| `data[].hash`              | varies | Transaction hash.                 |
-| `data[].time`              | varies | Timestamp in milliseconds.        |
+| Field                  | Type            | Description                                                         |
+| ---------------------- | --------------- | ------------------------------------------------------------------- |
+| `[]`                   | array           | Funding-payment entries.                                            |
+| `[].delta`             | object          | `delta` value in the response.                                      |
+| `[].delta.type`        | string          | Selected read type.                                                 |
+| `[].delta.coin`        | string          | Market identifier.                                                  |
+| `[].delta.usdc`        | string          | `usdc` value in the response.                                       |
+| `[].delta.szi`         | string          | `szi` value in the response.                                        |
+| `[].delta.fundingRate` | string          | Funding rate.                                                       |
+| `[].delta.nSamples`    | integer \| null | Number of samples used, or `null` when no sample count is supplied. |
+| `[].hash`              | string          | Transaction hash.                                                   |
+| `[].time`              | integer         | Timestamp in milliseconds.                                          |
 
 ## Response example
 

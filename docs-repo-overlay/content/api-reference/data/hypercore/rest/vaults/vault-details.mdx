@@ -29,35 +29,35 @@ Returns a vault's configuration, performance history, and follower state.
 
 ## Response fields
 
-| Field                                | Type   | Description                                  |
-| ------------------------------------ | ------ | -------------------------------------------- |
-| `name`                               | varies | Name.                                        |
-| `vaultAddress`                       | varies | `vaultAddress` value in the response.        |
-| `leader`                             | varies | Vault leader address.                        |
-| `description`                        | varies | Description.                                 |
-| `portfolio`                          | varies | Performance history by interval.             |
-| `portfolio[][0]`                     | varies | `portfolio[][0]` value in the response.      |
-| `portfolio[][1].accountValueHistory` | varies | `accountValueHistory` value in the response. |
-| `portfolio[][1].pnlHistory`          | varies | `pnlHistory` value in the response.          |
-| `portfolio[][1].vlm`                 | varies | `vlm` value in the response.                 |
-| `apr`                                | varies | Annualized return.                           |
-| `followerState`                      | varies | State for the requested user.                |
-| `leaderFraction`                     | varies | `leaderFraction` value in the response.      |
-| `leaderCommission`                   | varies | `leaderCommission` value in the response.    |
-| `followers[]`                        | varies | Vault followers.                             |
-| `followers[].user`                   | varies | `user` value in the response.                |
-| `followers[].vaultEquity`            | varies | `vaultEquity` value in the response.         |
-| `followers[].pnl`                    | varies | `pnl` value in the response.                 |
-| `followers[].allTimePnl`             | varies | `allTimePnl` value in the response.          |
-| `followers[].daysFollowing`          | varies | `daysFollowing` value in the response.       |
-| `followers[].vaultEntryTime`         | varies | `vaultEntryTime` value in the response.      |
-| `followers[].lockupUntil`            | varies | `lockupUntil` value in the response.         |
-| `maxDistributable`                   | varies | `maxDistributable` value in the response.    |
-| `maxWithdrawable`                    | varies | `maxWithdrawable` value in the response.     |
-| `isClosed`                           | varies | Whether the vault is closed.                 |
-| `relationship`                       | varies | `relationship` value in the response.        |
-| `allowDeposits`                      | varies | Whether deposits are allowed.                |
-| `alwaysCloseOnWithdraw`              | varies | Whether withdrawals close positions.         |
+| Field                                | Type           | Description                                                         |
+| ------------------------------------ | -------------- | ------------------------------------------------------------------- |
+| `name`                               | string         | Name.                                                               |
+| `vaultAddress`                       | string         | `vaultAddress` value in the response.                               |
+| `leader`                             | string         | Vault leader address.                                               |
+| `description`                        | string         | Description.                                                        |
+| `portfolio`                          | array          | Performance history by interval.                                    |
+| `portfolio[][0]`                     | string         | `portfolio[][0]` value in the response.                             |
+| `portfolio[][1].accountValueHistory` | array          | `accountValueHistory` value in the response.                        |
+| `portfolio[][1].pnlHistory`          | array          | `pnlHistory` value in the response.                                 |
+| `portfolio[][1].vlm`                 | string         | `vlm` value in the response.                                        |
+| `apr`                                | number         | Annualized return.                                                  |
+| `followerState`                      | object \| null | Follower state for the requesting user, or `null` when none exists. |
+| `leaderFraction`                     | number         | `leaderFraction` value in the response.                             |
+| `leaderCommission`                   | number         | `leaderCommission` value in the response.                           |
+| `followers[]`                        | array          | Vault followers.                                                    |
+| `followers[].user`                   | string         | `user` value in the response.                                       |
+| `followers[].vaultEquity`            | string         | `vaultEquity` value in the response.                                |
+| `followers[].pnl`                    | string         | `pnl` value in the response.                                        |
+| `followers[].allTimePnl`             | string         | `allTimePnl` value in the response.                                 |
+| `followers[].daysFollowing`          | integer        | `daysFollowing` value in the response.                              |
+| `followers[].vaultEntryTime`         | integer        | `vaultEntryTime` value in the response.                             |
+| `followers[].lockupUntil`            | integer        | `lockupUntil` value in the response.                                |
+| `maxDistributable`                   | number         | `maxDistributable` value in the response.                           |
+| `maxWithdrawable`                    | number         | `maxWithdrawable` value in the response.                            |
+| `isClosed`                           | boolean        | Whether the vault is closed.                                        |
+| `relationship`                       | object         | `relationship` value in the response.                               |
+| `allowDeposits`                      | boolean        | Whether deposits are allowed.                                       |
+| `alwaysCloseOnWithdraw`              | boolean        | Whether withdrawals close positions.                                |
 
 ## Response example
 

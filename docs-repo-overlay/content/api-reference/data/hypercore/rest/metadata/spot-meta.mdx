@@ -25,22 +25,22 @@ Returns spot token and spot-pair definitions.
 
 ## Response fields
 
-| Field                    | Type   | Description                          |
-| ------------------------ | ------ | ------------------------------------ |
-| `tokens[]`               | varies | `tokens` value in the response.      |
-| `tokens[].name`          | varies | Name.                                |
-| `tokens[].szDecimals`    | varies | `szDecimals` value in the response.  |
-| `tokens[].weiDecimals`   | varies | `weiDecimals` value in the response. |
-| `tokens[].index`         | varies | Index.                               |
-| `tokens[].tokenId`       | varies | `tokenId` value in the response.     |
-| `tokens[].isCanonical`   | varies | `isCanonical` value in the response. |
-| `tokens[].evmContract`   | varies | `evmContract` value in the response. |
-| `tokens[].fullName`      | varies | `fullName` value in the response.    |
-| `universe[]`             | varies | `universe` value in the response.    |
-| `universe[].name`        | varies | Name.                                |
-| `universe[].tokens`      | varies | `tokens` value in the response.      |
-| `universe[].index`       | varies | Index.                               |
-| `universe[].isCanonical` | varies | `isCanonical` value in the response. |
+| Field                    | Type           | Description                                   |
+| ------------------------ | -------------- | --------------------------------------------- |
+| `tokens[]`               | array          | `tokens` value in the response.               |
+| `tokens[].name`          | string         | Name.                                         |
+| `tokens[].szDecimals`    | integer        | `szDecimals` value in the response.           |
+| `tokens[].weiDecimals`   | integer        | `weiDecimals` value in the response.          |
+| `tokens[].index`         | integer        | Index.                                        |
+| `tokens[].tokenId`       | string         | `tokenId` value in the response.              |
+| `tokens[].isCanonical`   | boolean        | `isCanonical` value in the response.          |
+| `tokens[].evmContract`   | string \| null | `evmContract` value in the response.          |
+| `tokens[].fullName`      | string \| null | Full token name, or `null` when not supplied. |
+| `universe[]`             | array          | `universe` value in the response.             |
+| `universe[].name`        | string         | Name.                                         |
+| `universe[].tokens`      | array          | `tokens` value in the response.               |
+| `universe[].index`       | integer        | Index.                                        |
+| `universe[].isCanonical` | boolean        | `isCanonical` value in the response.          |
 
 ## Response example
 

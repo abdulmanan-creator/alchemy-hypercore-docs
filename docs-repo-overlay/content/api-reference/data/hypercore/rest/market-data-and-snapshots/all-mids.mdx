@@ -27,10 +27,10 @@ Returns the current mid price for each market on a perpetual DEX.
 
 ## Response fields
 
-| Field         | Type   | Description                     |
-| ------------- | ------ | ------------------------------- |
-| `data`        | varies | Response object.                |
-| `data.<coin>` | varies | `<coin>` value in the response. |
+| Field      | Type   | Description                                          |
+| ---------- | ------ | ---------------------------------------------------- |
+| `Response` | object | Map of asset identifier to decimal-string mid price. |
+| `<coin>`   | string | Decimal-string mid price for the asset identifier.   |
 
 ## Response example
 

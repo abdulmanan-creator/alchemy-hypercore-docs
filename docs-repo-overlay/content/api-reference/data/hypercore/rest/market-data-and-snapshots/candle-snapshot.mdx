@@ -36,19 +36,19 @@ Returns up to 5,000 OHLCV candles for charting a market over a bounded time rang
 
 ## Response fields
 
-| Field      | Type   | Description                |
-| ---------- | ------ | -------------------------- |
-| `data[]`   | varies | Response object.           |
-| `data[].T` | varies | `T` value in the response. |
-| `data[].c` | varies | `c` value in the response. |
-| `data[].h` | varies | `h` value in the response. |
-| `data[].i` | varies | `i` value in the response. |
-| `data[].l` | varies | `l` value in the response. |
-| `data[].n` | varies | `n` value in the response. |
-| `data[].o` | varies | `o` value in the response. |
-| `data[].s` | varies | `s` value in the response. |
-| `data[].t` | varies | `t` value in the response. |
-| `data[].v` | varies | `v` value in the response. |
+| Field  | Type    | Description                |
+| ------ | ------- | -------------------------- |
+| `[]`   | array   | Candle entries.            |
+| `[].T` | integer | `T` value in the response. |
+| `[].c` | string  | `c` value in the response. |
+| `[].h` | string  | `h` value in the response. |
+| `[].i` | string  | `i` value in the response. |
+| `[].l` | string  | `l` value in the response. |
+| `[].n` | integer | `n` value in the response. |
+| `[].o` | string  | `o` value in the response. |
+| `[].s` | string  | `s` value in the response. |
+| `[].t` | integer | `t` value in the response. |
+| `[].v` | string  | `v` value in the response. |
 
 ## Response example
 

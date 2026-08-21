@@ -25,22 +25,22 @@ Returns spot metadata with the aligned current context for each spot pair.
 
 ## Response fields
 
-| Field                          | Type   | Description                          |
-| ------------------------------ | ------ | ------------------------------------ |
-| `data[0]`                      | varies | `data[0]` value in the response.     |
-| `data[0].tokens[]`             | varies | `tokens` value in the response.      |
-| `data[0].tokens[].name`        | varies | Name.                                |
-| `data[0].tokens[].szDecimals`  | varies | `szDecimals` value in the response.  |
-| `data[0].tokens[].weiDecimals` | varies | `weiDecimals` value in the response. |
-| `data[0].tokens[].index`       | varies | Index.                               |
-| `data[0].universe[]`           | varies | `universe` value in the response.    |
-| `data[0].universe[].name`      | varies | Name.                                |
-| `data[0].universe[].tokens`    | varies | `tokens` value in the response.      |
-| `data[1]`                      | varies | `data[1]` value in the response.     |
-| `data[1][].dayNtlVlm`          | varies | `dayNtlVlm` value in the response.   |
-| `data[1][].markPx`             | varies | Current mark price.                  |
-| `data[1][].midPx`              | varies | Current mid price.                   |
-| `data[1][].prevDayPx`          | varies | `prevDayPx` value in the response.   |
+| Field                      | Type    | Description                                   |
+| -------------------------- | ------- | --------------------------------------------- |
+| `[0]`                      | object  | Metadata object at tuple index 0.             |
+| `[0].tokens[]`             | array   | `tokens` value in the response.               |
+| `[0].tokens[].name`        | string  | Name.                                         |
+| `[0].tokens[].szDecimals`  | integer | `szDecimals` value in the response.           |
+| `[0].tokens[].weiDecimals` | integer | `weiDecimals` value in the response.          |
+| `[0].tokens[].index`       | integer | Index.                                        |
+| `[0].universe[]`           | array   | `universe` value in the response.             |
+| `[0].universe[].name`      | string  | Name.                                         |
+| `[0].universe[].tokens`    | array   | `tokens` value in the response.               |
+| `[1]`                      | array   | Aligned asset-context array at tuple index 1. |
+| `[1][].dayNtlVlm`          | string  | `dayNtlVlm` value in the response.            |
+| `[1][].markPx`             | string  | Current mark price.                           |
+| `[1][].midPx`              | string  | Current mid price.                            |
+| `[1][].prevDayPx`          | string  | `prevDayPx` value in the response.            |
 
 ## Response example
 

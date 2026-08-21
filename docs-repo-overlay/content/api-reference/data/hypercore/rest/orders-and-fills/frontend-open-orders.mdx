@@ -29,22 +29,22 @@ Returns open orders with trigger, reduce-only, and order-type details used by tr
 
 ## Response fields
 
-| Field                     | Type   | Description                               |
-| ------------------------- | ------ | ----------------------------------------- |
-| `data[]`                  | varies | Response object.                          |
-| `data[].coin`             | varies | Market identifier.                        |
-| `data[].isPositionTpsl`   | varies | `isPositionTpsl` value in the response.   |
-| `data[].isTrigger`        | varies | `isTrigger` value in the response.        |
-| `data[].limitPx`          | varies | `limitPx` value in the response.          |
-| `data[].oid`              | varies | Order identifier.                         |
-| `data[].orderType`        | varies | `orderType` value in the response.        |
-| `data[].origSz`           | varies | `origSz` value in the response.           |
-| `data[].reduceOnly`       | varies | `reduceOnly` value in the response.       |
-| `data[].side`             | varies | Order side.                               |
-| `data[].sz`               | varies | Size.                                     |
-| `data[].timestamp`        | varies | Timestamp in milliseconds.                |
-| `data[].triggerCondition` | varies | `triggerCondition` value in the response. |
-| `data[].triggerPx`        | varies | `triggerPx` value in the response.        |
+| Field                 | Type    | Description                               |
+| --------------------- | ------- | ----------------------------------------- |
+| `[]`                  | array   | Open-order entries.                       |
+| `[].coin`             | string  | Market identifier.                        |
+| `[].isPositionTpsl`   | boolean | `isPositionTpsl` value in the response.   |
+| `[].isTrigger`        | boolean | `isTrigger` value in the response.        |
+| `[].limitPx`          | string  | `limitPx` value in the response.          |
+| `[].oid`              | integer | Order identifier.                         |
+| `[].orderType`        | string  | `orderType` value in the response.        |
+| `[].origSz`           | string  | `origSz` value in the response.           |
+| `[].reduceOnly`       | boolean | `reduceOnly` value in the response.       |
+| `[].side`             | string  | Order side.                               |
+| `[].sz`               | string  | Size.                                     |
+| `[].timestamp`        | integer | Timestamp in milliseconds.                |
+| `[].triggerCondition` | string  | `triggerCondition` value in the response. |
+| `[].triggerPx`        | string  | `triggerPx` value in the response.        |
 
 ## Response example
 

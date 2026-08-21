@@ -27,12 +27,12 @@ Returns a user's delegation and commission reward history.
 
 ## Response fields
 
-| Field                | Type   | Description                   |
-| -------------------- | ------ | ----------------------------- |
-| `data[]`             | varies | Response entries.             |
-| `data[].time`        | varies | `time` value in the response. |
-| `data[].source`      | varies | Reward source.                |
-| `data[].totalAmount` | varies | Reward amount.                |
+| Field            | Type    | Description                   |
+| ---------------- | ------- | ----------------------------- |
+| `[]`             | array   | Response entries.             |
+| `[].time`        | integer | `time` value in the response. |
+| `[].source`      | string  | Reward source.                |
+| `[].totalAmount` | string  | Reward amount.                |
 
 ## Response example
 

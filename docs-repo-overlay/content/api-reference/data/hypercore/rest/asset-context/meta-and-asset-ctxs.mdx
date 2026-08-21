@@ -27,25 +27,25 @@ Returns perpetual metadata and aligned live market contexts; use it to read the 
 
 ## Response fields
 
-| Field                            | Type   | Description                              |
-| -------------------------------- | ------ | ---------------------------------------- |
-| `data[0]`                        | varies | `data[0]` value in the response.         |
-| `data[0].universe[]`             | varies | `universe` value in the response.        |
-| `data[0].universe[].name`        | varies | Name.                                    |
-| `data[0].universe[].szDecimals`  | varies | `szDecimals` value in the response.      |
-| `data[0].universe[].maxLeverage` | varies | `maxLeverage` value in the response.     |
-| `data[0].marginTables`           | varies | `marginTables` value in the response.    |
-| `data[0].collateralToken`        | varies | `collateralToken` value in the response. |
-| `data[1]`                        | varies | `data[1]` value in the response.         |
-| `data[1][].dayNtlVlm`            | varies | `dayNtlVlm` value in the response.       |
-| `data[1][].funding`              | varies | `funding` value in the response.         |
-| `data[1][].impactPxs`            | varies | `impactPxs` value in the response.       |
-| `data[1][].markPx`               | varies | Current mark price.                      |
-| `data[1][].midPx`                | varies | Current mid price.                       |
-| `data[1][].openInterest`         | varies | `openInterest` value in the response.    |
-| `data[1][].oraclePx`             | varies | Current oracle price.                    |
-| `data[1][].premium`              | varies | `premium` value in the response.         |
-| `data[1][].prevDayPx`            | varies | `prevDayPx` value in the response.       |
+| Field                        | Type    | Description                                   |
+| ---------------------------- | ------- | --------------------------------------------- |
+| `[0]`                        | object  | Metadata object at tuple index 0.             |
+| `[0].universe[]`             | array   | `universe` value in the response.             |
+| `[0].universe[].name`        | string  | Name.                                         |
+| `[0].universe[].szDecimals`  | integer | `szDecimals` value in the response.           |
+| `[0].universe[].maxLeverage` | integer | `maxLeverage` value in the response.          |
+| `[0].marginTables`           | array   | `marginTables` value in the response.         |
+| `[0].collateralToken`        | integer | `collateralToken` value in the response.      |
+| `[1]`                        | array   | Aligned asset-context array at tuple index 1. |
+| `[1][].dayNtlVlm`            | string  | `dayNtlVlm` value in the response.            |
+| `[1][].funding`              | string  | `funding` value in the response.              |
+| `[1][].impactPxs`            | array   | `impactPxs` value in the response.            |
+| `[1][].markPx`               | string  | Current mark price.                           |
+| `[1][].midPx`                | string  | Current mid price.                            |
+| `[1][].openInterest`         | string  | `openInterest` value in the response.         |
+| `[1][].oraclePx`             | string  | Current oracle price.                         |
+| `[1][].premium`              | string  | `premium` value in the response.              |
+| `[1][].prevDayPx`            | string  | `prevDayPx` value in the response.            |
 
 ## Response example
 

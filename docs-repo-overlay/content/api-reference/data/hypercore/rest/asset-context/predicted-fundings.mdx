@@ -25,16 +25,16 @@ Returns predicted funding rates and scheduled funding times for the first perpet
 
 ## Response fields
 
-| Field                                 | Type   | Description                                   |
-| ------------------------------------- | ------ | --------------------------------------------- |
-| `data[]`                              | varies | Response object.                              |
-| `data[][0]`                           | varies | `data[][0]` value in the response.            |
-| `data[][1]`                           | varies | `data[][1]` value in the response.            |
-| `data[][1][][0]`                      | varies | `data[][1][][0]` value in the response.       |
-| `data[][1][][1]`                      | varies | `data[][1][][1]` value in the response.       |
-| `data[][1][][1].fundingRate`          | varies | Funding rate.                                 |
-| `data[][1][][1].nextFundingTime`      | varies | `nextFundingTime` value in the response.      |
-| `data[][1][][1].fundingIntervalHours` | varies | `fundingIntervalHours` value in the response. |
+| Field                             | Type           | Description                                               |
+| --------------------------------- | -------------- | --------------------------------------------------------- |
+| `[]`                              | array          | Market funding-prediction entries.                        |
+| `[][0]`                           | string         | Market identifier at tuple index 0.                       |
+| `[][1]`                           | array          | Venue-funding entries at tuple index 1.                   |
+| `[][1][][0]`                      | string \| null | Venue identifier, or `null` when that venue has no entry. |
+| `[][1][][1]`                      | object         | Funding prediction for the venue.                         |
+| `[][1][][1].fundingRate`          | string         | Funding rate.                                             |
+| `[][1][][1].nextFundingTime`      | integer        | `nextFundingTime` value in the response.                  |
+| `[][1][][1].fundingIntervalHours` | integer        | `fundingIntervalHours` value in the response.             |
 
 ## Response example
 

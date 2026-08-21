@@ -27,31 +27,31 @@ Returns an account's fee schedule, current rates, and daily volume history.
 
 ## Response fields
 
-| Field                                | Type   | Description                                          |
-| ------------------------------------ | ------ | ---------------------------------------------------- |
-| `dailyUserVlm[]`                     | varies | Daily volume entries.                                |
-| `dailyUserVlm[].date`                | varies | `date` value in the response.                        |
-| `dailyUserVlm[].userCross`           | varies | `userCross` value in the response.                   |
-| `dailyUserVlm[].userAdd`             | varies | `userAdd` value in the response.                     |
-| `dailyUserVlm[].exchange`            | varies | `exchange` value in the response.                    |
-| `feeSchedule`                        | varies | Applicable fee schedule.                             |
-| `feeSchedule.cross`                  | varies | `cross` value in the response.                       |
-| `feeSchedule.add`                    | varies | `add` value in the response.                         |
-| `feeSchedule.spotCross`              | varies | `spotCross` value in the response.                   |
-| `feeSchedule.spotAdd`                | varies | `spotAdd` value in the response.                     |
-| `feeSchedule.tiers`                  | varies | `tiers` value in the response.                       |
-| `feeSchedule.referralDiscount`       | varies | `referralDiscount` value in the response.            |
-| `feeSchedule.stakingDiscountTiers[]` | varies | `stakingDiscountTiers` value in the response.        |
-| `userCrossRate`                      | varies | Current taker rate.                                  |
-| `userAddRate`                        | varies | Current maker rate.                                  |
-| `userSpotCrossRate`                  | varies | Current spot taker rate.                             |
-| `userSpotAddRate`                    | varies | Current spot maker rate.                             |
-| `activeReferralDiscount`             | varies | Active referral discount.                            |
-| `trial`                              | varies | `trial` value in the response.                       |
-| `feeTrialReward`                     | varies | `feeTrialReward` value in the response.              |
-| `nextTrialAvailableTimestamp`        | varies | `nextTrialAvailableTimestamp` value in the response. |
-| `stakingLink`                        | varies | `stakingLink` value in the response.                 |
-| `activeStakingDiscount`              | varies | `activeStakingDiscount` value in the response.       |
+| Field                                | Type            | Description                                                          |
+| ------------------------------------ | --------------- | -------------------------------------------------------------------- |
+| `dailyUserVlm[]`                     | array           | Daily volume entries.                                                |
+| `dailyUserVlm[].date`                | string          | `date` value in the response.                                        |
+| `dailyUserVlm[].userCross`           | string          | `userCross` value in the response.                                   |
+| `dailyUserVlm[].userAdd`             | string          | `userAdd` value in the response.                                     |
+| `dailyUserVlm[].exchange`            | string          | `exchange` value in the response.                                    |
+| `feeSchedule`                        | object          | Applicable fee schedule.                                             |
+| `feeSchedule.cross`                  | string          | `cross` value in the response.                                       |
+| `feeSchedule.add`                    | string          | `add` value in the response.                                         |
+| `feeSchedule.spotCross`              | string          | `spotCross` value in the response.                                   |
+| `feeSchedule.spotAdd`                | string          | `spotAdd` value in the response.                                     |
+| `feeSchedule.tiers`                  | object          | `tiers` value in the response.                                       |
+| `feeSchedule.referralDiscount`       | string          | `referralDiscount` value in the response.                            |
+| `feeSchedule.stakingDiscountTiers[]` | array           | `stakingDiscountTiers` value in the response.                        |
+| `userCrossRate`                      | string          | Current taker rate.                                                  |
+| `userAddRate`                        | string          | Current maker rate.                                                  |
+| `userSpotCrossRate`                  | string          | Current spot taker rate.                                             |
+| `userSpotAddRate`                    | string          | Current spot maker rate.                                             |
+| `activeReferralDiscount`             | string          | Active referral discount.                                            |
+| `trial`                              | object \| null  | Fee-trial details, or `null` when no trial applies.                  |
+| `feeTrialReward`                     | string          | `feeTrialReward` value in the response.                              |
+| `nextTrialAvailableTimestamp`        | integer \| null | Time in milliseconds when another trial may be available, or `null`. |
+| `stakingLink`                        | object \| null  | Staking-link details, or `null` when no link applies.                |
+| `activeStakingDiscount`              | object \| null  | Active staking-discount details, or `null` when no discount applies. |
 
 ## Response example
 

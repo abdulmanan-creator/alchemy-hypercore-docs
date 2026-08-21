@@ -27,12 +27,12 @@ Returns a user's active validator delegations.
 
 ## Response fields
 
-| Field                         | Type   | Description                             |
-| ----------------------------- | ------ | --------------------------------------- |
-| `data[]`                      | varies | Response entries.                       |
-| `data[].validator`            | varies | Validator address.                      |
-| `data[].amount`               | varies | Delegated amount.                       |
-| `data[].lockedUntilTimestamp` | varies | Delegation unlock time in milliseconds. |
+| Field                     | Type    | Description                             |
+| ------------------------- | ------- | --------------------------------------- |
+| `[]`                      | array   | Response entries.                       |
+| `[].validator`            | string  | Validator address.                      |
+| `[].amount`               | string  | Delegated amount.                       |
+| `[].lockedUntilTimestamp` | integer | Delegation unlock time in milliseconds. |
 
 ## Response example
 

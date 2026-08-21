@@ -29,17 +29,17 @@ Returns a user's active perpetual-market trading capacity and leverage for one c
 
 ## Response fields
 
-| Field              | Type   | Description                               |
-| ------------------ | ------ | ----------------------------------------- |
-| `user`             | varies | Account address.                          |
-| `coin`             | varies | Market identifier.                        |
-| `leverage`         | varies | `leverage` value in the response.         |
-| `leverage.type`    | varies | Selected read type.                       |
-| `leverage.value`   | varies | `value` value in the response.            |
-| `leverage.rawUsd`  | varies | `rawUsd` value in the response.           |
-| `maxTradeSzs`      | varies | `maxTradeSzs` value in the response.      |
-| `availableToTrade` | varies | `availableToTrade` value in the response. |
-| `markPx`           | varies | Current mark price.                       |
+| Field              | Type              | Description                               |
+| ------------------ | ----------------- | ----------------------------------------- |
+| `user`             | string            | Account address.                          |
+| `coin`             | string            | Market identifier.                        |
+| `leverage`         | object            | `leverage` value in the response.         |
+| `leverage.type`    | cross \| isolated | Selected read type.                       |
+| `leverage.value`   | integer           | `value` value in the response.            |
+| `leverage.rawUsd`  | string            | `rawUsd` value in the response.           |
+| `maxTradeSzs`      | array             | `maxTradeSzs` value in the response.      |
+| `availableToTrade` | array             | `availableToTrade` value in the response. |
+| `markPx`           | string            | Current mark price.                       |
 
 ## Response example
 
