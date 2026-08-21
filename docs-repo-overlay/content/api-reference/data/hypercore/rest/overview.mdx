@@ -33,24 +33,21 @@ wallet address returns an empty result.
 
 For deployment context, see [Deploying Hyperliquid markets](/docs/chains/deploying-markets).
 
-## Native-compatible reads
+## Read paths
 
-Use `/info` with a `type` discriminator for native-compatible reads. The seven
-intentional purpose-built routes are listed separately; the other documented reads
-use `/info`.
+Every read other than the seven routes below uses `POST /{apiKey}/info` with a
+`type` discriminator. The resource-family pages in this reference document each
+request body and response contract.
 
-| Native type                   | Available via `/info` | Purpose-built route                  |
-| ----------------------------- | --------------------- | ------------------------------------ |
-| `userFills`                   | Yes                   | `POST /{apiKey}/user-fills`          |
-| `userFillsByTime`             | Yes                   | `POST /{apiKey}/user-fills-by-time`  |
-| `historicalOrders`            | Yes                   | `POST /{apiKey}/historical-orders`   |
-| `userFunding`                 | Yes                   | —                                    |
-| `userNonFundingLedgerUpdates` | Yes                   | —                                    |
-| `delegations`                 | Yes                   | —                                    |
-| `delegatorHistory`            | Yes                   | —                                    |
-| `clearinghouseState`          | Yes                   | `POST /{apiKey}/clearinghouse-state` |
-| `spotClearinghouseState`      | Yes                   | —                                    |
-| `frontendOpenOrders`          | Yes                   | —                                    |
+| Purpose-built route                    | Corresponding read           |
+| -------------------------------------- | ---------------------------- |
+| `POST /{apiKey}/user-fills`            | `userFills`                  |
+| `POST /{apiKey}/user-fills-by-time`    | `userFillsByTime`            |
+| `POST /{apiKey}/clearinghouse-state`   | `clearinghouseState`         |
+| `POST /{apiKey}/historical-orders`     | `historicalOrders`           |
+| `POST /{apiKey}/portfolio-state`       | Enriched portfolio composite |
+| `POST /{apiKey}/extra-agents`          | Enriched agent composite     |
+| `POST /{apiKey}/l2-book-diff-snapshot` | L2 diff bootstrap snapshot   |
 
 ## Enriched composites
 

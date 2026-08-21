@@ -7,31 +7,40 @@ description: "HyperCore private-preview documentation."
 
 # Delegator summary
 
-A user's delegation summary.
+Returns a user's delegated, undelegated, and pending-withdrawal staking balances.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description        |
-| --------------------- | ------ | ------------------ |
-| `type`                | string | `delegatorSummary` |
-| Additional parameters | varies | user               |
+| Parameter | Type   | Required | Description                    |
+| --------- | ------ | -------- | ------------------------------ |
+| `type`    | string | Yes      | Selects `delegatorSummary`.    |
+| `user`    | string | Yes      | Master or sub-account address. |
 
 ```json
 {
-  "type": "delegatorSummary"
+  "type": "delegatorSummary",
+  "user": "0x0000000000000000000000000000000000000000"
 }
 ```
 
 ## Response fields
 
-| Field    | Description                                                         |
-| -------- | ------------------------------------------------------------------- |
-| Response | delegated, undelegated, totalPendingWithdrawal, nPendingWithdrawals |
+| Field                    | Type   | Description                    |
+| ------------------------ | ------ | ------------------------------ |
+| `delegated`              | varies | Total delegated amount.        |
+| `undelegated`            | varies | Amount not delegated.          |
+| `totalPendingWithdrawal` | varies | Amount pending withdrawal.     |
+| `nPendingWithdrawals`    | varies | Number of pending withdrawals. |
 
 ## Response example
 
 ```json
-{ "delegated": "0.0" }
+{
+  "delegated": "12060.16529862",
+  "undelegated": "0.0",
+  "totalPendingWithdrawal": "0.0",
+  "nPendingWithdrawals": 0
+}
 ```

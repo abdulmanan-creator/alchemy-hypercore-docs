@@ -7,16 +7,15 @@ description: "HyperCore private-preview documentation."
 
 # Trigger-order snapshot
 
-Trigger orders derived from L4 state.
+Alchemy-original read for a trigger-order snapshot.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description                        |
-| --------------------- | ------ | ---------------------------------- |
-| `type`                | string | `triggerOrderSnapshot`             |
-| Additional parameters | varies | includeUsers, includeTriggerOrders |
+| Parameter | Type   | Required | Description                     |
+| --------- | ------ | -------- | ------------------------------- |
+| `type`    | string | Yes      | Selects `triggerOrderSnapshot`. |
 
 ```json
 {
@@ -26,12 +25,11 @@ Trigger orders derived from L4 state.
 
 ## Response fields
 
-| Field    | Description           |
-| -------- | --------------------- |
-| Response | Trigger-order records |
+| Field           | Type   | Description                                              |
+| --------------- | ------ | -------------------------------------------------------- |
+| `data`          | object | Trigger-order snapshot payload.                          |
+| `data.<fields>` | varies | The response contract requires engineering confirmation. |
 
 ## Response example
 
-```json
-[]
-```
+No response example is published because the response contract has not been confirmed.

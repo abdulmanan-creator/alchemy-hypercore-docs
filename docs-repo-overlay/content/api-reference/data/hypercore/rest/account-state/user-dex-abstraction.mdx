@@ -7,31 +7,32 @@ description: "HyperCore private-preview documentation."
 
 # DEX abstraction state
 
-A user's HIP-3 DEX abstraction state.
+Returns whether a user has enabled HIP-3 DEX abstraction.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description          |
-| --------------------- | ------ | -------------------- |
-| `type`                | string | `userDexAbstraction` |
-| Additional parameters | varies | user                 |
+| Parameter | Type   | Required | Description                    |
+| --------- | ------ | -------- | ------------------------------ |
+| `type`    | string | Yes      | Selects `userDexAbstraction`.  |
+| `user`    | string | Yes      | Master or sub-account address. |
 
 ```json
 {
-  "type": "userDexAbstraction"
+  "type": "userDexAbstraction",
+  "user": "0x0000000000000000000000000000000000000000"
 }
 ```
 
 ## Response fields
 
-| Field    | Description     |
-| -------- | --------------- |
-| Response | Boolean or null |
+| Field      | Type    | Description      |
+| ---------- | ------- | ---------------- |
+| `Response` | boolean | Scalar response. |
 
 ## Response example
 
 ```json
-null
+true
 ```

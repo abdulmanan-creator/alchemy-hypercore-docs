@@ -7,31 +7,40 @@ description: "HyperCore private-preview documentation."
 
 # User rate limit
 
-A user's request-rate state.
+Returns the native request allowance and usage for an account.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description     |
-| --------------------- | ------ | --------------- |
-| `type`                | string | `userRateLimit` |
-| Additional parameters | varies | user            |
+| Parameter | Type   | Required | Description                    |
+| --------- | ------ | -------- | ------------------------------ |
+| `type`    | string | Yes      | Selects `userRateLimit`.       |
+| `user`    | string | Yes      | Master or sub-account address. |
 
 ```json
 {
-  "type": "userRateLimit"
+  "type": "userRateLimit",
+  "user": "0x0000000000000000000000000000000000000000"
 }
 ```
 
 ## Response fields
 
-| Field    | Description                                           |
-| -------- | ----------------------------------------------------- |
-| Response | cumVlm, nRequestsUsed, nRequestsCap, nRequestsSurplus |
+| Field              | Type   | Description                            |
+| ------------------ | ------ | -------------------------------------- |
+| `cumVlm`           | varies | Cumulative volume.                     |
+| `nRequestsUsed`    | varies | Requests used after reserved capacity. |
+| `nRequestsCap`     | varies | Current request cap.                   |
+| `nRequestsSurplus` | varies | Reserved request capacity remaining.   |
 
 ## Response example
 
 ```json
-{ "nRequestsUsed": 0 }
+{
+  "cumVlm": "2854574.593578",
+  "nRequestsUsed": 2890,
+  "nRequestsCap": 2864574,
+  "nRequestsSurplus": 0
+}
 ```

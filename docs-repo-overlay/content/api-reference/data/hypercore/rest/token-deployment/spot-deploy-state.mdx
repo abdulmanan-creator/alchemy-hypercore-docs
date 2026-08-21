@@ -7,31 +7,67 @@ description: "HyperCore private-preview documentation."
 
 # Spot deployment state
 
-Spot token deployment state.
+Returns the caller's spot-token deployment states and the current deployment auction.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description                   |
-| --------------------- | ------ | ----------------------------- |
-| `type`                | string | `spotDeployState`             |
-| Additional parameters | varies | type-specific fields required |
+| Parameter | Type   | Required | Description                    |
+| --------- | ------ | -------- | ------------------------------ |
+| `type`    | string | Yes      | Selects `spotDeployState`.     |
+| `user`    | string | Yes      | Master or sub-account address. |
 
 ```json
 {
-  "type": "spotDeployState"
+  "type": "spotDeployState",
+  "user": "0x0000000000000000000000000000000000000000"
 }
 ```
 
 ## Response fields
 
-| Field    | Description                   |
-| -------- | ----------------------------- |
-| Response | No non-error payload observed |
+| Field                                   | Type   | Description                                           |
+| --------------------------------------- | ------ | ----------------------------------------------------- |
+| `states[]`                              | varies | Deployment-state entries.                             |
+| `states[].token`                        | varies | Token index.                                          |
+| `states[].spec`                         | varies | `spec` value in the response.                         |
+| `states[].spec.name`                    | varies | Name.                                                 |
+| `states[].spec.szDecimals`              | varies | `szDecimals` value in the response.                   |
+| `states[].spec.weiDecimals`             | varies | `weiDecimals` value in the response.                  |
+| `states[].fullName`                     | varies | `fullName` value in the response.                     |
+| `states[].spots`                        | varies | `spots` value in the response.                        |
+| `states[].maxSupply`                    | varies | `maxSupply` value in the response.                    |
+| `states[].hyperliquidityGenesisBalance` | varies | `hyperliquidityGenesisBalance` value in the response. |
+| `states[].totalGenesisBalanceWei`       | varies | `totalGenesisBalanceWei` value in the response.       |
+| `states[].userGenesisBalances`          | varies | `userGenesisBalances` value in the response.          |
+| `states[].existingTokenGenesisBalances` | varies | `existingTokenGenesisBalances` value in the response. |
+| `gasAuction`                            | varies | `gasAuction` value in the response.                   |
+| `gasAuction.startTimeSeconds`           | varies | `startTimeSeconds` value in the response.             |
+| `gasAuction.durationSeconds`            | varies | `durationSeconds` value in the response.              |
+| `gasAuction.startGas`                   | varies | `startGas` value in the response.                     |
+| `gasAuction.currentGas`                 | varies | `currentGas` value in the response.                   |
+| `gasAuction.endGas`                     | varies | `endGas` value in the response.                       |
 
 ## Response example
 
 ```json
-null
+{
+  "states": [
+    {
+      "token": 150,
+      "spec": { "name": "HYPE", "szDecimals": 2, "weiDecimals": 8 },
+      "fullName": "Hyperliquid",
+      "spots": [107],
+      "maxSupply": 1000000000
+    }
+  ],
+  "gasAuction": {
+    "startTimeSeconds": 1733929200,
+    "durationSeconds": 111600,
+    "startGas": "181305.90046",
+    "currentGas": null,
+    "endGas": "181291.247358"
+  }
+}
 ```

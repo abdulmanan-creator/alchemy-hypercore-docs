@@ -7,31 +7,33 @@ description: "HyperCore private-preview documentation."
 
 # All mids
 
-Current mids keyed by asset identifier.
+Returns the current mid price for each market on a perpetual DEX.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description |
-| --------------------- | ------ | ----------- |
-| `type`                | string | `allMids`   |
-| Additional parameters | varies | dex         |
+| Parameter | Type   | Required | Description                                           |
+| --------- | ------ | -------- | ----------------------------------------------------- |
+| `type`    | string | Yes      | Selects `allMids`.                                    |
+| `dex`     | string | No       | Perpetual DEX name; omit for the first perpetual DEX. |
 
 ```json
 {
-  "type": "allMids"
+  "type": "allMids",
+  "dex": ""
 }
 ```
 
 ## Response fields
 
-| Field    | Description                           |
-| -------- | ------------------------------------- |
-| Response | Asset identifier → decimal-string mid |
+| Field         | Type   | Description                     |
+| ------------- | ------ | ------------------------------- |
+| `data`        | varies | Response object.                |
+| `data.<coin>` | varies | `<coin>` value in the response. |
 
 ## Response example
 
 ```json
-{ "BTC": "0.0" }
+{ "APE": "4.33245", "ARB": "1.21695" }
 ```

@@ -7,16 +7,15 @@ description: "HyperCore private-preview documentation."
 
 # Outcome metadata
 
-Outcome-market metadata.
+Returns registered outcome-market specifications and questions.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description   |
-| --------------------- | ------ | ------------- |
-| `type`                | string | `outcomeMeta` |
-| Additional parameters | varies | —             |
+| Parameter | Type   | Required | Description            |
+| --------- | ------ | -------- | ---------------------- |
+| `type`    | string | Yes      | Selects `outcomeMeta`. |
 
 ```json
 {
@@ -26,12 +25,32 @@ Outcome-market metadata.
 
 ## Response fields
 
-| Field    | Description                              |
-| -------- | ---------------------------------------- |
-| Response | outcomes, questions, deployers, feeScale |
+| Field                         | Type   | Description                        |
+| ----------------------------- | ------ | ---------------------------------- |
+| `outcomes[]`                  | varies | `outcomes` value in the response.  |
+| `outcomes[].outcome`          | varies | `outcome` value in the response.   |
+| `outcomes[].name`             | varies | Name.                              |
+| `outcomes[].description`      | varies | Description.                       |
+| `outcomes[].sideSpecs[]`      | varies | `sideSpecs` value in the response. |
+| `outcomes[].sideSpecs[].name` | varies | Name.                              |
+| `questions[]`                 | varies | `questions` value in the response. |
+| `deployers`                   | varies | `deployers` value in the response. |
+| `feeScale`                    | varies | `feeScale` value in the response.  |
 
 ## Response example
 
 ```json
-{ "outcomes": [] }
+{
+  "outcomes": [
+    {
+      "outcome": 123,
+      "name": "Recurring",
+      "description": "class:priceBinary|underlying:HYPE|expiry:20260310-1100|targetPrice:34.5|period:3m",
+      "sideSpecs": [{ "name": "Yes" }, { "name": "No" }]
+    }
+  ],
+  "questions": [],
+  "deployers": [],
+  "feeScale": 0
+}
 ```

@@ -7,31 +7,35 @@ description: "HyperCore private-preview documentation."
 
 # Leading vaults
 
-Leading vaults for the requested period.
+Returns the leading-vault collection associated with a user when it is available.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description                   |
-| --------------------- | ------ | ----------------------------- |
-| `type`                | string | `leadingVaults`               |
-| Additional parameters | varies | type-specific fields required |
+| Parameter | Type   | Required | Description               |
+| --------- | ------ | -------- | ------------------------- |
+| `type`    | string | Yes      | Selects `leadingVaults`.  |
+| `user`    | string | Yes      | Account address to query. |
 
 ```json
 {
-  "type": "leadingVaults"
+  "type": "leadingVaults",
+  "user": "0x0000000000000000000000000000000000000000"
 }
 ```
 
 ## Response fields
 
-| Field    | Description                   |
-| -------- | ----------------------------- |
-| Response | No non-error payload observed |
+| Field             | Type   | Description                                                     |
+| ----------------- | ------ | --------------------------------------------------------------- |
+| `data[]`          | array  | Leading-vault entries.                                          |
+| `data[].<fields>` | varies | No populated native response was available to establish fields. |
 
 ## Response example
 
 ```json
-null
+[]
 ```
+
+The native API accepts the required `user` parameter on mainnet and testnet. The available captures returned empty arrays, so no unobserved entry fields are documented.

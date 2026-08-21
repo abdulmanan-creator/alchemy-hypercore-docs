@@ -7,16 +7,15 @@ description: "HyperCore private-preview documentation."
 
 # Spot metadata and asset contexts
 
-Spot metadata with aligned current asset contexts.
+Returns spot metadata with the aligned current context for each spot pair.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description            |
-| --------------------- | ------ | ---------------------- |
-| `type`                | string | `spotMetaAndAssetCtxs` |
-| Additional parameters | varies | —                      |
+| Parameter | Type   | Required | Description                     |
+| --------- | ------ | -------- | ------------------------------- |
+| `type`    | string | Yes      | Selects `spotMetaAndAssetCtxs`. |
 
 ```json
 {
@@ -26,12 +25,40 @@ Spot metadata with aligned current asset contexts.
 
 ## Response fields
 
-| Field    | Description                |
-| -------- | -------------------------- |
-| Response | universe[], asset contexts |
+| Field                          | Type   | Description                          |
+| ------------------------------ | ------ | ------------------------------------ |
+| `data[0]`                      | varies | `data[0]` value in the response.     |
+| `data[0].tokens[]`             | varies | `tokens` value in the response.      |
+| `data[0].tokens[].name`        | varies | Name.                                |
+| `data[0].tokens[].szDecimals`  | varies | `szDecimals` value in the response.  |
+| `data[0].tokens[].weiDecimals` | varies | `weiDecimals` value in the response. |
+| `data[0].tokens[].index`       | varies | Index.                               |
+| `data[0].universe[]`           | varies | `universe` value in the response.    |
+| `data[0].universe[].name`      | varies | Name.                                |
+| `data[0].universe[].tokens`    | varies | `tokens` value in the response.      |
+| `data[1]`                      | varies | `data[1]` value in the response.     |
+| `data[1][].dayNtlVlm`          | varies | `dayNtlVlm` value in the response.   |
+| `data[1][].markPx`             | varies | Current mark price.                  |
+| `data[1][].midPx`              | varies | Current mid price.                   |
+| `data[1][].prevDayPx`          | varies | `prevDayPx` value in the response.   |
 
 ## Response example
 
 ```json
-[]
+[
+  {
+    "tokens": [
+      { "name": "USDC", "szDecimals": 8, "weiDecimals": 8, "index": 0 }
+    ],
+    "universe": [{ "name": "PURR/USDC", "tokens": [1, 0] }]
+  },
+  [
+    {
+      "dayNtlVlm": "8906.0",
+      "markPx": "0.14",
+      "midPx": "0.209265",
+      "prevDayPx": "0.20432"
+    }
+  ]
+]
 ```

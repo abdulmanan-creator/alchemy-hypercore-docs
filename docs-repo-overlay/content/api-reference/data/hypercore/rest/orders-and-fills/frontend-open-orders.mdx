@@ -7,31 +7,63 @@ description: "HyperCore private-preview documentation."
 
 # Frontend open orders
 
-A user's open orders with frontend fields.
+Returns open orders with trigger, reduce-only, and order-type details used by trading interfaces.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description          |
-| --------------------- | ------ | -------------------- |
-| `type`                | string | `frontendOpenOrders` |
-| Additional parameters | varies | user, dex            |
+| Parameter | Type   | Required | Description                                           |
+| --------- | ------ | -------- | ----------------------------------------------------- |
+| `type`    | string | Yes      | Selects `frontendOpenOrders`.                         |
+| `user`    | string | Yes      | Master or sub-account address.                        |
+| `dex`     | string | No       | Perpetual DEX name; omit for the first perpetual DEX. |
 
 ```json
 {
-  "type": "frontendOpenOrders"
+  "type": "frontendOpenOrders",
+  "user": "0x0000000000000000000000000000000000000000",
+  "dex": ""
 }
 ```
 
 ## Response fields
 
-| Field    | Description                                                                                                                    |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Response | coin, isPositionTpsl, isTrigger, limitPx, oid, orderType, origSz, reduceOnly, side, sz, timestamp, triggerCondition, triggerPx |
+| Field                     | Type   | Description                               |
+| ------------------------- | ------ | ----------------------------------------- |
+| `data[]`                  | varies | Response object.                          |
+| `data[].coin`             | varies | Market identifier.                        |
+| `data[].isPositionTpsl`   | varies | `isPositionTpsl` value in the response.   |
+| `data[].isTrigger`        | varies | `isTrigger` value in the response.        |
+| `data[].limitPx`          | varies | `limitPx` value in the response.          |
+| `data[].oid`              | varies | Order identifier.                         |
+| `data[].orderType`        | varies | `orderType` value in the response.        |
+| `data[].origSz`           | varies | `origSz` value in the response.           |
+| `data[].reduceOnly`       | varies | `reduceOnly` value in the response.       |
+| `data[].side`             | varies | Order side.                               |
+| `data[].sz`               | varies | Size.                                     |
+| `data[].timestamp`        | varies | Timestamp in milliseconds.                |
+| `data[].triggerCondition` | varies | `triggerCondition` value in the response. |
+| `data[].triggerPx`        | varies | `triggerPx` value in the response.        |
 
 ## Response example
 
 ```json
-[]
+[
+  {
+    "coin": "BTC",
+    "isPositionTpsl": false,
+    "isTrigger": false,
+    "limitPx": "29792.0",
+    "oid": 91490942,
+    "orderType": "Limit",
+    "origSz": "5.0",
+    "reduceOnly": false,
+    "side": "A",
+    "sz": "5.0",
+    "timestamp": 1681247412573,
+    "triggerCondition": "N/A",
+    "triggerPx": "0.0"
+  }
+]
 ```

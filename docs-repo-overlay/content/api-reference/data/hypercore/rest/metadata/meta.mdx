@@ -7,31 +7,56 @@ description: "HyperCore private-preview documentation."
 
 # Perpetual metadata
 
-Perpetual market metadata.
+Returns perpetual market definitions and margin tiers for a selected DEX.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description |
-| --------------------- | ------ | ----------- |
-| `type`                | string | `meta`      |
-| Additional parameters | varies | —           |
+| Parameter | Type   | Required | Description                                           |
+| --------- | ------ | -------- | ----------------------------------------------------- |
+| `type`    | string | Yes      | Selects `meta`.                                       |
+| `dex`     | string | No       | Perpetual DEX name; omit for the first perpetual DEX. |
 
 ```json
 {
-  "type": "meta"
+  "type": "meta",
+  "dex": ""
 }
 ```
 
 ## Response fields
 
-| Field    | Description                                             |
-| -------- | ------------------------------------------------------- |
-| Response | universe[].szDecimals, name, maxLeverage, marginTableId |
+| Field                                         | Type   | Description                                |
+| --------------------------------------------- | ------ | ------------------------------------------ |
+| `universe[]`                                  | varies | `universe` value in the response.          |
+| `universe[].name`                             | varies | Name.                                      |
+| `universe[].szDecimals`                       | varies | `szDecimals` value in the response.        |
+| `universe[].maxLeverage`                      | varies | `maxLeverage` value in the response.       |
+| `universe[].marginTableId`                    | varies | `marginTableId` value in the response.     |
+| `universe[].onlyIsolated`                     | varies | `onlyIsolated` value in the response.      |
+| `universe[].isDelisted`                       | varies | `isDelisted` value in the response.        |
+| `universe[].marginMode`                       | varies | `marginMode` value in the response.        |
+| `marginTables`                                | varies | `marginTables` value in the response.      |
+| `marginTables[][0]`                           | varies | `marginTables[][0]` value in the response. |
+| `marginTables[][1].description`               | varies | Description.                               |
+| `marginTables[][1].marginTiers[]`             | varies | `marginTiers` value in the response.       |
+| `marginTables[][1].marginTiers[].lowerBound`  | varies | `lowerBound` value in the response.        |
+| `marginTables[][1].marginTiers[].maxLeverage` | varies | `maxLeverage` value in the response.       |
 
 ## Response example
 
 ```json
-{ "universe": [] }
+{
+  "universe": [{ "name": "BTC", "szDecimals": 5, "maxLeverage": 50 }],
+  "marginTables": [
+    [
+      50,
+      {
+        "description": "",
+        "marginTiers": [{ "lowerBound": "0.0", "maxLeverage": 50 }]
+      }
+    ]
+  ]
+}
 ```

@@ -7,31 +7,86 @@ description: "HyperCore private-preview documentation."
 
 # Vault details
 
-Details for a vault address.
+Returns a vault's configuration, performance history, and follower state.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description    |
-| --------------------- | ------ | -------------- |
-| `type`                | string | `vaultDetails` |
-| Additional parameters | varies | vaultAddress   |
+| Parameter      | Type   | Required | Description                    |
+| -------------- | ------ | -------- | ------------------------------ |
+| `type`         | string | Yes      | Selects `vaultDetails`.        |
+| `vaultAddress` | string | Yes      | Vault address.                 |
+| `user`         | string | Yes      | Master or sub-account address. |
 
 ```json
 {
-  "type": "vaultDetails"
+  "type": "vaultDetails",
+  "vaultAddress": "0xdfc24b077bc1425ad1dea75bcb6f8158e10df303",
+  "user": "0x0000000000000000000000000000000000000000"
 }
 ```
 
 ## Response fields
 
-| Field    | Description                                        |
-| -------- | -------------------------------------------------- |
-| Response | name, vaultAddress, leader, description, portfolio |
+| Field                                | Type   | Description                                  |
+| ------------------------------------ | ------ | -------------------------------------------- |
+| `name`                               | varies | Name.                                        |
+| `vaultAddress`                       | varies | `vaultAddress` value in the response.        |
+| `leader`                             | varies | Vault leader address.                        |
+| `description`                        | varies | Description.                                 |
+| `portfolio`                          | varies | Performance history by interval.             |
+| `portfolio[][0]`                     | varies | `portfolio[][0]` value in the response.      |
+| `portfolio[][1].accountValueHistory` | varies | `accountValueHistory` value in the response. |
+| `portfolio[][1].pnlHistory`          | varies | `pnlHistory` value in the response.          |
+| `portfolio[][1].vlm`                 | varies | `vlm` value in the response.                 |
+| `apr`                                | varies | Annualized return.                           |
+| `followerState`                      | varies | State for the requested user.                |
+| `leaderFraction`                     | varies | `leaderFraction` value in the response.      |
+| `leaderCommission`                   | varies | `leaderCommission` value in the response.    |
+| `followers[]`                        | varies | Vault followers.                             |
+| `followers[].user`                   | varies | `user` value in the response.                |
+| `followers[].vaultEquity`            | varies | `vaultEquity` value in the response.         |
+| `followers[].pnl`                    | varies | `pnl` value in the response.                 |
+| `followers[].allTimePnl`             | varies | `allTimePnl` value in the response.          |
+| `followers[].daysFollowing`          | varies | `daysFollowing` value in the response.       |
+| `followers[].vaultEntryTime`         | varies | `vaultEntryTime` value in the response.      |
+| `followers[].lockupUntil`            | varies | `lockupUntil` value in the response.         |
+| `maxDistributable`                   | varies | `maxDistributable` value in the response.    |
+| `maxWithdrawable`                    | varies | `maxWithdrawable` value in the response.     |
+| `isClosed`                           | varies | Whether the vault is closed.                 |
+| `relationship`                       | varies | `relationship` value in the response.        |
+| `allowDeposits`                      | varies | Whether deposits are allowed.                |
+| `alwaysCloseOnWithdraw`              | varies | Whether withdrawals close positions.         |
 
 ## Response example
 
 ```json
-{ "portfolio": [] }
+{
+  "name": "Test",
+  "vaultAddress": "0xdfc24b077bc1425ad1dea75bcb6f8158e10df303",
+  "leader": "0x677d831aef5328190852e24f13c46cac05f984e7",
+  "description": "Community-owned vault",
+  "portfolio": [
+    [
+      "day",
+      {
+        "accountValueHistory": [[1734397526634, "329265410.90790099"]],
+        "pnlHistory": [[1734397526634, "0.0"]],
+        "vlm": "0.0"
+      }
+    ]
+  ],
+  "apr": 0.36387129259090006,
+  "followerState": null,
+  "leaderFraction": 0.0007904828725729887,
+  "leaderCommission": 0,
+  "followers": [],
+  "maxDistributable": 94856870.164485,
+  "maxWithdrawable": 742557.680863,
+  "isClosed": false,
+  "relationship": { "type": "parent", "data": { "childAddresses": [] } },
+  "allowDeposits": true,
+  "alwaysCloseOnWithdraw": false
+}
 ```

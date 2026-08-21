@@ -7,16 +7,15 @@ description: "HyperCore private-preview documentation."
 
 # Predicted fundings
 
-Predicted funding values by market and venue.
+Returns predicted funding rates and scheduled funding times for the first perpetual DEX.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description         |
-| --------------------- | ------ | ------------------- |
-| `type`                | string | `predictedFundings` |
-| Additional parameters | varies | —                   |
+| Parameter | Type   | Required | Description                  |
+| --------- | ------ | -------- | ---------------------------- |
+| `type`    | string | Yes      | Selects `predictedFundings`. |
 
 ```json
 {
@@ -26,12 +25,29 @@ Predicted funding values by market and venue.
 
 ## Response fields
 
-| Field    | Description                        |
-| -------- | ---------------------------------- |
-| Response | [coin, [[venue, funding data], …]] |
+| Field                                 | Type   | Description                                   |
+| ------------------------------------- | ------ | --------------------------------------------- |
+| `data[]`                              | varies | Response object.                              |
+| `data[][0]`                           | varies | `data[][0]` value in the response.            |
+| `data[][1]`                           | varies | `data[][1]` value in the response.            |
+| `data[][1][][0]`                      | varies | `data[][1][][0]` value in the response.       |
+| `data[][1][][1]`                      | varies | `data[][1][][1]` value in the response.       |
+| `data[][1][][1].fundingRate`          | varies | Funding rate.                                 |
+| `data[][1][][1].nextFundingTime`      | varies | `nextFundingTime` value in the response.      |
+| `data[][1][][1].fundingIntervalHours` | varies | `fundingIntervalHours` value in the response. |
 
 ## Response example
 
 ```json
-[]
+[
+  [
+    "AVAX",
+    [
+      [
+        "HlPerp",
+        { "fundingRate": "0.0000125", "nextFundingTime": 1733958000000 }
+      ]
+    ]
+  ]
+]
 ```

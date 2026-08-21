@@ -7,31 +7,108 @@ description: "HyperCore private-preview documentation."
 
 # Perpetual metadata and asset contexts
 
-Perpetual metadata with aligned current asset contexts.
+Returns perpetual metadata and aligned live market contexts; use it to read the current oracle price alongside mark and mid prices.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description        |
-| --------------------- | ------ | ------------------ |
-| `type`                | string | `metaAndAssetCtxs` |
-| Additional parameters | varies | —                  |
+| Parameter | Type   | Required | Description                                           |
+| --------- | ------ | -------- | ----------------------------------------------------- |
+| `type`    | string | Yes      | Selects `metaAndAssetCtxs`.                           |
+| `dex`     | string | No       | Perpetual DEX name; omit for the first perpetual DEX. |
 
 ```json
 {
-  "type": "metaAndAssetCtxs"
+  "type": "metaAndAssetCtxs",
+  "dex": ""
 }
 ```
 
 ## Response fields
 
-| Field    | Description                                                  |
-| -------- | ------------------------------------------------------------ |
-| Response | universe[], asset contexts including oraclePx, markPx, midPx |
+| Field                            | Type   | Description                              |
+| -------------------------------- | ------ | ---------------------------------------- |
+| `data[0]`                        | varies | `data[0]` value in the response.         |
+| `data[0].universe[]`             | varies | `universe` value in the response.        |
+| `data[0].universe[].name`        | varies | Name.                                    |
+| `data[0].universe[].szDecimals`  | varies | `szDecimals` value in the response.      |
+| `data[0].universe[].maxLeverage` | varies | `maxLeverage` value in the response.     |
+| `data[0].marginTables`           | varies | `marginTables` value in the response.    |
+| `data[0].collateralToken`        | varies | `collateralToken` value in the response. |
+| `data[1]`                        | varies | `data[1]` value in the response.         |
+| `data[1][].dayNtlVlm`            | varies | `dayNtlVlm` value in the response.       |
+| `data[1][].funding`              | varies | `funding` value in the response.         |
+| `data[1][].impactPxs`            | varies | `impactPxs` value in the response.       |
+| `data[1][].markPx`               | varies | Current mark price.                      |
+| `data[1][].midPx`                | varies | Current mid price.                       |
+| `data[1][].openInterest`         | varies | `openInterest` value in the response.    |
+| `data[1][].oraclePx`             | varies | Current oracle price.                    |
+| `data[1][].premium`              | varies | `premium` value in the response.         |
+| `data[1][].prevDayPx`            | varies | `prevDayPx` value in the response.       |
 
 ## Response example
 
+<Tabs>
+<Tab title="First perpetual DEX">
+
 ```json
-[]
+[
+  {
+    "universe": [{ "name": "BTC", "szDecimals": 5, "maxLeverage": 50 }],
+    "marginTables": [],
+    "collateralToken": 0
+  },
+  [
+    {
+      "dayNtlVlm": "1169046.29406",
+      "funding": "0.0000125",
+      "impactPxs": ["14.3047", "14.3444"],
+      "markPx": "14.3161",
+      "midPx": "14.314",
+      "openInterest": "688.11",
+      "oraclePx": "14.32",
+      "premium": "0.00031774",
+      "prevDayPx": "15.322"
+    }
+  ]
+]
 ```
+
+</Tab>
+<Tab title="HIP-3 DEX">
+
+```json
+[
+  {
+    "universe": [
+      {
+        "name": "xyz:XYZ100",
+        "szDecimals": 4,
+        "maxLeverage": 20,
+        "marginTableId": 20,
+        "onlyIsolated": true
+      }
+    ],
+    "marginTables": [],
+    "collateralToken": 0
+  },
+  [
+    {
+      "funding": "0.0002110251",
+      "openInterest": "0.0854",
+      "prevDayPx": "25956.0",
+      "dayNtlVlm": "462.9758",
+      "premium": "0.0031136686",
+      "oraclePx": "25372.0",
+      "markPx": "25451.0",
+      "midPx": "25451.0",
+      "impactPxs": ["24946.0", "25956.0"],
+      "dayBaseVlm": "0.0183"
+    }
+  ]
+]
+```
+
+</Tab>
+</Tabs>

@@ -7,31 +7,88 @@ description: "HyperCore private-preview documentation."
 
 # User fees
 
-A user's fee schedule and rates.
+Returns an account's fee schedule, current rates, and daily volume history.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description |
-| --------------------- | ------ | ----------- |
-| `type`                | string | `userFees`  |
-| Additional parameters | varies | user        |
+| Parameter | Type   | Required | Description                    |
+| --------- | ------ | -------- | ------------------------------ |
+| `type`    | string | Yes      | Selects `userFees`.            |
+| `user`    | string | Yes      | Master or sub-account address. |
 
 ```json
 {
-  "type": "userFees"
+  "type": "userFees",
+  "user": "0x0000000000000000000000000000000000000000"
 }
 ```
 
 ## Response fields
 
-| Field    | Description                                                                               |
-| -------- | ----------------------------------------------------------------------------------------- |
-| Response | dailyUserVlm, feeSchedule, userCrossRate, userAddRate, userSpotCrossRate, userSpotAddRate |
+| Field                                | Type   | Description                                          |
+| ------------------------------------ | ------ | ---------------------------------------------------- |
+| `dailyUserVlm[]`                     | varies | Daily volume entries.                                |
+| `dailyUserVlm[].date`                | varies | `date` value in the response.                        |
+| `dailyUserVlm[].userCross`           | varies | `userCross` value in the response.                   |
+| `dailyUserVlm[].userAdd`             | varies | `userAdd` value in the response.                     |
+| `dailyUserVlm[].exchange`            | varies | `exchange` value in the response.                    |
+| `feeSchedule`                        | varies | Applicable fee schedule.                             |
+| `feeSchedule.cross`                  | varies | `cross` value in the response.                       |
+| `feeSchedule.add`                    | varies | `add` value in the response.                         |
+| `feeSchedule.spotCross`              | varies | `spotCross` value in the response.                   |
+| `feeSchedule.spotAdd`                | varies | `spotAdd` value in the response.                     |
+| `feeSchedule.tiers`                  | varies | `tiers` value in the response.                       |
+| `feeSchedule.referralDiscount`       | varies | `referralDiscount` value in the response.            |
+| `feeSchedule.stakingDiscountTiers[]` | varies | `stakingDiscountTiers` value in the response.        |
+| `userCrossRate`                      | varies | Current taker rate.                                  |
+| `userAddRate`                        | varies | Current maker rate.                                  |
+| `userSpotCrossRate`                  | varies | Current spot taker rate.                             |
+| `userSpotAddRate`                    | varies | Current spot maker rate.                             |
+| `activeReferralDiscount`             | varies | Active referral discount.                            |
+| `trial`                              | varies | `trial` value in the response.                       |
+| `feeTrialReward`                     | varies | `feeTrialReward` value in the response.              |
+| `nextTrialAvailableTimestamp`        | varies | `nextTrialAvailableTimestamp` value in the response. |
+| `stakingLink`                        | varies | `stakingLink` value in the response.                 |
+| `activeStakingDiscount`              | varies | `activeStakingDiscount` value in the response.       |
 
 ## Response example
 
 ```json
-{ "dailyUserVlm": [] }
+{
+  "dailyUserVlm": [
+    {
+      "date": "2025-05-23",
+      "userCross": "0.0",
+      "userAdd": "0.0",
+      "exchange": "2852367.0770729999"
+    }
+  ],
+  "feeSchedule": {
+    "cross": "0.00045",
+    "add": "0.00015",
+    "spotCross": "0.0007",
+    "spotAdd": "0.0004",
+    "tiers": { "vip": [] },
+    "referralDiscount": "0.04",
+    "stakingDiscountTiers": []
+  },
+  "userCrossRate": "0.000315",
+  "userAddRate": "0.000105",
+  "userSpotCrossRate": "0.00049",
+  "userSpotAddRate": "0.00028",
+  "activeReferralDiscount": "0.0",
+  "trial": null,
+  "feeTrialReward": "0.0",
+  "nextTrialAvailableTimestamp": null,
+  "stakingLink": {
+    "type": "tradingUser",
+    "stakingUser": "0x54c049d9c7d3c92c2462bf3d28e083f3d6805061"
+  },
+  "activeStakingDiscount": {
+    "bpsOfMaxSupply": "4.7577998927",
+    "discount": "0.3"
+  }
+}
 ```

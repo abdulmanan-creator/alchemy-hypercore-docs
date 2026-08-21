@@ -7,31 +7,75 @@ description: "HyperCore private-preview documentation."
 
 # User role
 
-A user's Hyperliquid role.
+Returns the account role and linked address where the role has one.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description |
-| --------------------- | ------ | ----------- |
-| `type`                | string | `userRole`  |
-| Additional parameters | varies | user        |
+| Parameter | Type   | Required | Description                    |
+| --------- | ------ | -------- | ------------------------------ |
+| `type`    | string | Yes      | Selects `userRole`.            |
+| `user`    | string | Yes      | Master or sub-account address. |
 
 ```json
 {
-  "type": "userRole"
+  "type": "userRole",
+  "user": "0x0000000000000000000000000000000000000000"
 }
 ```
 
 ## Response fields
 
-| Field    | Description            |
-| -------- | ---------------------- |
-| Response | role and optional data |
+| Field         | Type   | Description                     |
+| ------------- | ------ | ------------------------------- |
+| `role`        | varies | Account role.                   |
+| `data`        | varies | Response entries.               |
+| `data.user`   | varies | `user` value in the response.   |
+| `data.master` | varies | `master` value in the response. |
 
 ## Response example
+
+<Tabs>
+<Tab title="User">
 
 ```json
 { "role": "user" }
 ```
+
+</Tab>
+<Tab title="Agent">
+
+```json
+{
+  "role": "agent",
+  "data": { "user": "0x0000000000000000000000000000000000000000" }
+}
+```
+
+</Tab>
+<Tab title="Vault">
+
+```json
+{ "role": "vault" }
+```
+
+</Tab>
+<Tab title="Subaccount">
+
+```json
+{
+  "role": "subAccount",
+  "data": { "master": "0x0000000000000000000000000000000000000000" }
+}
+```
+
+</Tab>
+<Tab title="Missing">
+
+```json
+{ "role": "missing" }
+```
+
+</Tab>
+</Tabs>

@@ -7,31 +7,34 @@ description: "HyperCore private-preview documentation."
 
 # Maximum builder fee
 
-A user's approved maximum builder fee.
+Returns the maximum builder fee a user approved for one builder.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description     |
-| --------------------- | ------ | --------------- |
-| `type`                | string | `maxBuilderFee` |
-| Additional parameters | varies | user, builder   |
+| Parameter | Type   | Required | Description                    |
+| --------- | ------ | -------- | ------------------------------ |
+| `type`    | string | Yes      | Selects `maxBuilderFee`.       |
+| `user`    | string | Yes      | Master or sub-account address. |
+| `builder` | string | Yes      | Builder address.               |
 
 ```json
 {
-  "type": "maxBuilderFee"
+  "type": "maxBuilderFee",
+  "user": "0x0000000000000000000000000000000000000000",
+  "builder": "0x0000000000000000000000000000000000000000"
 }
 ```
 
 ## Response fields
 
-| Field    | Description |
-| -------- | ----------- |
-| Response | Number      |
+| Field      | Type   | Description      |
+| ---------- | ------ | ---------------- |
+| `Response` | varies | Scalar response. |
 
 ## Response example
 
 ```json
-0
+1
 ```

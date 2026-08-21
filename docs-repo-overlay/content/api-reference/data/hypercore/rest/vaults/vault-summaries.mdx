@@ -7,16 +7,15 @@ description: "HyperCore private-preview documentation."
 
 # Vault summaries
 
-Available vault summaries.
+Returns the native vault-summary collection when it is available for the requested network.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description      |
-| --------------------- | ------ | ---------------- |
-| `type`                | string | `vaultSummaries` |
-| Additional parameters | varies | —                |
+| Parameter | Type   | Required | Description               |
+| --------- | ------ | -------- | ------------------------- |
+| `type`    | string | Yes      | Selects `vaultSummaries`. |
 
 ```json
 {
@@ -26,12 +25,15 @@ Available vault summaries.
 
 ## Response fields
 
-| Field    | Description           |
-| -------- | --------------------- |
-| Response | Vault-summary records |
+| Field             | Type   | Description                                                     |
+| ----------------- | ------ | --------------------------------------------------------------- |
+| `data[]`          | array  | Vault-summary entries.                                          |
+| `data[].<fields>` | varies | No populated native response was available to establish fields. |
 
 ## Response example
 
 ```json
 []
 ```
+
+The native API accepted this request on mainnet and testnet, but the captures returned empty arrays. The response field contract therefore remains unconfirmed.

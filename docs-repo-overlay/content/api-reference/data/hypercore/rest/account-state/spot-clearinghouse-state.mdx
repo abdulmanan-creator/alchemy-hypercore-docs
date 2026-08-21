@@ -7,31 +7,47 @@ description: "HyperCore private-preview documentation."
 
 # Spot clearinghouse state
 
-A user's spot balances.
+Returns a user's spot balances for account-state and balance checks.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description              |
-| --------------------- | ------ | ------------------------ |
-| `type`                | string | `spotClearinghouseState` |
-| Additional parameters | varies | user                     |
+| Parameter | Type   | Required | Description                       |
+| --------- | ------ | -------- | --------------------------------- |
+| `type`    | string | Yes      | Selects `spotClearinghouseState`. |
+| `user`    | string | Yes      | Master or sub-account address.    |
 
 ```json
 {
-  "type": "spotClearinghouseState"
+  "type": "spotClearinghouseState",
+  "user": "0x0000000000000000000000000000000000000000"
 }
 ```
 
 ## Response fields
 
-| Field    | Description                                   |
-| -------- | --------------------------------------------- |
-| Response | balances[].coin, token, total, hold, entryNtl |
+| Field                 | Type   | Description                       |
+| --------------------- | ------ | --------------------------------- |
+| `balances[]`          | varies | Balance entries.                  |
+| `balances[].coin`     | varies | Market identifier.                |
+| `balances[].token`    | varies | Token index.                      |
+| `balances[].hold`     | varies | Amount reserved by orders.        |
+| `balances[].total`    | varies | Total amount.                     |
+| `balances[].entryNtl` | varies | `entryNtl` value in the response. |
 
 ## Response example
 
 ```json
-{ "balances": [] }
+{
+  "balances": [
+    {
+      "coin": "USDC",
+      "token": 0,
+      "hold": "0.0",
+      "total": "14.625485",
+      "entryNtl": "0.0"
+    }
+  ]
+}
 ```

@@ -7,31 +7,64 @@ description: "HyperCore private-preview documentation."
 
 # Candle snapshot
 
-Candles for a market and interval.
+Returns up to 5,000 OHLCV candles for charting a market over a bounded time range.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description                        |
-| --------------------- | ------ | ---------------------------------- |
-| `type`                | string | `candleSnapshot`                   |
-| Additional parameters | varies | coin, interval, startTime, endTime |
+| Parameter       | Type    | Required | Description                                                                                      |
+| --------------- | ------- | -------- | ------------------------------------------------------------------------------------------------ |
+| `type`          | string  | Yes      | Selects `candleSnapshot`.                                                                        |
+| `req`           | object  | Yes      | Nested candle request.                                                                           |
+| `req.coin`      | string  | Yes      | Market identifier; HIP-3 markets use a DEX-prefixed name.                                        |
+| `req.interval`  | string  | Yes      | One of `1m`, `3m`, `5m`, `15m`, `30m`, `1h`, `2h`, `4h`, `8h`, `12h`, `1d`, `3d`, `1w`, or `1M`. |
+| `req.startTime` | integer | Yes      | Inclusive start time in milliseconds.                                                            |
+| `req.endTime`   | integer | Yes      | Inclusive end time in milliseconds.                                                              |
 
 ```json
 {
-  "type": "candleSnapshot"
+  "type": "candleSnapshot",
+  "req": {
+    "coin": "BTC",
+    "interval": "15m",
+    "startTime": 1735689600000,
+    "endTime": 1735776000000
+  }
 }
 ```
 
 ## Response fields
 
-| Field    | Description    |
-| -------- | -------------- |
-| Response | Candle records |
+| Field      | Type   | Description                |
+| ---------- | ------ | -------------------------- |
+| `data[]`   | varies | Response object.           |
+| `data[].T` | varies | `T` value in the response. |
+| `data[].c` | varies | `c` value in the response. |
+| `data[].h` | varies | `h` value in the response. |
+| `data[].i` | varies | `i` value in the response. |
+| `data[].l` | varies | `l` value in the response. |
+| `data[].n` | varies | `n` value in the response. |
+| `data[].o` | varies | `o` value in the response. |
+| `data[].s` | varies | `s` value in the response. |
+| `data[].t` | varies | `t` value in the response. |
+| `data[].v` | varies | `v` value in the response. |
 
 ## Response example
 
 ```json
-[]
+[
+  {
+    "T": 1681924499999,
+    "c": "29258.0",
+    "h": "29309.0",
+    "i": "15m",
+    "l": "29250.0",
+    "n": 189,
+    "o": "29295.0",
+    "s": "BTC",
+    "t": 1681923600000,
+    "v": "0.98639"
+  }
+]
 ```

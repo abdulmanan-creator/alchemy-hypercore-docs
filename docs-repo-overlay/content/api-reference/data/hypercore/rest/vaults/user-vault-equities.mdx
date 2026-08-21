@@ -7,31 +7,39 @@ description: "HyperCore private-preview documentation."
 
 # User vault equities
 
-A user's equity by vault.
+Returns the current equity a user has in each vault.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description         |
-| --------------------- | ------ | ------------------- |
-| `type`                | string | `userVaultEquities` |
-| Additional parameters | varies | user                |
+| Parameter | Type   | Required | Description                    |
+| --------- | ------ | -------- | ------------------------------ |
+| `type`    | string | Yes      | Selects `userVaultEquities`.   |
+| `user`    | string | Yes      | Master or sub-account address. |
 
 ```json
 {
-  "type": "userVaultEquities"
+  "type": "userVaultEquities",
+  "user": "0x0000000000000000000000000000000000000000"
 }
 ```
 
 ## Response fields
 
-| Field    | Description          |
-| -------- | -------------------- |
-| Response | vaultAddress, equity |
+| Field                 | Type   | Description                           |
+| --------------------- | ------ | ------------------------------------- |
+| `data[]`              | varies | Response entries.                     |
+| `data[].vaultAddress` | varies | `vaultAddress` value in the response. |
+| `data[].equity`       | varies | `equity` value in the response.       |
 
 ## Response example
 
 ```json
-[]
+[
+  {
+    "vaultAddress": "0xdfc24b077bc1425ad1dea75bcb6f8158e10df303",
+    "equity": "742500.082809"
+  }
+]
 ```

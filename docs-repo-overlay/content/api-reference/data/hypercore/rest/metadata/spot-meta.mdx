@@ -7,16 +7,15 @@ description: "HyperCore private-preview documentation."
 
 # Spot metadata
 
-Spot market metadata.
+Returns spot token and spot-pair definitions.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description |
-| --------------------- | ------ | ----------- |
-| `type`                | string | `spotMeta`  |
-| Additional parameters | varies | —           |
+| Parameter | Type   | Required | Description         |
+| --------- | ------ | -------- | ------------------- |
+| `type`    | string | Yes      | Selects `spotMeta`. |
 
 ```json
 {
@@ -26,12 +25,41 @@ Spot market metadata.
 
 ## Response fields
 
-| Field    | Description                                 |
-| -------- | ------------------------------------------- |
-| Response | universe[].tokens, name, index, isCanonical |
+| Field                    | Type   | Description                          |
+| ------------------------ | ------ | ------------------------------------ |
+| `tokens[]`               | varies | `tokens` value in the response.      |
+| `tokens[].name`          | varies | Name.                                |
+| `tokens[].szDecimals`    | varies | `szDecimals` value in the response.  |
+| `tokens[].weiDecimals`   | varies | `weiDecimals` value in the response. |
+| `tokens[].index`         | varies | Index.                               |
+| `tokens[].tokenId`       | varies | `tokenId` value in the response.     |
+| `tokens[].isCanonical`   | varies | `isCanonical` value in the response. |
+| `tokens[].evmContract`   | varies | `evmContract` value in the response. |
+| `tokens[].fullName`      | varies | `fullName` value in the response.    |
+| `universe[]`             | varies | `universe` value in the response.    |
+| `universe[].name`        | varies | Name.                                |
+| `universe[].tokens`      | varies | `tokens` value in the response.      |
+| `universe[].index`       | varies | Index.                               |
+| `universe[].isCanonical` | varies | `isCanonical` value in the response. |
 
 ## Response example
 
 ```json
-{ "universe": [] }
+{
+  "tokens": [
+    {
+      "name": "USDC",
+      "szDecimals": 8,
+      "weiDecimals": 8,
+      "index": 0,
+      "tokenId": "0x6d1e7cde53ba9467b783cb7c530ce054",
+      "isCanonical": true,
+      "evmContract": null,
+      "fullName": null
+    }
+  ],
+  "universe": [
+    { "name": "PURR/USDC", "tokens": [1, 0], "index": 0, "isCanonical": true }
+  ]
+}
 ```

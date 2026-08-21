@@ -7,31 +7,69 @@ description: "HyperCore private-preview documentation."
 
 # Active asset data
 
-Active trading data for a user's asset.
+Returns a user's active perpetual-market trading capacity and leverage for one coin.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description       |
-| --------------------- | ------ | ----------------- |
-| `type`                | string | `activeAssetData` |
-| Additional parameters | varies | user, coin        |
+| Parameter | Type   | Required | Description                    |
+| --------- | ------ | -------- | ------------------------------ |
+| `type`    | string | Yes      | Selects `activeAssetData`.     |
+| `user`    | string | Yes      | Master or sub-account address. |
+| `coin`    | string | Yes      | Perpetual market identifier.   |
 
 ```json
 {
-  "type": "activeAssetData"
+  "type": "activeAssetData",
+  "user": "0x0000000000000000000000000000000000000000",
+  "coin": "BTC"
 }
 ```
 
 ## Response fields
 
-| Field    | Description                                                 |
-| -------- | ----------------------------------------------------------- |
-| Response | user, coin, leverage, maxTradeSzs, availableToTrade, markPx |
+| Field              | Type   | Description                               |
+| ------------------ | ------ | ----------------------------------------- |
+| `user`             | varies | Account address.                          |
+| `coin`             | varies | Market identifier.                        |
+| `leverage`         | varies | `leverage` value in the response.         |
+| `leverage.type`    | varies | Selected read type.                       |
+| `leverage.value`   | varies | `value` value in the response.            |
+| `leverage.rawUsd`  | varies | `rawUsd` value in the response.           |
+| `maxTradeSzs`      | varies | `maxTradeSzs` value in the response.      |
+| `availableToTrade` | varies | `availableToTrade` value in the response. |
+| `markPx`           | varies | Current mark price.                       |
 
 ## Response example
 
+<Tabs>
+<Tab title="First perpetual DEX">
+
 ```json
-{ "coin": "BTC" }
+{
+  "user": "0xb65822a30bbaaa68942d6f4c43d78704faeabbbb",
+  "coin": "APT",
+  "leverage": { "type": "cross", "value": 3 },
+  "maxTradeSzs": ["24836370.4400000013", "24836370.4400000013"],
+  "availableToTrade": ["37019438.0284740031", "37019438.0284740031"],
+  "markPx": "4.4716"
+}
 ```
+
+</Tab>
+<Tab title="HIP-3 DEX">
+
+```json
+{
+  "user": "0xa15099a30bbf2e68942d6f4c43d70d04faeab0a0",
+  "coin": "xyz:XYZ100",
+  "leverage": { "type": "isolated", "value": 20, "rawUsd": "0.0" },
+  "maxTradeSzs": ["0.0", "0.0"],
+  "availableToTrade": ["0.0", "0.0"],
+  "markPx": "25451.0"
+}
+```
+
+</Tab>
+</Tabs>

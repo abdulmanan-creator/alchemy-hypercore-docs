@@ -7,31 +7,84 @@ description: "HyperCore private-preview documentation."
 
 # User funding
 
-Funding payments for a user.
+Returns a user's funding-payment history over a time range.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description              |
-| --------------------- | ------ | ------------------------ |
-| `type`                | string | `userFunding`            |
-| Additional parameters | varies | user, startTime, endTime |
+| Parameter   | Type    | Required | Description                                                       |
+| ----------- | ------- | -------- | ----------------------------------------------------------------- |
+| `type`      | string  | Yes      | Selects `userFunding`.                                            |
+| `user`      | string  | Yes      | Master or sub-account address.                                    |
+| `startTime` | integer | Yes      | Inclusive start time in milliseconds.                             |
+| `endTime`   | integer | No       | Inclusive end time in milliseconds; defaults to the current time. |
 
 ```json
 {
-  "type": "userFunding"
+  "type": "userFunding",
+  "user": "0x0000000000000000000000000000000000000000",
+  "startTime": 1735689600000,
+  "endTime": 1735776000000
 }
 ```
 
 ## Response fields
 
-| Field    | Description     |
-| -------- | --------------- |
-| Response | Funding records |
+| Field                      | Type   | Description                       |
+| -------------------------- | ------ | --------------------------------- |
+| `data[]`                   | varies | Response object.                  |
+| `data[].delta`             | varies | `delta` value in the response.    |
+| `data[].delta.type`        | varies | Selected read type.               |
+| `data[].delta.coin`        | varies | Market identifier.                |
+| `data[].delta.usdc`        | varies | `usdc` value in the response.     |
+| `data[].delta.szi`         | varies | `szi` value in the response.      |
+| `data[].delta.fundingRate` | varies | Funding rate.                     |
+| `data[].delta.nSamples`    | varies | `nSamples` value in the response. |
+| `data[].hash`              | varies | Transaction hash.                 |
+| `data[].time`              | varies | Timestamp in milliseconds.        |
 
 ## Response example
 
+<Tabs>
+<Tab title="First perpetual DEX">
+
 ```json
-[]
+[
+  {
+    "delta": {
+      "type": "funding",
+      "coin": "ETH",
+      "usdc": "-3.625312",
+      "szi": "49.1477",
+      "fundingRate": "0.0000417",
+      "nSamples": null
+    },
+    "hash": "0xa166e3fa63c25663024b03f2e0da011a00307e4017465df020210d3d432e7cb8",
+    "time": 1681222254710
+  }
+]
 ```
+
+</Tab>
+<Tab title="HIP-3 DEX">
+
+```json
+[
+  {
+    "delta": {
+      "type": "funding",
+      "coin": "xyz:XYZ100",
+      "usdc": "2.378343",
+      "szi": "-15.0",
+      "fundingRate": "0.00000625",
+      "nSamples": null
+    },
+    "hash": "0xa166e3fa63c25663024b03f2e0da011a00307e4017465df020210d3d432e7cb9",
+    "time": 1767654000068
+  }
+]
+```
+
+</Tab>
+</Tabs>

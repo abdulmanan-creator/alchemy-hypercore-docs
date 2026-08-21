@@ -274,7 +274,7 @@ components:
       properties:
         type:
           type: string
-          description: Native Hyperliquid info request discriminator.
+          description: HyperCore `/info` request discriminator. Most values are native-compatible reads; `portfolioState` and `extraAgents` are enriched composites, and `l4Snapshots` and `triggerOrderSnapshot` are Alchemy-original snapshot reads.
           enum:
             - openOrders
             - frontendOpenOrders
@@ -317,7 +317,6 @@ components:
             - validatorL1Votes
             - outcomeMeta
             - settledOutcome
-            - settledOutcomes
             - outcomeTemplates
         user:
           "$ref": "#/components/schemas/Address"
@@ -428,7 +427,6 @@ components:
           validatorL1Votes: "#/components/schemas/InfoTypeRequest"
           outcomeMeta: "#/components/schemas/InfoTypeRequest"
           settledOutcome: "#/components/schemas/InfoTypeRequest"
-          settledOutcomes: "#/components/schemas/InfoTypeRequest"
           outcomeTemplates: "#/components/schemas/InfoTypeRequest"
     InfoResponse:
       oneOf:

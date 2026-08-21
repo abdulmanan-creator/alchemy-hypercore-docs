@@ -7,16 +7,15 @@ description: "HyperCore private-preview documentation."
 
 # Validator L1 votes
 
-Validator L1 votes.
+Returns the native validator L1-vote collection when it is available for the requested network.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description        |
-| --------------------- | ------ | ------------------ |
-| `type`                | string | `validatorL1Votes` |
-| Additional parameters | varies | —                  |
+| Parameter | Type   | Required | Description                 |
+| --------- | ------ | -------- | --------------------------- |
+| `type`    | string | Yes      | Selects `validatorL1Votes`. |
 
 ```json
 {
@@ -26,12 +25,15 @@ Validator L1 votes.
 
 ## Response fields
 
-| Field    | Description  |
-| -------- | ------------ |
-| Response | Vote records |
+| Field             | Type   | Description                                                     |
+| ----------------- | ------ | --------------------------------------------------------------- |
+| `data[]`          | array  | Validator-vote entries.                                         |
+| `data[].<fields>` | varies | No populated native response was available to establish fields. |
 
 ## Response example
 
 ```json
 []
 ```
+
+The native API accepted this request on mainnet and testnet, but the captures returned empty arrays. The response field contract therefore remains unconfirmed.

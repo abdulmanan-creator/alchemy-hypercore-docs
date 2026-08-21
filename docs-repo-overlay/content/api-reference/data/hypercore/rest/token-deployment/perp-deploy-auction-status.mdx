@@ -7,16 +7,15 @@ description: "HyperCore private-preview documentation."
 
 # Perpetual deployment auction status
 
-Current perpetual deployment auction state.
+Returns the current perpetual deployment auction state.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description               |
-| --------------------- | ------ | ------------------------- |
-| `type`                | string | `perpDeployAuctionStatus` |
-| Additional parameters | varies | —                         |
+| Parameter | Type   | Required | Description                        |
+| --------- | ------ | -------- | ---------------------------------- |
+| `type`    | string | Yes      | Selects `perpDeployAuctionStatus`. |
 
 ```json
 {
@@ -26,12 +25,22 @@ Current perpetual deployment auction state.
 
 ## Response fields
 
-| Field    | Description                                                     |
-| -------- | --------------------------------------------------------------- |
-| Response | startTimeSeconds, durationSeconds, startGas, currentGas, endGas |
+| Field              | Type   | Description                               |
+| ------------------ | ------ | ----------------------------------------- |
+| `startTimeSeconds` | varies | `startTimeSeconds` value in the response. |
+| `durationSeconds`  | varies | `durationSeconds` value in the response.  |
+| `startGas`         | varies | `startGas` value in the response.         |
+| `currentGas`       | varies | `currentGas` value in the response.       |
+| `endGas`           | varies | `endGas` value in the response.           |
 
 ## Response example
 
 ```json
-{ "endGas": null }
+{
+  "startTimeSeconds": 1747656000,
+  "durationSeconds": 111600,
+  "startGas": "500.0",
+  "currentGas": "500.0",
+  "endGas": null
+}
 ```

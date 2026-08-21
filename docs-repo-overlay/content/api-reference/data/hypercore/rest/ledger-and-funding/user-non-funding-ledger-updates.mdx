@@ -7,31 +7,46 @@ description: "HyperCore private-preview documentation."
 
 # Non-funding ledger updates
 
-Non-funding ledger updates for a user.
+Returns deposits, transfers, withdrawals, and other non-funding ledger activity over a time range.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description                   |
-| --------------------- | ------ | ----------------------------- |
-| `type`                | string | `userNonFundingLedgerUpdates` |
-| Additional parameters | varies | user, startTime, endTime      |
+| Parameter   | Type    | Required | Description                                                       |
+| ----------- | ------- | -------- | ----------------------------------------------------------------- |
+| `type`      | string  | Yes      | Selects `userNonFundingLedgerUpdates`.                            |
+| `user`      | string  | Yes      | Master or sub-account address.                                    |
+| `startTime` | integer | Yes      | Inclusive start time in milliseconds.                             |
+| `endTime`   | integer | No       | Inclusive end time in milliseconds; defaults to the current time. |
 
 ```json
 {
-  "type": "userNonFundingLedgerUpdates"
+  "type": "userNonFundingLedgerUpdates",
+  "user": "0x0000000000000000000000000000000000000000",
+  "startTime": 1735689600000,
+  "endTime": 1735776000000
 }
 ```
 
 ## Response fields
 
-| Field    | Description           |
-| -------- | --------------------- |
-| Response | Ledger-update records |
+| Field               | Type   | Description                    |
+| ------------------- | ------ | ------------------------------ |
+| `data[]`            | varies | Response object.               |
+| `data[].delta`      | varies | `delta` value in the response. |
+| `data[].delta.type` | varies | Selected read type.            |
+| `data[].hash`       | varies | Transaction hash.              |
+| `data[].time`       | varies | Timestamp in milliseconds.     |
 
 ## Response example
 
 ```json
-[]
+[
+  {
+    "delta": { "type": "deposit", "usdc": "100.0" },
+    "hash": "0xa166e3fa63c25663024b03f2e0da011a00307e4017465df020210d3d432e7cb8",
+    "time": 1681222254710
+  }
+]
 ```

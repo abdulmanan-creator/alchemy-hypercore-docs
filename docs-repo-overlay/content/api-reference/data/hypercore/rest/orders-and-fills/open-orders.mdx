@@ -7,31 +7,49 @@ description: "HyperCore private-preview documentation."
 
 # Open orders
 
-A user's open orders.
+Returns a user's current open orders for a selected perpetual DEX.
 
 ## Request
 
 `POST /{apiKey}/info`
 
-| Parameter             | Type   | Description  |
-| --------------------- | ------ | ------------ |
-| `type`                | string | `openOrders` |
-| Additional parameters | varies | user, dex    |
+| Parameter | Type   | Required | Description                                           |
+| --------- | ------ | -------- | ----------------------------------------------------- |
+| `type`    | string | Yes      | Selects `openOrders`.                                 |
+| `user`    | string | Yes      | Master or sub-account address.                        |
+| `dex`     | string | No       | Perpetual DEX name; omit for the first perpetual DEX. |
 
 ```json
 {
-  "type": "openOrders"
+  "type": "openOrders",
+  "user": "0x0000000000000000000000000000000000000000",
+  "dex": ""
 }
 ```
 
 ## Response fields
 
-| Field    | Description                             |
-| -------- | --------------------------------------- |
-| Response | coin, limitPx, oid, side, sz, timestamp |
+| Field              | Type   | Description                      |
+| ------------------ | ------ | -------------------------------- |
+| `data[]`           | varies | Response object.                 |
+| `data[].coin`      | varies | Market identifier.               |
+| `data[].limitPx`   | varies | `limitPx` value in the response. |
+| `data[].oid`       | varies | Order identifier.                |
+| `data[].side`      | varies | Order side.                      |
+| `data[].sz`        | varies | Size.                            |
+| `data[].timestamp` | varies | Timestamp in milliseconds.       |
 
 ## Response example
 
 ```json
-[]
+[
+  {
+    "coin": "BTC",
+    "limitPx": "29792.0",
+    "oid": 91490942,
+    "side": "A",
+    "sz": "0.0",
+    "timestamp": 1681247412573
+  }
+]
 ```
