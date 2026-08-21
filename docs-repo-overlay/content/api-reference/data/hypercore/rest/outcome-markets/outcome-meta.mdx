@@ -25,17 +25,17 @@ Returns registered outcome-market specifications and questions.
 
 ## Response fields
 
-| Field                         | Type    | Description                        |
-| ----------------------------- | ------- | ---------------------------------- |
-| `outcomes[]`                  | array   | `outcomes` value in the response.  |
-| `outcomes[].outcome`          | integer | `outcome` value in the response.   |
-| `outcomes[].name`             | string  | Name.                              |
-| `outcomes[].description`      | string  | Description.                       |
-| `outcomes[].sideSpecs[]`      | array   | `sideSpecs` value in the response. |
-| `outcomes[].sideSpecs[].name` | string  | Name.                              |
-| `questions[]`                 | array   | `questions` value in the response. |
-| `deployers`                   | array   | `deployers` value in the response. |
-| `feeScale`                    | integer | `feeScale` value in the response.  |
+| Field                         | Type    | Description                                         |
+| ----------------------------- | ------- | --------------------------------------------------- |
+| `outcomes[]`                  | array   | Registered outcome-market specifications.           |
+| `outcomes[].outcome`          | integer | Numeric identifier for the outcome market.          |
+| `outcomes[].name`             | string  | Display name for the outcome market.                |
+| `outcomes[].description`      | string  | Machine-readable attributes that define the market. |
+| `outcomes[].sideSpecs[]`      | array   | Permitted outcome sides for this market.            |
+| `outcomes[].sideSpecs[].name` | string  | Display label for an allowed outcome side.          |
+| `questions[]`                 | array   | Question records associated with outcome markets.   |
+| `deployers`                   | array   | Addresses registered to deploy outcome markets.     |
+| `feeScale`                    | integer | Fee-scale setting used for outcome-market fees.     |
 
 ## Response example
 

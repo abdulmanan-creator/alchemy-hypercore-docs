@@ -27,16 +27,16 @@ Returns a user's delegation, deposit, and withdrawal history.
 
 ## Response fields
 
-| Field                            | Type    | Description                           |
-| -------------------------------- | ------- | ------------------------------------- |
-| `[]`                             | array   | Response entries.                     |
-| `[].time`                        | integer | `time` value in the response.         |
-| `[].hash`                        | string  | `hash` value in the response.         |
-| `[].delta`                       | object  | Activity-specific delta.              |
-| `[].delta.delegate`              | object  | `delegate` value in the response.     |
-| `[].delta.delegate.validator`    | string  | Validator address.                    |
-| `[].delta.delegate.amount`       | string  | Delegated amount.                     |
-| `[].delta.delegate.isUndelegate` | boolean | `isUndelegate` value in the response. |
+| Field                            | Type    | Description                                            |
+| -------------------------------- | ------- | ------------------------------------------------------ |
+| `[]`                             | array   | Delegation and undelegation events for the account.    |
+| `[].time`                        | integer | Ledger-event timestamp in milliseconds.                |
+| `[].hash`                        | string  | Transaction hash for the delegation action.            |
+| `[].delta`                       | object  | Ledger change whose member identifies the action type. |
+| `[].delta.delegate`              | object  | Details of the delegation or undelegation action.      |
+| `[].delta.delegate.validator`    | string  | Address of the validator receiving or losing stake.    |
+| `[].delta.delegate.amount`       | string  | Stake amount moved by the action, as a decimal string. |
+| `[].delta.delegate.isUndelegate` | boolean | `true` for an undelegation; `false` for a delegation.  |
 
 ## Response example
 

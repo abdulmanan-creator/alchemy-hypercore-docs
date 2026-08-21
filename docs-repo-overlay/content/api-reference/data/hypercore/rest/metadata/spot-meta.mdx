@@ -25,22 +25,22 @@ Returns spot token and spot-pair definitions.
 
 ## Response fields
 
-| Field                    | Type           | Description                                   |
-| ------------------------ | -------------- | --------------------------------------------- |
-| `tokens[]`               | array          | `tokens` value in the response.               |
-| `tokens[].name`          | string         | Name.                                         |
-| `tokens[].szDecimals`    | integer        | `szDecimals` value in the response.           |
-| `tokens[].weiDecimals`   | integer        | `weiDecimals` value in the response.          |
-| `tokens[].index`         | integer        | Index.                                        |
-| `tokens[].tokenId`       | string         | `tokenId` value in the response.              |
-| `tokens[].isCanonical`   | boolean        | `isCanonical` value in the response.          |
-| `tokens[].evmContract`   | string \| null | `evmContract` value in the response.          |
-| `tokens[].fullName`      | string \| null | Full token name, or `null` when not supplied. |
-| `universe[]`             | array          | `universe` value in the response.             |
-| `universe[].name`        | string         | Name.                                         |
-| `universe[].tokens`      | array          | `tokens` value in the response.               |
-| `universe[].index`       | integer        | Index.                                        |
-| `universe[].isCanonical` | boolean        | `isCanonical` value in the response.          |
+| Field                    | Type           | Description                                               |
+| ------------------------ | -------------- | --------------------------------------------------------- |
+| `tokens[]`               | array          | Spot-token definitions used by spot-pair entries.         |
+| `tokens[].name`          | string         | Spot-token symbol, for example `USDC`.                    |
+| `tokens[].szDecimals`    | integer        | Number of decimal places accepted for order sizes.        |
+| `tokens[].weiDecimals`   | integer        | Decimal places in the token’s smallest unit.              |
+| `tokens[].index`         | integer        | Zero-based index used to reference this token.            |
+| `tokens[].tokenId`       | string         | Onchain identifier assigned to the spot token.            |
+| `tokens[].isCanonical`   | boolean        | Whether this token is in the canonical spot universe.     |
+| `tokens[].evmContract`   | string \| null | EVM contract address, or `null` when none is assigned.    |
+| `tokens[].fullName`      | string \| null | Full token name, or `null` when not supplied.             |
+| `universe[]`             | array          | Ordered spot-pair definitions.                            |
+| `universe[].name`        | string         | Spot-pair symbol, for example `PURR/USDC`.                |
+| `universe[].tokens`      | array          | Indices of the base and quote tokens in the token list.   |
+| `universe[].index`       | integer        | Pair index used in the `@{index}` spot identifier.        |
+| `universe[].isCanonical` | boolean        | Whether this pair belongs to the canonical spot universe. |
 
 ## Response example
 

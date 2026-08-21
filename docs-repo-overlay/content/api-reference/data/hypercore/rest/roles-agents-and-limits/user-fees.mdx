@@ -29,29 +29,29 @@ Returns an account's fee schedule, current rates, and daily volume history.
 
 | Field                                | Type            | Description                                                          |
 | ------------------------------------ | --------------- | -------------------------------------------------------------------- |
-| `dailyUserVlm[]`                     | array           | Daily volume entries.                                                |
-| `dailyUserVlm[].date`                | string          | `date` value in the response.                                        |
-| `dailyUserVlm[].userCross`           | string          | `userCross` value in the response.                                   |
-| `dailyUserVlm[].userAdd`             | string          | `userAdd` value in the response.                                     |
-| `dailyUserVlm[].exchange`            | string          | `exchange` value in the response.                                    |
-| `feeSchedule`                        | object          | Applicable fee schedule.                                             |
-| `feeSchedule.cross`                  | string          | `cross` value in the response.                                       |
-| `feeSchedule.add`                    | string          | `add` value in the response.                                         |
-| `feeSchedule.spotCross`              | string          | `spotCross` value in the response.                                   |
-| `feeSchedule.spotAdd`                | string          | `spotAdd` value in the response.                                     |
-| `feeSchedule.tiers`                  | object          | `tiers` value in the response.                                       |
-| `feeSchedule.referralDiscount`       | string          | `referralDiscount` value in the response.                            |
-| `feeSchedule.stakingDiscountTiers[]` | array           | `stakingDiscountTiers` value in the response.                        |
-| `userCrossRate`                      | string          | Current taker rate.                                                  |
-| `userAddRate`                        | string          | Current maker rate.                                                  |
-| `userSpotCrossRate`                  | string          | Current spot taker rate.                                             |
-| `userSpotAddRate`                    | string          | Current spot maker rate.                                             |
-| `activeReferralDiscount`             | string          | Active referral discount.                                            |
+| `dailyUserVlm[]`                     | array           | Daily user and exchange volume buckets.                              |
+| `dailyUserVlm[].date`                | string          | UTC calendar date for this volume bucket.                            |
+| `dailyUserVlm[].userCross`           | string          | User taker notional volume for the UTC day.                          |
+| `dailyUserVlm[].userAdd`             | string          | User maker notional volume for the UTC day.                          |
+| `dailyUserVlm[].exchange`            | string          | Exchange-wide notional volume for the same UTC day.                  |
+| `feeSchedule`                        | object          | Base rates and volume-tier adjustments that determine user fees.     |
+| `feeSchedule.cross`                  | string          | Base perpetual taker fee rate as a decimal fraction.                 |
+| `feeSchedule.add`                    | string          | Base perpetual maker fee rate as a decimal fraction.                 |
+| `feeSchedule.spotCross`              | string          | Base spot taker fee rate as a decimal fraction.                      |
+| `feeSchedule.spotAdd`                | string          | Base spot maker fee rate as a decimal fraction.                      |
+| `feeSchedule.tiers`                  | object          | VIP and market-maker tiers that adjust the base fee rates.           |
+| `feeSchedule.referralDiscount`       | string          | Referral discount fraction available to eligible users.              |
+| `feeSchedule.stakingDiscountTiers[]` | array           | Staking thresholds and associated fee-discount fractions.            |
+| `userCrossRate`                      | string          | Current perpetual taker fee rate after applicable discounts.         |
+| `userAddRate`                        | string          | Current perpetual maker fee rate after applicable discounts.         |
+| `userSpotCrossRate`                  | string          | Current spot taker fee rate after applicable discounts.              |
+| `userSpotAddRate`                    | string          | Current spot maker fee rate after applicable discounts.              |
+| `activeReferralDiscount`             | string          | Referral discount fraction currently applied to user fees.           |
 | `trial`                              | object \| null  | Fee-trial details, or `null` when no trial applies.                  |
-| `feeTrialReward`                     | string          | `feeTrialReward` value in the response.                              |
+| `feeTrialReward`                     | string          | Fee-trial reward amount, as a decimal string.                        |
 | `nextTrialAvailableTimestamp`        | integer \| null | Time in milliseconds when another trial may be available, or `null`. |
-| `stakingLink`                        | object \| null  | Staking-link details, or `null` when no link applies.                |
-| `activeStakingDiscount`              | object \| null  | Active staking-discount details, or `null` when no discount applies. |
+| `stakingLink`                        | object          | Link between this account and its staking account.                   |
+| `activeStakingDiscount`              | object          | Staking-based discount currently applied to user fees.               |
 
 ## Response example
 

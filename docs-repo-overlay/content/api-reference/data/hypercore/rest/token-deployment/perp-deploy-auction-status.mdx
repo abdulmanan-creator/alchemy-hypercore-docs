@@ -27,9 +27,9 @@ Returns the current perpetual deployment auction state.
 
 | Field              | Type           | Description                                                  |
 | ------------------ | -------------- | ------------------------------------------------------------ |
-| `startTimeSeconds` | integer        | `startTimeSeconds` value in the response.                    |
-| `durationSeconds`  | integer        | `durationSeconds` value in the response.                     |
-| `startGas`         | string         | `startGas` value in the response.                            |
+| `startTimeSeconds` | integer        | Unix time in seconds when the auction starts.                |
+| `durationSeconds`  | integer        | Length of the auction window in seconds.                     |
+| `startGas`         | string         | Opening auction gas price in HYPE.                           |
 | `currentGas`       | string \| null | Current auction gas price, or `null` before it is available. |
 | `endGas`           | string \| null | Auction end gas price, or `null` while the auction is open.  |
 

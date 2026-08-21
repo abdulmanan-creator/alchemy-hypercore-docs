@@ -27,14 +27,14 @@ Returns predicted funding rates and scheduled funding times for the first perpet
 
 | Field                             | Type           | Description                                               |
 | --------------------------------- | -------------- | --------------------------------------------------------- |
-| `[]`                              | array          | Market funding-prediction entries.                        |
-| `[][0]`                           | string         | Market identifier at tuple index 0.                       |
-| `[][1]`                           | array          | Venue-funding entries at tuple index 1.                   |
+| `[]`                              | array          | One tuple per market containing its funding predictions.  |
+| `[][0]`                           | string         | Market symbol for this prediction tuple.                  |
+| `[][1]`                           | array          | Predictions grouped by the venues contributing rates.     |
 | `[][1][][0]`                      | string \| null | Venue identifier, or `null` when that venue has no entry. |
-| `[][1][][1]`                      | object         | Funding prediction for the venue.                         |
-| `[][1][][1].fundingRate`          | string         | Funding rate.                                             |
-| `[][1][][1].nextFundingTime`      | integer        | `nextFundingTime` value in the response.                  |
-| `[][1][][1].fundingIntervalHours` | integer        | `fundingIntervalHours` value in the response.             |
+| `[][1][][1]`                      | object         | Funding-rate schedule reported by the associated venue.   |
+| `[][1][][1].fundingRate`          | string         | Predicted funding rate for the next interval.             |
+| `[][1][][1].nextFundingTime`      | integer        | Next scheduled funding time in milliseconds.              |
+| `[][1][][1].fundingIntervalHours` | integer        | Hours between funding events for this venue.              |
 
 ## Response example
 

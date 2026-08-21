@@ -29,22 +29,22 @@ Returns open orders with trigger, reduce-only, and order-type details used by tr
 
 ## Response fields
 
-| Field                 | Type    | Description                               |
-| --------------------- | ------- | ----------------------------------------- |
-| `[]`                  | array   | Open-order entries.                       |
-| `[].coin`             | string  | Market identifier.                        |
-| `[].isPositionTpsl`   | boolean | `isPositionTpsl` value in the response.   |
-| `[].isTrigger`        | boolean | `isTrigger` value in the response.        |
-| `[].limitPx`          | string  | `limitPx` value in the response.          |
-| `[].oid`              | integer | Order identifier.                         |
-| `[].orderType`        | string  | `orderType` value in the response.        |
-| `[].origSz`           | string  | `origSz` value in the response.           |
-| `[].reduceOnly`       | boolean | `reduceOnly` value in the response.       |
-| `[].side`             | string  | Order side.                               |
-| `[].sz`               | string  | Size.                                     |
-| `[].timestamp`        | integer | Timestamp in milliseconds.                |
-| `[].triggerCondition` | string  | `triggerCondition` value in the response. |
-| `[].triggerPx`        | string  | `triggerPx` value in the response.        |
+| Field                 | Type    | Description                                             |
+| --------------------- | ------- | ------------------------------------------------------- |
+| `[]`                  | array   | Open-order entries.                                     |
+| `[].coin`             | string  | Market identifier.                                      |
+| `[].isPositionTpsl`   | boolean | Whether the order applies to an entire position.        |
+| `[].isTrigger`        | boolean | Whether this is a conditional trigger order.            |
+| `[].limitPx`          | string  | Limit price, as a decimal string.                       |
+| `[].oid`              | integer | Order identifier.                                       |
+| `[].orderType`        | string  | Order instruction, such as limit or trigger order.      |
+| `[].origSz`           | string  | Original order size before fills or reductions.         |
+| `[].reduceOnly`       | boolean | Whether execution may only reduce an existing position. |
+| `[].side`             | string  | `B` for a bid or `A` for an ask.                        |
+| `[].sz`               | string  | Size.                                                   |
+| `[].timestamp`        | integer | Millisecond time when the order was created.            |
+| `[].triggerCondition` | string  | Price condition that activates the trigger order.       |
+| `[].triggerPx`        | string  | Price threshold that activates the trigger order.       |
 
 ## Response example
 

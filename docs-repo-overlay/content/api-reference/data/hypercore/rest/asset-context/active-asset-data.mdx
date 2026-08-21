@@ -29,17 +29,17 @@ Returns a user's active perpetual-market trading capacity and leverage for one c
 
 ## Response fields
 
-| Field              | Type              | Description                               |
-| ------------------ | ----------------- | ----------------------------------------- |
-| `user`             | string            | Account address.                          |
-| `coin`             | string            | Market identifier.                        |
-| `leverage`         | object            | `leverage` value in the response.         |
-| `leverage.type`    | cross \| isolated | Selected read type.                       |
-| `leverage.value`   | integer           | `value` value in the response.            |
-| `leverage.rawUsd`  | string            | `rawUsd` value in the response.           |
-| `maxTradeSzs`      | array             | `maxTradeSzs` value in the response.      |
-| `availableToTrade` | array             | `availableToTrade` value in the response. |
-| `markPx`           | string            | Current mark price.                       |
+| Field              | Type              | Description                                               |
+| ------------------ | ----------------- | --------------------------------------------------------- |
+| `user`             | string            | Account address.                                          |
+| `coin`             | string            | Perpetual market symbol requested by the caller.          |
+| `leverage`         | object            | Selected leverage configuration for this user and market. |
+| `leverage.type`    | cross \| isolated | Selected read type.                                       |
+| `leverage.value`   | integer           | Configured leverage multiplier.                           |
+| `leverage.rawUsd`  | string            | HIP-3 isolated-margin amount in USD, when supplied.       |
+| `maxTradeSzs`      | array             | Maximum buy and sell sizes permitted at current margin.   |
+| `availableToTrade` | array             | Available buy and sell notional at current margin.        |
+| `markPx`           | string            | Current mark price used for margin and unrealized PnL.    |
 
 ## Response example
 

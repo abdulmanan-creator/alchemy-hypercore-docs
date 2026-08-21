@@ -31,13 +31,13 @@ Returns deposits, transfers, withdrawals, and other non-funding ledger activity 
 
 ## Response fields
 
-| Field           | Type    | Description                    |
-| --------------- | ------- | ------------------------------ |
-| `[]`            | array   | Ledger-update entries.         |
-| `[].delta`      | object  | `delta` value in the response. |
-| `[].delta.type` | string  | Selected read type.            |
-| `[].hash`       | string  | Transaction hash.              |
-| `[].time`       | integer | Timestamp in milliseconds.     |
+| Field           | Type    | Description                                              |
+| --------------- | ------- | -------------------------------------------------------- |
+| `[]`            | array   | Non-funding ledger events for the requested time range.  |
+| `[].delta`      | object  | Event-specific payload; use `type` to select its schema. |
+| `[].delta.type` | string  | Ledger event kind that determines the `delta` shape.     |
+| `[].hash`       | string  | Transaction hash that recorded the ledger event.         |
+| `[].time`       | integer | Millisecond timestamp of the ledger event.               |
 
 ## Response example
 

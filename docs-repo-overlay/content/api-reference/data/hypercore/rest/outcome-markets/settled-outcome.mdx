@@ -27,17 +27,17 @@ Returns the specification and settlement details for one outcome identifier.
 
 ## Response fields
 
-| Field                   | Type    | Description                         |
-| ----------------------- | ------- | ----------------------------------- |
-| `spec`                  | object  | Outcome specification.              |
-| `spec.outcome`          | integer | `outcome` value in the response.    |
-| `spec.name`             | string  | Name.                               |
-| `spec.description`      | string  | Description.                        |
-| `spec.sideSpecs[]`      | array   | `sideSpecs` value in the response.  |
-| `spec.sideSpecs[].name` | string  | Name.                               |
-| `spec.quoteToken`       | string  | `quoteToken` value in the response. |
-| `settleFraction`        | string  | Settlement fraction.                |
-| `details`               | string  | Settlement details.                 |
+| Field                   | Type    | Description                                       |
+| ----------------------- | ------- | ------------------------------------------------- |
+| `spec`                  | object  | Configuration that defined the settled outcome.   |
+| `spec.outcome`          | integer | Numeric identifier of the settled outcome market. |
+| `spec.name`             | string  | Displayed title of the settled outcome.           |
+| `spec.description`      | string  | Human-readable wording of the outcome question.   |
+| `spec.sideSpecs[]`      | array   | Allowed outcome sides at settlement.              |
+| `spec.sideSpecs[].name` | string  | Display label for that selectable side.           |
+| `spec.quoteToken`       | string  | Token used to quote the outcome market.           |
+| `settleFraction`        | string  | Settlement fraction.                              |
+| `details`               | string  | Supporting information used for settlement.       |
 
 ## Response example
 

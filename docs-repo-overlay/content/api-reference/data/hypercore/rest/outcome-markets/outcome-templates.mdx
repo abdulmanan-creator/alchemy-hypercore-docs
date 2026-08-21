@@ -25,14 +25,14 @@ Returns registered outcome templates for HIP-4 deployment planning.
 
 ## Response fields
 
-| Field            | Type    | Description               |
-| ---------------- | ------- | ------------------------- |
-| `[]`             | array   | Outcome-template entries. |
-| `[].id`          | integer | Template identifier.      |
-| `[].role`        | string  | Template role.            |
-| `[].name`        | string  | Template name.            |
-| `[].description` | string  | Template description.     |
-| `[].keywords`    | array   | Template search keywords. |
+| Field            | Type    | Description                                             |
+| ---------------- | ------- | ------------------------------------------------------- |
+| `[]`             | array   | Outcome-template entries.                               |
+| `[].id`          | integer | Numeric identifier used when selecting the template.    |
+| `[].role`        | string  | Role the template configures for an outcome deployment. |
+| `[].name`        | string  | Human-readable label shown for the template.            |
+| `[].description` | string  | Human-readable explanation of the template's purpose.   |
+| `[].keywords`    | array   | Search terms associated with the template.              |
 
 ## Response example
 

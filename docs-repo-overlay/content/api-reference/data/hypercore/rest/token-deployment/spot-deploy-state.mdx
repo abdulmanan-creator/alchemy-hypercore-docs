@@ -27,27 +27,27 @@ Returns the caller's spot-token deployment states and the current deployment auc
 
 ## Response fields
 
-| Field                                   | Type           | Description                                                  |
-| --------------------------------------- | -------------- | ------------------------------------------------------------ |
-| `states[]`                              | array          | Deployment-state entries.                                    |
-| `states[].token`                        | integer        | Token index.                                                 |
-| `states[].spec`                         | object         | `spec` value in the response.                                |
-| `states[].spec.name`                    | string         | Name.                                                        |
-| `states[].spec.szDecimals`              | integer        | `szDecimals` value in the response.                          |
-| `states[].spec.weiDecimals`             | integer        | `weiDecimals` value in the response.                         |
-| `states[].fullName`                     | string \| null | Full token name, or `null` when not supplied.                |
-| `states[].spots`                        | array          | `spots` value in the response.                               |
-| `states[].maxSupply`                    | integer        | `maxSupply` value in the response.                           |
-| `states[].hyperliquidityGenesisBalance` | string         | `hyperliquidityGenesisBalance` value in the response.        |
-| `states[].totalGenesisBalanceWei`       | string         | `totalGenesisBalanceWei` value in the response.              |
-| `states[].userGenesisBalances`          | array          | `userGenesisBalances` value in the response.                 |
-| `states[].existingTokenGenesisBalances` | array          | `existingTokenGenesisBalances` value in the response.        |
-| `gasAuction`                            | object         | `gasAuction` value in the response.                          |
-| `gasAuction.startTimeSeconds`           | integer        | `startTimeSeconds` value in the response.                    |
-| `gasAuction.durationSeconds`            | integer        | `durationSeconds` value in the response.                     |
-| `gasAuction.startGas`                   | string         | `startGas` value in the response.                            |
-| `gasAuction.currentGas`                 | string \| null | Current auction gas price, or `null` before it is available. |
-| `gasAuction.endGas`                     | string \| null | Auction end gas price, or `null` while the auction is open.  |
+| Field                                   | Type           | Description                                                          |
+| --------------------------------------- | -------------- | -------------------------------------------------------------------- |
+| `states[]`                              | array          | Deployment-state entries.                                            |
+| `states[].token`                        | integer        | Numeric token index assigned to the deployment.                      |
+| `states[].spec`                         | object         | Registration configuration submitted for the token.                  |
+| `states[].spec.name`                    | string         | Display name requested for the token.                                |
+| `states[].spec.szDecimals`              | integer        | Number of decimal places accepted for order sizes.                   |
+| `states[].spec.weiDecimals`             | integer        | Decimal places in the token’s smallest unit.                         |
+| `states[].fullName`                     | string \| null | Full token name, or `null` when not supplied.                        |
+| `states[].spots`                        | array          | Spot-pair indices already registered for the token.                  |
+| `states[].maxSupply`                    | integer        | Maximum token supply permitted by the deployment.                    |
+| `states[].hyperliquidityGenesisBalance` | string         | Genesis allocation reserved for Hyperliquidity, as a decimal string. |
+| `states[].totalGenesisBalanceWei`       | string         | Total genesis balance in the token’s smallest unit.                  |
+| `states[].userGenesisBalances`          | array          | Address-and-balance pairs allocated at genesis.                      |
+| `states[].existingTokenGenesisBalances` | array          | Existing-token index and genesis-balance pairs.                      |
+| `gasAuction`                            | object         | Current Dutch-auction state for token deployment.                    |
+| `gasAuction.startTimeSeconds`           | integer        | Unix time in seconds when the auction starts.                        |
+| `gasAuction.durationSeconds`            | integer        | Length of the auction window in seconds.                             |
+| `gasAuction.startGas`                   | string         | Opening auction gas price in HYPE.                                   |
+| `gasAuction.currentGas`                 | string \| null | Current auction gas price, or `null` before it is available.         |
+| `gasAuction.endGas`                     | string \| null | Auction end gas price, or `null` while the auction is open.          |
 
 ## Response example
 

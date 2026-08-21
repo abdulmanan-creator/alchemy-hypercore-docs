@@ -27,25 +27,25 @@ Returns perpetual metadata and aligned live market contexts; use it to read the 
 
 ## Response fields
 
-| Field                        | Type    | Description                                   |
-| ---------------------------- | ------- | --------------------------------------------- |
-| `[0]`                        | object  | Metadata object at tuple index 0.             |
-| `[0].universe[]`             | array   | `universe` value in the response.             |
-| `[0].universe[].name`        | string  | Name.                                         |
-| `[0].universe[].szDecimals`  | integer | `szDecimals` value in the response.           |
-| `[0].universe[].maxLeverage` | integer | `maxLeverage` value in the response.          |
-| `[0].marginTables`           | array   | `marginTables` value in the response.         |
-| `[0].collateralToken`        | integer | `collateralToken` value in the response.      |
-| `[1]`                        | array   | Aligned asset-context array at tuple index 1. |
-| `[1][].dayNtlVlm`            | string  | `dayNtlVlm` value in the response.            |
-| `[1][].funding`              | string  | `funding` value in the response.              |
-| `[1][].impactPxs`            | array   | `impactPxs` value in the response.            |
-| `[1][].markPx`               | string  | Current mark price.                           |
-| `[1][].midPx`                | string  | Current mid price.                            |
-| `[1][].openInterest`         | string  | `openInterest` value in the response.         |
-| `[1][].oraclePx`             | string  | Current oracle price.                         |
-| `[1][].premium`              | string  | `premium` value in the response.              |
-| `[1][].prevDayPx`            | string  | `prevDayPx` value in the response.            |
+| Field                        | Type           | Description                                                                               |
+| ---------------------------- | -------------- | ----------------------------------------------------------------------------------------- |
+| `[0]`                        | object         | Metadata object at tuple index 0.                                                         |
+| `[0].universe[]`             | array          | Ordered perpetual market definitions aligned to context entries.                          |
+| `[0].universe[].name`        | string         | Perpetual market symbol, for example `BTC`.                                               |
+| `[0].universe[].szDecimals`  | integer        | Number of decimal places accepted for order sizes.                                        |
+| `[0].universe[].maxLeverage` | integer        | Maximum leverage permitted for the market.                                                |
+| `[0].marginTables`           | array          | Leverage-tier definitions referenced by `marginTableId`.                                  |
+| `[0].collateralToken`        | integer        | Spot-token index used as collateral.                                                      |
+| `[1]`                        | array          | Aligned asset-context array at tuple index 1.                                             |
+| `[1][].dayNtlVlm`            | string         | Rolling 24-hour notional trading volume.                                                  |
+| `[1][].funding`              | string         | Current funding rate for the market.                                                      |
+| `[1][].impactPxs`            | array \| null  | Estimated prices for market-impact calculations on each side, or `null` when unavailable. |
+| `[1][].markPx`               | string         | Current mark price used for margin and unrealized PnL.                                    |
+| `[1][].midPx`                | string \| null | Current midpoint between the best bid and ask, or `null` without both sides.              |
+| `[1][].openInterest`         | string         | Total open position size, as a decimal string.                                            |
+| `[1][].oraclePx`             | string         | Current external oracle price used by the market.                                         |
+| `[1][].premium`              | string \| null | Mark-price premium relative to the oracle price, or `null` when unavailable.              |
+| `[1][].prevDayPx`            | string         | Market price approximately 24 hours earlier.                                              |
 
 ## Response example
 

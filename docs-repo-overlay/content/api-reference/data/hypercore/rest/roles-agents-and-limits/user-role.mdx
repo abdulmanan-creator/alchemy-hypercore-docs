@@ -27,12 +27,12 @@ Returns the account role and linked address where the role has one.
 
 ## Response fields
 
-| Field         | Type                                            | Description                     |
-| ------------- | ----------------------------------------------- | ------------------------------- |
-| `role`        | user \| agent \| vault \| subAccount \| missing | Account role.                   |
-| `data`        | object                                          | Response entries.               |
-| `data.user`   | string                                          | `user` value in the response.   |
-| `data.master` | string                                          | `master` value in the response. |
+| Field         | Type                                            | Description                                                                   |
+| ------------- | ----------------------------------------------- | ----------------------------------------------------------------------------- |
+| `role`        | user \| agent \| vault \| subAccount \| missing | Account classification: `missing`, `user`, `agent`, `vault`, or `subAccount`. |
+| `data`        | object                                          | Role-specific details; present for agent and sub-account roles.               |
+| `data.user`   | string                                          | Principal user address represented by the agent.                              |
+| `data.master` | string                                          | Master address that controls this sub-account.                                |
 
 ## Response example
 

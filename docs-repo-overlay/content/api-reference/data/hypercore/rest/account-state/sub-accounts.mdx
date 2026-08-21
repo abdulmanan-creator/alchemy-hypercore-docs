@@ -30,17 +30,17 @@ Returns a master's named sub-accounts with their perpetual and spot account stat
 | Field                                  | Type          | Description                                                                       |
 | -------------------------------------- | ------------- | --------------------------------------------------------------------------------- |
 | `[]`                                   | array \| null | Sub-account entries; the native API can return `null` when no state is available. |
-| `[].name`                              | string        | Name.                                                                             |
-| `[].subAccountUser`                    | string        | `subAccountUser` value in the response.                                           |
-| `[].master`                            | string        | `master` value in the response.                                                   |
-| `[].clearinghouseState`                | object        | `clearinghouseState` value in the response.                                       |
-| `[].clearinghouseState.marginSummary`  | object        | `marginSummary` value in the response.                                            |
-| `[].clearinghouseState.withdrawable`   | string        | `withdrawable` value in the response.                                             |
-| `[].clearinghouseState.assetPositions` | array         | `assetPositions` value in the response.                                           |
-| `[].clearinghouseState.time`           | integer       | Timestamp in milliseconds.                                                        |
-| `[].spotState.balances[]`              | array         | `balances` value in the response.                                                 |
-| `[].spotState.balances[].coin`         | string        | Market identifier.                                                                |
-| `[].spotState.balances[].total`        | string        | Total amount.                                                                     |
+| `[].name`                              | string        | Display name assigned to the sub-account.                                         |
+| `[].subAccountUser`                    | string        | Address of the sub-account.                                                       |
+| `[].master`                            | string        | Address that controls this sub-account.                                           |
+| `[].clearinghouseState`                | object        | Perpetual account state for the sub-account.                                      |
+| `[].clearinghouseState.marginSummary`  | object        | Cross-margin collateral, notional, and margin metrics.                            |
+| `[].clearinghouseState.withdrawable`   | string        | USDC withdrawable while retaining the current perpetual positions.                |
+| `[].clearinghouseState.assetPositions` | array         | Open perpetual positions with their position state.                               |
+| `[].clearinghouseState.time`           | integer       | Millisecond timestamp of the included perpetual-account state.                    |
+| `[].spotState.balances[]`              | array         | Spot balances held by the sub-account.                                            |
+| `[].spotState.balances[].coin`         | string        | Spot-token symbol, for example `USDC`.                                            |
+| `[].spotState.balances[].total`        | string        | Combined balance for that spot token, as a decimal string.                        |
 | `[].spotState.balances[].hold`         | string        | Amount reserved by orders.                                                        |
 
 ## Response example

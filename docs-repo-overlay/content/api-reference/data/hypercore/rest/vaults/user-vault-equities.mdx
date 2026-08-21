@@ -27,11 +27,11 @@ Returns the current equity a user has in each vault.
 
 ## Response fields
 
-| Field             | Type   | Description                           |
-| ----------------- | ------ | ------------------------------------- |
-| `[]`              | array  | Response entries.                     |
-| `[].vaultAddress` | string | `vaultAddress` value in the response. |
-| `[].equity`       | string | `equity` value in the response.       |
+| Field             | Type   | Description                                        |
+| ----------------- | ------ | -------------------------------------------------- |
+| `[]`              | array  | Current equity positions across the user's vaults. |
+| `[].vaultAddress` | string | Onchain address that identifies the vault.         |
+| `[].equity`       | string | User's current vault equity as a decimal string.   |
 
 ## Response example
 

@@ -29,21 +29,21 @@ Alchemy-original read that returns an order-level L4 snapshot for checkpointing 
 
 ## Response fields
 
-| Field                | Type    | Description                           |
-| -------------------- | ------- | ------------------------------------- |
-| `[]`                 | array   | Per-market snapshot tuples.           |
-| `[][0]`              | string  | Market identifier.                    |
-| `[][1]`              | array   | Bid and ask sides.                    |
-| `[][1][].coin`       | string  | Order market.                         |
-| `[][1][].side`       | string  | Order side.                           |
-| `[][1][].limitPx`    | string  | Order limit price.                    |
-| `[][1][].sz`         | string  | Order size.                           |
-| `[][1][].oid`        | integer | Order identifier.                     |
-| `[][1][].timestamp`  | integer | Order timestamp in milliseconds.      |
-| `[][1][].isTrigger`  | boolean | Whether the order is a trigger order. |
-| `[][1][].triggerPx`  | string  | Trigger price.                        |
-| `[][1][].reduceOnly` | boolean | Whether the order is reduce-only.     |
-| `[][1][].origSz`     | string  | Original order size.                  |
+| Field                | Type    | Description                                          |
+| -------------------- | ------- | ---------------------------------------------------- |
+| `[]`                 | array   | Per-market snapshot tuples.                          |
+| `[][0]`              | string  | Market identifier.                                   |
+| `[][1]`              | array   | Bid and ask sides.                                   |
+| `[][1][].coin`       | string  | Order market.                                        |
+| `[][1][].side`       | string  | `B` for a bid or `A` for an ask.                     |
+| `[][1][].limitPx`    | string  | Order limit price.                                   |
+| `[][1][].sz`         | string  | Order size.                                          |
+| `[][1][].oid`        | integer | Order identifier.                                    |
+| `[][1][].timestamp`  | integer | Millisecond time when the resting order was created. |
+| `[][1][].isTrigger`  | boolean | Whether the order is a trigger order.                |
+| `[][1][].triggerPx`  | string  | Trigger price.                                       |
+| `[][1][].reduceOnly` | boolean | Whether the order is reduce-only.                    |
+| `[][1][].origSz`     | string  | Original order size.                                 |
 
 ## Response example
 

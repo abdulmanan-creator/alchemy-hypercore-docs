@@ -36,19 +36,19 @@ Returns up to 5,000 OHLCV candles for charting a market over a bounded time rang
 
 ## Response fields
 
-| Field  | Type    | Description                |
-| ------ | ------- | -------------------------- |
-| `[]`   | array   | Candle entries.            |
-| `[].T` | integer | `T` value in the response. |
-| `[].c` | string  | `c` value in the response. |
-| `[].h` | string  | `h` value in the response. |
-| `[].i` | string  | `i` value in the response. |
-| `[].l` | string  | `l` value in the response. |
-| `[].n` | integer | `n` value in the response. |
-| `[].o` | string  | `o` value in the response. |
-| `[].s` | string  | `s` value in the response. |
-| `[].t` | integer | `t` value in the response. |
-| `[].v` | string  | `v` value in the response. |
+| Field  | Type    | Description                                             |
+| ------ | ------- | ------------------------------------------------------- |
+| `[]`   | array   | Candles ordered by the requested time range.            |
+| `[].T` | integer | Candle close time in milliseconds.                      |
+| `[].c` | string  | Closing price as a decimal string.                      |
+| `[].h` | string  | Highest traded price during the interval.               |
+| `[].i` | string  | Candle interval, such as `15m` or `1h`.                 |
+| `[].l` | string  | Lowest traded price during the interval.                |
+| `[].n` | integer | Number of trades included in the candle.                |
+| `[].o` | string  | Opening price as a decimal string.                      |
+| `[].s` | string  | Market symbol; HIP-3 markets include the DEX prefix.    |
+| `[].t` | integer | Candle open time in milliseconds.                       |
+| `[].v` | string  | Traded volume during the interval, as a decimal string. |
 
 ## Response example
 
