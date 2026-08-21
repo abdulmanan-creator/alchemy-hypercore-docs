@@ -7,19 +7,50 @@ info:
     HyperCore read and historical methods for private preview.
 servers:
   - url: https://api.g.alchemy.com/hypercore/v1
-    description: Provisional base URL; it will be confirmed before general availability.
+    description: HyperCore REST base URL.
 tags:
-  - name: HyperCore Data API Endpoints
+  - name: Account state
+    description: User account and portfolio reads.
+  - name: Orders and fills
+    description: Order and fill reads.
+  - name: Ledger and funding
+    description: Ledger and funding reads.
+  - name: Market data and snapshots
+    description: Market-data reads and state snapshots.
+  - name: Asset context
+    description: Asset metadata and current context reads.
+  - name: Metadata
+    description: Perpetual and spot metadata reads.
+  - name: Token deployment
+    description: Token and market deployment reads.
+  - name: Vaults
+    description: Vault discovery and account-equity reads.
+  - name: Staking, delegation, and validators
+    description: Delegation and validator reads.
+  - name: Roles, agents, and limits
+    description: Roles, agents, fee approvals, and rate-limit reads.
+  - name: Outcome markets
+    description: Outcome-market metadata and settlement reads.
+x-info-operation: &infoOperation
+  parameters:
+    - "$ref": "#/components/parameters/apiKey"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          "$ref": "#/components/schemas/InfoTypeRequest"
+  responses:
+    "200":
+      "$ref": "#/components/responses/InfoResponse"
+    "400":
+      description: Invalid request.
 paths:
   "/{apiKey}/info":
     post:
-      tags:
-        - HyperCore Data API Endpoints
       operationId: get-info
       summary: Execute a native-compatible HyperCore read
       description: |
-        This API is in private preview. Target October 2026; timing is subject to change.
-
         Execute a native-compatible HyperCore read selected by the required type discriminator. The remaining native methods will be documented as the service is finalized.
       parameters:
         - "$ref": "#/components/parameters/apiKey"
@@ -49,13 +80,10 @@ paths:
                 "$ref": "#/components/schemas/InfoResponse"
   "/{apiKey}/user-fills":
     post:
-      tags:
-        - HyperCore Data API Endpoints
+      tags: [Orders and fills]
       operationId: get-user-fills
       summary: Get user fills
       description: |
-        This API is in private preview. Target October 2026; timing is subject to change.
-
         Retrieve fills associated with a user.
       parameters:
         - "$ref": "#/components/parameters/apiKey"
@@ -82,13 +110,10 @@ paths:
                   "$ref": "#/components/examples/UserFillsResponse"
   "/{apiKey}/user-fills-by-time":
     post:
-      tags:
-        - HyperCore Data API Endpoints
+      tags: [Orders and fills]
       operationId: get-user-fills-by-time
       summary: Get user fills by time
       description: |
-        This API is in private preview. Target October 2026; timing is subject to change.
-
         Retrieve fills associated with a user over a time range.
       parameters:
         - "$ref": "#/components/parameters/apiKey"
@@ -117,13 +142,10 @@ paths:
                   "$ref": "#/components/examples/UserFillsByTimeResponse"
   "/{apiKey}/clearinghouse-state":
     post:
-      tags:
-        - HyperCore Data API Endpoints
+      tags: [Account state]
       operationId: get-clearinghouse-state
       summary: Get clearinghouse state
       description: |
-        This API is in private preview. Target October 2026; timing is subject to change.
-
         Retrieve clearinghouse state associated with a user.
       parameters:
         - "$ref": "#/components/parameters/apiKey"
@@ -145,13 +167,10 @@ paths:
                   "$ref": "#/components/examples/ClearinghouseStateResponse"
   "/{apiKey}/historical-orders":
     post:
-      tags:
-        - HyperCore Data API Endpoints
+      tags: [Orders and fills]
       operationId: get-historical-orders
       summary: Get historical orders
       description: |
-        This API is in private preview. Target October 2026; timing is subject to change.
-
         Retrieve historical orders associated with a user.
       parameters:
         - "$ref": "#/components/parameters/apiKey"
@@ -173,13 +192,10 @@ paths:
                   "$ref": "#/components/examples/HistoricalOrdersResponse"
   "/{apiKey}/portfolio-state":
     post:
-      tags:
-        - HyperCore Data API Endpoints
+      tags: [Account state]
       operationId: get-portfolio-state
       summary: Get normalized portfolio state
       description: |
-        This API is in private preview. Target October 2026; timing is subject to change.
-
         Retrieve a normalized portfolio-state composite for a user.
       parameters:
         - "$ref": "#/components/parameters/apiKey"
@@ -206,13 +222,10 @@ paths:
                   "$ref": "#/components/examples/PortfolioStateResponse"
   "/{apiKey}/extra-agents":
     post:
-      tags:
-        - HyperCore Data API Endpoints
+      tags: [Roles, agents, and limits]
       operationId: get-extra-agents
       summary: Get agent and API-wallet state
       description: |
-        This API is in private preview. Target October 2026; timing is subject to change.
-
         Retrieve agent and API-wallet information associated with a user.
       parameters:
         - "$ref": "#/components/parameters/apiKey"
@@ -234,14 +247,11 @@ paths:
                   "$ref": "#/components/examples/ExtraAgentsResponse"
   "/{apiKey}/l2-book-diff-snapshot":
     post:
-      tags:
-        - HyperCore Data API Endpoints
+      tags: [Market data and snapshots]
       operationId: get-l2-book-diff-snapshot
       summary: Get an L2 book snapshot for diff-stream bootstrap
       description: |
-        This API is in private preview. Target October 2026; timing is subject to change.
-
-        Retrieve aggregated L2 books at a common block height with each market's diff sequence. Use this operation to bootstrap the l2BookDiff stream.
+        Retrieve aggregated L2 books at a common block height with each market's diff sequence.
       parameters:
         - "$ref": "#/components/parameters/apiKey"
       requestBody:
@@ -267,6 +277,230 @@ paths:
               examples:
                 default:
                   "$ref": "#/components/examples/L2BookDiffSnapshotResponse"
+  "/{apiKey}/open-orders":
+    post:
+      tags: [Orders and fills]
+      operationId: get-open-orders
+      summary: Retrieve a user's open orders
+      <<: *infoOperation
+  "/{apiKey}/frontend-open-orders":
+    post:
+      tags: [Orders and fills]
+      operationId: get-frontend-open-orders
+      summary: Retrieve a user's open orders with additional frontend info
+      <<: *infoOperation
+  "/{apiKey}/user-funding":
+    post:
+      tags: [Ledger and funding]
+      operationId: get-user-funding
+      summary: Retrieve a user's funding payments
+      <<: *infoOperation
+  "/{apiKey}/user-non-funding-ledger-updates":
+    post:
+      tags: [Ledger and funding]
+      operationId: get-user-non-funding-ledger-updates
+      summary: Retrieve a user's non-funding ledger updates
+      <<: *infoOperation
+  "/{apiKey}/spot-clearinghouse-state":
+    post:
+      tags: [Account state]
+      operationId: get-spot-clearinghouse-state
+      summary: Retrieve a user's spot clearinghouse state
+      <<: *infoOperation
+  "/{apiKey}/sub-accounts":
+    post:
+      tags: [Account state]
+      operationId: get-sub-accounts
+      summary: Retrieve a user's subaccounts
+      <<: *infoOperation
+  "/{apiKey}/user-dex-abstraction":
+    post:
+      tags: [Account state]
+      operationId: get-user-dex-abstraction
+      summary: Query a user's HIP-3 DEX abstraction state
+      <<: *infoOperation
+  "/{apiKey}/all-mids":
+    post:
+      tags: [Market data and snapshots]
+      operationId: get-all-mids
+      summary: Retrieve mids for all coins
+      <<: *infoOperation
+  "/{apiKey}/candle-snapshot":
+    post:
+      tags: [Market data and snapshots]
+      operationId: get-candle-snapshot
+      summary: Retrieve a candle snapshot
+      <<: *infoOperation
+  "/{apiKey}/l4-book-snapshot":
+    post:
+      tags: [Market data and snapshots]
+      operationId: get-l4-book-snapshot
+      summary: Retrieve an L4 book snapshot
+      description: Retrieve the full onchain order information derived from L4 snapshots.
+      <<: *infoOperation
+  "/{apiKey}/trigger-order-snapshot":
+    post:
+      tags: [Market data and snapshots]
+      operationId: get-trigger-order-snapshot
+      summary: Retrieve a trigger-order snapshot
+      description: Retrieve trigger orders derived from L4 snapshots.
+      <<: *infoOperation
+  "/{apiKey}/meta":
+    post:
+      tags: [Metadata]
+      operationId: get-meta
+      summary: Retrieve perpetual metadata
+      <<: *infoOperation
+  "/{apiKey}/spot-meta":
+    post:
+      tags: [Metadata]
+      operationId: get-spot-meta
+      summary: Retrieve spot metadata
+      <<: *infoOperation
+  "/{apiKey}/meta-and-asset-ctxs":
+    post:
+      tags: [Asset context]
+      operationId: get-meta-and-asset-ctxs
+      summary: Retrieve perpetual metadata and asset contexts
+      <<: *infoOperation
+  "/{apiKey}/spot-meta-and-asset-ctxs":
+    post:
+      tags: [Asset context]
+      operationId: get-spot-meta-and-asset-ctxs
+      summary: Retrieve spot metadata and asset contexts
+      <<: *infoOperation
+  "/{apiKey}/active-asset-data":
+    post:
+      tags: [Asset context]
+      operationId: get-active-asset-data
+      summary: Retrieve active asset data
+      <<: *infoOperation
+  "/{apiKey}/predicted-fundings":
+    post:
+      tags: [Asset context]
+      operationId: get-predicted-fundings
+      summary: Retrieve predicted fundings
+      <<: *infoOperation
+  "/{apiKey}/spot-deploy-state":
+    post:
+      tags: [Token deployment]
+      operationId: get-spot-deploy-state
+      summary: Retrieve spot deployment state
+      <<: *infoOperation
+  "/{apiKey}/perp-deploy-auction-status":
+    post:
+      tags: [Token deployment]
+      operationId: get-perp-deploy-auction-status
+      summary: Retrieve perpetual deployment auction status
+      <<: *infoOperation
+  "/{apiKey}/spot-pair-deploy-auction-status":
+    post:
+      tags: [Token deployment]
+      operationId: get-spot-pair-deploy-auction-status
+      summary: Retrieve spot-pair deployment auction status
+      <<: *infoOperation
+  "/{apiKey}/vault-summaries":
+    post:
+      tags: [Vaults]
+      operationId: get-vault-summaries
+      summary: Retrieve vault summaries
+      <<: *infoOperation
+  "/{apiKey}/vault-details":
+    post:
+      tags: [Vaults]
+      operationId: get-vault-details
+      summary: Retrieve vault details
+      <<: *infoOperation
+  "/{apiKey}/leading-vaults":
+    post:
+      tags: [Vaults]
+      operationId: get-leading-vaults
+      summary: Retrieve leading vaults
+      <<: *infoOperation
+  "/{apiKey}/user-vault-equities":
+    post:
+      tags: [Vaults]
+      operationId: get-user-vault-equities
+      summary: Retrieve a user's vault deposits
+      <<: *infoOperation
+  "/{apiKey}/delegations":
+    post:
+      tags: [Staking, delegation, and validators]
+      operationId: get-delegations
+      summary: Query a user's staking delegations
+      <<: *infoOperation
+  "/{apiKey}/delegator-summary":
+    post:
+      tags: [Staking, delegation, and validators]
+      operationId: get-delegator-summary
+      summary: Query a user's staking summary
+      <<: *infoOperation
+  "/{apiKey}/delegator-history":
+    post:
+      tags: [Staking, delegation, and validators]
+      operationId: get-delegator-history
+      summary: Retrieve delegation history
+      <<: *infoOperation
+  "/{apiKey}/delegator-rewards":
+    post:
+      tags: [Staking, delegation, and validators]
+      operationId: get-delegator-rewards
+      summary: Retrieve delegation rewards
+      <<: *infoOperation
+  "/{apiKey}/validator-l1-votes":
+    post:
+      tags: [Staking, delegation, and validators]
+      operationId: get-validator-l1-votes
+      summary: Retrieve validator L1 votes
+      <<: *infoOperation
+  "/{apiKey}/user-role":
+    post:
+      tags: [Roles, agents, and limits]
+      operationId: get-user-role
+      summary: Query a user's role
+      <<: *infoOperation
+  "/{apiKey}/max-builder-fee":
+    post:
+      tags: [Roles, agents, and limits]
+      operationId: get-max-builder-fee
+      summary: Check builder fee approval
+      <<: *infoOperation
+  "/{apiKey}/user-rate-limit":
+    post:
+      tags: [Roles, agents, and limits]
+      operationId: get-user-rate-limit
+      summary: Query user rate limits
+      <<: *infoOperation
+  "/{apiKey}/user-fees":
+    post:
+      tags: [Roles, agents, and limits]
+      operationId: get-user-fees
+      summary: Query a user's fees
+      <<: *infoOperation
+  "/{apiKey}/outcome-meta":
+    post:
+      tags: [Outcome markets]
+      operationId: get-outcome-meta
+      summary: Retrieve outcome-market metadata
+      <<: *infoOperation
+  "/{apiKey}/settled-outcome":
+    post:
+      tags: [Outcome markets]
+      operationId: get-settled-outcome
+      summary: Retrieve a settled outcome
+      <<: *infoOperation
+  "/{apiKey}/settled-outcomes":
+    post:
+      tags: [Outcome markets]
+      operationId: get-settled-outcomes
+      summary: Retrieve settled outcomes
+      <<: *infoOperation
+  "/{apiKey}/outcome-templates":
+    post:
+      tags: [Outcome markets]
+      operationId: get-outcome-templates
+      summary: Retrieve outcome templates
+      <<: *infoOperation
 components:
   parameters:
     apiKey:
@@ -276,6 +510,39 @@ components:
       schema:
         type: string
   schemas:
+    InfoTypeRequest:
+      type: object
+      required: [type]
+      properties:
+        type:
+          type: string
+          description: Native Hyperliquid info request discriminator.
+        user:
+          "$ref": "#/components/schemas/Address"
+        dex:
+          type: string
+          description: Perpetual DEX name. The empty string selects the first perpetual DEX.
+        builder:
+          "$ref": "#/components/schemas/Address"
+        coin:
+          type: string
+        startTime:
+          "$ref": "#/components/schemas/TimestampMs"
+        endTime:
+          "$ref": "#/components/schemas/TimestampMs"
+        interval:
+          type: string
+        vaultAddress:
+          "$ref": "#/components/schemas/Address"
+        outcome:
+          type: integer
+        includeUsers:
+          type: boolean
+        includeTriggerOrders:
+          type: boolean
+      additionalProperties: true
+      description: The fields required with `type` are defined by the selected native read.
+    NativeInfoResponse: {}
     Address:
       type: string
       pattern: "^0x[a-fA-F0-9]{40}$"
@@ -632,6 +899,105 @@ components:
           type: array
           items:
             "$ref": "#/components/schemas/L2BookDiffSnapshotBook"
+  responses:
+    InfoResponse:
+      description: Successful native-compatible response.
+      content:
+        application/json:
+          schema:
+            "$ref": "#/components/schemas/NativeInfoResponse"
+          examples:
+            openOrders:
+              value:
+                - coin: BTC
+                  limitPx: "29792.0"
+                  oid: 91490942
+                  side: A
+                  sz: "0.0"
+                  timestamp: 1681247412573
+            frontendOpenOrders:
+              value:
+                - coin: BTC
+                  isPositionTpsl: false
+                  isTrigger: false
+                  limitPx: "29792.0"
+                  oid: 91490942
+                  orderType: Limit
+                  origSz: "5.0"
+                  reduceOnly: false
+                  side: A
+                  sz: "5.0"
+                  timestamp: 1681247412573
+                  triggerCondition: N/A
+                  triggerPx: "0.0"
+            userRateLimit:
+              value:
+                cumVlm: "2854574.593578"
+                nRequestsUsed: 2890
+                nRequestsCap: 2864574
+            maxBuilderFee:
+              value: 1
+            subAccounts:
+              value:
+                - name: Test
+                  subAccountUser: "0x035605fc2f24d65300227189025e90a0d947f16c"
+                  master: "0x8c967e73e6b15087c42a10d344cff4c96d877f1d"
+                  clearinghouseState:
+                    marginSummary:
+                      accountValue: "29.78001"
+                      totalNtlPos: "0.0"
+                      totalRawUsd: "29.78001"
+                      totalMarginUsed: "0.0"
+                    crossMarginSummary:
+                      accountValue: "29.78001"
+                      totalNtlPos: "0.0"
+                      totalRawUsd: "29.78001"
+                      totalMarginUsed: "0.0"
+                    crossMaintenanceMarginUsed: "0.0"
+                    withdrawable: "29.78001"
+                    assetPositions: []
+                    time: 1733968369395
+                  spotState:
+                    balances:
+                      - coin: USDC
+                        token: 0
+                        total: "0.22"
+                        hold: "0.0"
+                        entryNtl: "0.0"
+            userVaultEquities:
+              value:
+                - vaultAddress: "0xdfc24b077bc1425ad1dea75bcb6f8158e10df303"
+                  equity: "742500.082809"
+            userRole:
+              value: {role: user}
+            userFees:
+              value:
+                dailyUserVlm:
+                  - date: "2025-05-23"
+                    userCross: "0.0"
+                    userAdd: "0.0"
+                    exchange: "2852367.0770729999"
+                userCrossRate: "0.000315"
+                userAddRate: "0.000105"
+                userSpotCrossRate: "0.00049"
+                userSpotAddRate: "0.00028"
+                activeReferralDiscount: "0.0"
+                trial: null
+                feeTrialReward: "0.0"
+                nextTrialAvailableTimestamp: null
+            delegations:
+              value:
+                - validator: "0x5ac99df645f3414876c816caa18b2d234024b487"
+                  amount: "12060.16529862"
+                  lockedUntilTimestamp: 1735466781353
+            delegatorSummary:
+              value:
+                delegated: "12060.16529862"
+                undelegated: "0.0"
+                totalPendingWithdrawal: "0.0"
+                nPendingWithdrawals: 0
+            userDexAbstraction:
+              value: true
   examples:
     UserFillsResponse:
       value:

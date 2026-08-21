@@ -9,7 +9,29 @@ description: "HyperCore private-preview documentation."
 
 ## Interfaces
 
-The REST reference provides native-compatible reads through `POST /{apiKey}/info` and purpose-built POST routes at the provisional base URL `https://api.g.alchemy.com/hypercore/v1`. The base URL will be confirmed before general availability.
+The REST reference provides native-compatible reads through `POST /{apiKey}/info` and purpose-built POST routes at `https://api.g.alchemy.com/hypercore/v1`.
+
+<Note>
+
+The `/info` reads documented here are served today at
+`https://hyperliquid-mainnet.g.alchemy.com/v2/{apiKey}/info`. The HyperCore REST
+host is the target for these reads at general availability.
+
+</Note>
+
+### Native `/info` conventions
+
+Time-range responses return at most 500 elements or distinct blocks of data. For a
+larger range, use the last returned timestamp as the next `startTime`.
+
+For perpetuals, `coin` is the name returned by `meta`. For spot, use `PURR/USDC`
+for PURR and `@{index}` for other pairs, where `index` is the pair index in
+`spotMeta.universe`.
+
+Pass the actual master or sub-account address when querying account data. An agent
+wallet address returns an empty result.
+
+For deployment context, see [Deploying Hyperliquid markets](/docs/chains/deploying-markets).
 
 ## Native-compatible reads
 
