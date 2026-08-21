@@ -34,7 +34,7 @@ Returns a user's active perpetual-market trading capacity and leverage for one c
 | `user`             | string            | Account address.                                          |
 | `coin`             | string            | Perpetual market symbol requested by the caller.          |
 | `leverage`         | object            | Selected leverage configuration for this user and market. |
-| `leverage.type`    | cross \| isolated | Selected read type.                                       |
+| `leverage.type`    | cross \| isolated | Selected margin mode: `cross` or `isolated`.              |
 | `leverage.value`   | integer           | Configured leverage multiplier.                           |
 | `leverage.rawUsd`  | string            | HIP-3 isolated-margin amount in USD, when supplied.       |
 | `maxTradeSzs`      | array             | Maximum buy and sell sizes permitted at current margin.   |
