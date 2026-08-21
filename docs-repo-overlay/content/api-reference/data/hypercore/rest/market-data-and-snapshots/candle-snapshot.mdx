@@ -1,0 +1,37 @@
+---
+title: "Candle snapshot"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Candle snapshot
+
+Candles for a market and interval.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description                        |
+| --------------------- | ------ | ---------------------------------- |
+| `type`                | string | `candleSnapshot`                   |
+| Additional parameters | varies | coin, interval, startTime, endTime |
+
+```json
+{
+  "type": "candleSnapshot"
+}
+```
+
+## Response fields
+
+| Field    | Description    |
+| -------- | -------------- |
+| Response | Candle records |
+
+## Response example
+
+```json
+[]
+```

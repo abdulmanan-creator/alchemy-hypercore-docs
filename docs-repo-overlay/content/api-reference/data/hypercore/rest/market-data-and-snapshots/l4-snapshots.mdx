@@ -1,0 +1,37 @@
+---
+title: "L4 book snapshots"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# L4 book snapshots
+
+Full order-level snapshots derived from L4 state.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description                        |
+| --------------------- | ------ | ---------------------------------- |
+| `type`                | string | `l4Snapshots`                      |
+| Additional parameters | varies | includeUsers, includeTriggerOrders |
+
+```json
+{
+  "type": "l4Snapshots"
+}
+```
+
+## Response fields
+
+| Field    | Description             |
+| -------- | ----------------------- |
+| Response | Price levels and orders |
+
+## Response example
+
+```json
+[]
+```

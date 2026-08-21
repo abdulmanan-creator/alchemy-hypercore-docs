@@ -1,0 +1,37 @@
+---
+title: "Frontend open orders"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Frontend open orders
+
+A user's open orders with frontend fields.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description          |
+| --------------------- | ------ | -------------------- |
+| `type`                | string | `frontendOpenOrders` |
+| Additional parameters | varies | user, dex            |
+
+```json
+{
+  "type": "frontendOpenOrders"
+}
+```
+
+## Response fields
+
+| Field    | Description                                                                                                                    |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Response | coin, isPositionTpsl, isTrigger, limitPx, oid, orderType, origSz, reduceOnly, side, sz, timestamp, triggerCondition, triggerPx |
+
+## Response example
+
+```json
+[]
+```

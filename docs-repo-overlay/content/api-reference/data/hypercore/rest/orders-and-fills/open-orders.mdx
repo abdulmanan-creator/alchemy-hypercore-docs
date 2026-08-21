@@ -1,0 +1,37 @@
+---
+title: "Open orders"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Open orders
+
+A user's open orders.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description  |
+| --------------------- | ------ | ------------ |
+| `type`                | string | `openOrders` |
+| Additional parameters | varies | user, dex    |
+
+```json
+{
+  "type": "openOrders"
+}
+```
+
+## Response fields
+
+| Field    | Description                             |
+| -------- | --------------------------------------- |
+| Response | coin, limitPx, oid, side, sz, timestamp |
+
+## Response example
+
+```json
+[]
+```

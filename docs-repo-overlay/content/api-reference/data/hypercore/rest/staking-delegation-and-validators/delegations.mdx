@@ -1,0 +1,37 @@
+---
+title: "Delegations"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Delegations
+
+A user's staking delegations.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description   |
+| --------------------- | ------ | ------------- |
+| `type`                | string | `delegations` |
+| Additional parameters | varies | user          |
+
+```json
+{
+  "type": "delegations"
+}
+```
+
+## Response fields
+
+| Field    | Description                             |
+| -------- | --------------------------------------- |
+| Response | validator, amount, lockedUntilTimestamp |
+
+## Response example
+
+```json
+[]
+```

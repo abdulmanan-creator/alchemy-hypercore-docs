@@ -1,0 +1,37 @@
+---
+title: "Delegator history"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Delegator history
+
+A user's delegation history.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description        |
+| --------------------- | ------ | ------------------ |
+| `type`                | string | `delegatorHistory` |
+| Additional parameters | varies | user               |
+
+```json
+{
+  "type": "delegatorHistory"
+}
+```
+
+## Response fields
+
+| Field    | Description                |
+| -------- | -------------------------- |
+| Response | Delegation-history records |
+
+## Response example
+
+```json
+[]
+```

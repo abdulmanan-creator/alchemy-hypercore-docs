@@ -1,0 +1,37 @@
+---
+title: "Delegator rewards"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Delegator rewards
+
+A user's delegation rewards.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description        |
+| --------------------- | ------ | ------------------ |
+| `type`                | string | `delegatorRewards` |
+| Additional parameters | varies | user               |
+
+```json
+{
+  "type": "delegatorRewards"
+}
+```
+
+## Response fields
+
+| Field    | Description    |
+| -------- | -------------- |
+| Response | Reward records |
+
+## Response example
+
+```json
+[]
+```

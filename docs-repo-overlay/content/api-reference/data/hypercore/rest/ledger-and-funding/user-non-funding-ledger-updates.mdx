@@ -1,0 +1,37 @@
+---
+title: "Non-funding ledger updates"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Non-funding ledger updates
+
+Non-funding ledger updates for a user.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description                   |
+| --------------------- | ------ | ----------------------------- |
+| `type`                | string | `userNonFundingLedgerUpdates` |
+| Additional parameters | varies | user, startTime, endTime      |
+
+```json
+{
+  "type": "userNonFundingLedgerUpdates"
+}
+```
+
+## Response fields
+
+| Field    | Description           |
+| -------- | --------------------- |
+| Response | Ledger-update records |
+
+## Response example
+
+```json
+[]
+```

@@ -1,0 +1,37 @@
+---
+title: "Perpetual deployment auction status"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Perpetual deployment auction status
+
+Current perpetual deployment auction state.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description               |
+| --------------------- | ------ | ------------------------- |
+| `type`                | string | `perpDeployAuctionStatus` |
+| Additional parameters | varies | —                         |
+
+```json
+{
+  "type": "perpDeployAuctionStatus"
+}
+```
+
+## Response fields
+
+| Field    | Description                                                     |
+| -------- | --------------------------------------------------------------- |
+| Response | startTimeSeconds, durationSeconds, startGas, currentGas, endGas |
+
+## Response example
+
+```json
+{ "endGas": null }
+```

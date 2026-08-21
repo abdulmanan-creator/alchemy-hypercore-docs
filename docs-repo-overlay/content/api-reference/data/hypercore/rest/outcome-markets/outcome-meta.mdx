@@ -1,0 +1,37 @@
+---
+title: "Outcome metadata"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Outcome metadata
+
+Outcome-market metadata.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description   |
+| --------------------- | ------ | ------------- |
+| `type`                | string | `outcomeMeta` |
+| Additional parameters | varies | —             |
+
+```json
+{
+  "type": "outcomeMeta"
+}
+```
+
+## Response fields
+
+| Field    | Description                              |
+| -------- | ---------------------------------------- |
+| Response | outcomes, questions, deployers, feeScale |
+
+## Response example
+
+```json
+{ "outcomes": [] }
+```

@@ -1,0 +1,37 @@
+---
+title: "User fees"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# User fees
+
+A user's fee schedule and rates.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description |
+| --------------------- | ------ | ----------- |
+| `type`                | string | `userFees`  |
+| Additional parameters | varies | user        |
+
+```json
+{
+  "type": "userFees"
+}
+```
+
+## Response fields
+
+| Field    | Description                                                                               |
+| -------- | ----------------------------------------------------------------------------------------- |
+| Response | dailyUserVlm, feeSchedule, userCrossRate, userAddRate, userSpotCrossRate, userSpotAddRate |
+
+## Response example
+
+```json
+{ "dailyUserVlm": [] }
+```

@@ -1,0 +1,37 @@
+---
+title: "Leading vaults"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Leading vaults
+
+Leading vaults for the requested period.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description                   |
+| --------------------- | ------ | ----------------------------- |
+| `type`                | string | `leadingVaults`               |
+| Additional parameters | varies | type-specific fields required |
+
+```json
+{
+  "type": "leadingVaults"
+}
+```
+
+## Response fields
+
+| Field    | Description                   |
+| -------- | ----------------------------- |
+| Response | No non-error payload observed |
+
+## Response example
+
+```json
+null
+```

@@ -1,0 +1,37 @@
+---
+title: "Perpetual metadata"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Perpetual metadata
+
+Perpetual market metadata.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description |
+| --------------------- | ------ | ----------- |
+| `type`                | string | `meta`      |
+| Additional parameters | varies | —           |
+
+```json
+{
+  "type": "meta"
+}
+```
+
+## Response fields
+
+| Field    | Description                                             |
+| -------- | ------------------------------------------------------- |
+| Response | universe[].szDecimals, name, maxLeverage, marginTableId |
+
+## Response example
+
+```json
+{ "universe": [] }
+```

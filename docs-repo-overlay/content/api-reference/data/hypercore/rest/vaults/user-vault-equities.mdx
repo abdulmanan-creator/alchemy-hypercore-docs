@@ -1,0 +1,37 @@
+---
+title: "User vault equities"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# User vault equities
+
+A user's equity by vault.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description         |
+| --------------------- | ------ | ------------------- |
+| `type`                | string | `userVaultEquities` |
+| Additional parameters | varies | user                |
+
+```json
+{
+  "type": "userVaultEquities"
+}
+```
+
+## Response fields
+
+| Field    | Description          |
+| -------- | -------------------- |
+| Response | vaultAddress, equity |
+
+## Response example
+
+```json
+[]
+```

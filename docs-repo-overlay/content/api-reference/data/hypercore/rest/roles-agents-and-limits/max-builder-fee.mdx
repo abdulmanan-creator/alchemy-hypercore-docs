@@ -1,0 +1,37 @@
+---
+title: "Maximum builder fee"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Maximum builder fee
+
+A user's approved maximum builder fee.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description     |
+| --------------------- | ------ | --------------- |
+| `type`                | string | `maxBuilderFee` |
+| Additional parameters | varies | user, builder   |
+
+```json
+{
+  "type": "maxBuilderFee"
+}
+```
+
+## Response fields
+
+| Field    | Description |
+| -------- | ----------- |
+| Response | Number      |
+
+## Response example
+
+```json
+0
+```

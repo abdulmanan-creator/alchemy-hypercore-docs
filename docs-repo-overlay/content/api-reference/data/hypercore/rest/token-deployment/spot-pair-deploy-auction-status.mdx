@@ -1,0 +1,37 @@
+---
+title: "Spot-pair deployment auction status"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Spot-pair deployment auction status
+
+Current spot-pair deployment auction state.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description                   |
+| --------------------- | ------ | ----------------------------- |
+| `type`                | string | `spotPairDeployAuctionStatus` |
+| Additional parameters | varies | —                             |
+
+```json
+{
+  "type": "spotPairDeployAuctionStatus"
+}
+```
+
+## Response fields
+
+| Field    | Description                                                     |
+| -------- | --------------------------------------------------------------- |
+| Response | startTimeSeconds, durationSeconds, startGas, currentGas, endGas |
+
+## Response example
+
+```json
+{ "endGas": null }
+```

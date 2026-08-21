@@ -1,0 +1,37 @@
+---
+title: "User role"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# User role
+
+A user's Hyperliquid role.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description |
+| --------------------- | ------ | ----------- |
+| `type`                | string | `userRole`  |
+| Additional parameters | varies | user        |
+
+```json
+{
+  "type": "userRole"
+}
+```
+
+## Response fields
+
+| Field    | Description            |
+| -------- | ---------------------- |
+| Response | role and optional data |
+
+## Response example
+
+```json
+{ "role": "user" }
+```

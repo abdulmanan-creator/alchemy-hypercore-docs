@@ -1,0 +1,37 @@
+---
+title: "Spot metadata and asset contexts"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Spot metadata and asset contexts
+
+Spot metadata with aligned current asset contexts.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description            |
+| --------------------- | ------ | ---------------------- |
+| `type`                | string | `spotMetaAndAssetCtxs` |
+| Additional parameters | varies | —                      |
+
+```json
+{
+  "type": "spotMetaAndAssetCtxs"
+}
+```
+
+## Response fields
+
+| Field    | Description                |
+| -------- | -------------------------- |
+| Response | universe[], asset contexts |
+
+## Response example
+
+```json
+[]
+```

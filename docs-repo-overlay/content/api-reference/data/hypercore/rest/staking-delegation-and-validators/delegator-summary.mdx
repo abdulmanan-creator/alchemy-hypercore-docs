@@ -1,0 +1,37 @@
+---
+title: "Delegator summary"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Delegator summary
+
+A user's delegation summary.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description        |
+| --------------------- | ------ | ------------------ |
+| `type`                | string | `delegatorSummary` |
+| Additional parameters | varies | user               |
+
+```json
+{
+  "type": "delegatorSummary"
+}
+```
+
+## Response fields
+
+| Field    | Description                                                         |
+| -------- | ------------------------------------------------------------------- |
+| Response | delegated, undelegated, totalPendingWithdrawal, nPendingWithdrawals |
+
+## Response example
+
+```json
+{ "delegated": "0.0" }
+```

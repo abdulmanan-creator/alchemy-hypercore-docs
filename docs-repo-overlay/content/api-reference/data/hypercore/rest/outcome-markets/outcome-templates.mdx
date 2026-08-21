@@ -1,0 +1,37 @@
+---
+title: "Outcome templates"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Outcome templates
+
+Available outcome-market templates.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description        |
+| --------------------- | ------ | ------------------ |
+| `type`                | string | `outcomeTemplates` |
+| Additional parameters | varies | —                  |
+
+```json
+{
+  "type": "outcomeTemplates"
+}
+```
+
+## Response fields
+
+| Field    | Description                           |
+| -------- | ------------------------------------- |
+| Response | id, role, name, description, keywords |
+
+## Response example
+
+```json
+[]
+```

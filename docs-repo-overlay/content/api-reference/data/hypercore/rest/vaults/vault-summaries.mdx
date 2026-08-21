@@ -1,0 +1,37 @@
+---
+title: "Vault summaries"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Vault summaries
+
+Available vault summaries.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description      |
+| --------------------- | ------ | ---------------- |
+| `type`                | string | `vaultSummaries` |
+| Additional parameters | varies | —                |
+
+```json
+{
+  "type": "vaultSummaries"
+}
+```
+
+## Response fields
+
+| Field    | Description           |
+| -------- | --------------------- |
+| Response | Vault-summary records |
+
+## Response example
+
+```json
+[]
+```

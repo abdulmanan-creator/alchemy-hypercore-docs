@@ -1,0 +1,37 @@
+---
+title: "Predicted fundings"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Predicted fundings
+
+Predicted funding values by market and venue.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description         |
+| --------------------- | ------ | ------------------- |
+| `type`                | string | `predictedFundings` |
+| Additional parameters | varies | —                   |
+
+```json
+{
+  "type": "predictedFundings"
+}
+```
+
+## Response fields
+
+| Field    | Description                        |
+| -------- | ---------------------------------- |
+| Response | [coin, [[venue, funding data], …]] |
+
+## Response example
+
+```json
+[]
+```

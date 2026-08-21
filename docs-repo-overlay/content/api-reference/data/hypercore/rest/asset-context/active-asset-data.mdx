@@ -1,0 +1,37 @@
+---
+title: "Active asset data"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Active asset data
+
+Active trading data for a user's asset.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description       |
+| --------------------- | ------ | ----------------- |
+| `type`                | string | `activeAssetData` |
+| Additional parameters | varies | user, coin        |
+
+```json
+{
+  "type": "activeAssetData"
+}
+```
+
+## Response fields
+
+| Field    | Description                                                 |
+| -------- | ----------------------------------------------------------- |
+| Response | user, coin, leverage, maxTradeSzs, availableToTrade, markPx |
+
+## Response example
+
+```json
+{ "coin": "BTC" }
+```

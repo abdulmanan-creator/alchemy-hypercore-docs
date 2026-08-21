@@ -1,0 +1,37 @@
+---
+title: "DEX abstraction state"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# DEX abstraction state
+
+A user's HIP-3 DEX abstraction state.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description          |
+| --------------------- | ------ | -------------------- |
+| `type`                | string | `userDexAbstraction` |
+| Additional parameters | varies | user                 |
+
+```json
+{
+  "type": "userDexAbstraction"
+}
+```
+
+## Response fields
+
+| Field    | Description     |
+| -------- | --------------- |
+| Response | Boolean or null |
+
+## Response example
+
+```json
+null
+```

@@ -1,0 +1,37 @@
+---
+title: "User rate limit"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# User rate limit
+
+A user's request-rate state.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description     |
+| --------------------- | ------ | --------------- |
+| `type`                | string | `userRateLimit` |
+| Additional parameters | varies | user            |
+
+```json
+{
+  "type": "userRateLimit"
+}
+```
+
+## Response fields
+
+| Field    | Description                                           |
+| -------- | ----------------------------------------------------- |
+| Response | cumVlm, nRequestsUsed, nRequestsCap, nRequestsSurplus |
+
+## Response example
+
+```json
+{ "nRequestsUsed": 0 }
+```

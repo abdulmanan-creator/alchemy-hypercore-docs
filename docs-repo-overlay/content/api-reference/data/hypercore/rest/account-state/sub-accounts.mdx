@@ -1,0 +1,37 @@
+---
+title: "Subaccounts"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Subaccounts
+
+A user's subaccounts and their account state.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description   |
+| --------------------- | ------ | ------------- |
+| `type`                | string | `subAccounts` |
+| Additional parameters | varies | user          |
+
+```json
+{
+  "type": "subAccounts"
+}
+```
+
+## Response fields
+
+| Field    | Description                                                 |
+| -------- | ----------------------------------------------------------- |
+| Response | name, subAccountUser, master, clearinghouseState, spotState |
+
+## Response example
+
+```json
+[]
+```

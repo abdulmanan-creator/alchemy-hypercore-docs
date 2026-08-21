@@ -1,0 +1,37 @@
+---
+title: "Perpetual metadata and asset contexts"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Perpetual metadata and asset contexts
+
+Perpetual metadata with aligned current asset contexts.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description        |
+| --------------------- | ------ | ------------------ |
+| `type`                | string | `metaAndAssetCtxs` |
+| Additional parameters | varies | —                  |
+
+```json
+{
+  "type": "metaAndAssetCtxs"
+}
+```
+
+## Response fields
+
+| Field    | Description                                                  |
+| -------- | ------------------------------------------------------------ |
+| Response | universe[], asset contexts including oraclePx, markPx, midPx |
+
+## Response example
+
+```json
+[]
+```

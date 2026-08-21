@@ -35,20 +35,22 @@ For deployment context, see [Deploying Hyperliquid markets](/docs/chains/deployi
 
 ## Native-compatible reads
 
-Use `/info` with a `type` discriminator for the native-compatible types. Four of those types also have purpose-built routes; the other six are currently available only through `/info`.
+Use `/info` with a `type` discriminator for native-compatible reads. The seven
+intentional purpose-built routes are listed separately; the other documented reads
+use `/info`.
 
-| Native type | Available via `/info` | Purpose-built route |
-| --- | --- | --- |
-| `userFills` | Yes | `POST /{apiKey}/user-fills` |
-| `userFillsByTime` | Yes | `POST /{apiKey}/user-fills-by-time` |
-| `historicalOrders` | Yes | `POST /{apiKey}/historical-orders` |
-| `userFunding` | Yes | — |
-| `userNonFundingLedgerUpdates` | Yes | — |
-| `delegations` | Yes | — |
-| `delegatorHistory` | Yes | — |
-| `clearinghouseState` | Yes | `POST /{apiKey}/clearinghouse-state` |
-| `spotClearinghouseState` | Yes | — |
-| `frontendOpenOrders` | Yes | — |
+| Native type                   | Available via `/info` | Purpose-built route                  |
+| ----------------------------- | --------------------- | ------------------------------------ |
+| `userFills`                   | Yes                   | `POST /{apiKey}/user-fills`          |
+| `userFillsByTime`             | Yes                   | `POST /{apiKey}/user-fills-by-time`  |
+| `historicalOrders`            | Yes                   | `POST /{apiKey}/historical-orders`   |
+| `userFunding`                 | Yes                   | —                                    |
+| `userNonFundingLedgerUpdates` | Yes                   | —                                    |
+| `delegations`                 | Yes                   | —                                    |
+| `delegatorHistory`            | Yes                   | —                                    |
+| `clearinghouseState`          | Yes                   | `POST /{apiKey}/clearinghouse-state` |
+| `spotClearinghouseState`      | Yes                   | —                                    |
+| `frontendOpenOrders`          | Yes                   | —                                    |
 
 ## Enriched composites
 

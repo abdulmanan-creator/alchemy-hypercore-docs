@@ -1,0 +1,37 @@
+---
+title: "Spot clearinghouse state"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Spot clearinghouse state
+
+A user's spot balances.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description              |
+| --------------------- | ------ | ------------------------ |
+| `type`                | string | `spotClearinghouseState` |
+| Additional parameters | varies | user                     |
+
+```json
+{
+  "type": "spotClearinghouseState"
+}
+```
+
+## Response fields
+
+| Field    | Description                                   |
+| -------- | --------------------------------------------- |
+| Response | balances[].coin, token, total, hold, entryNtl |
+
+## Response example
+
+```json
+{ "balances": [] }
+```

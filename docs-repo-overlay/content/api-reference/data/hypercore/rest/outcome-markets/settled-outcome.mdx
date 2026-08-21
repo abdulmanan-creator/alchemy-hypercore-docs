@@ -1,0 +1,37 @@
+---
+title: "Settled outcome"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Settled outcome
+
+Settlement data for one outcome.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description      |
+| --------------------- | ------ | ---------------- |
+| `type`                | string | `settledOutcome` |
+| Additional parameters | varies | outcome          |
+
+```json
+{
+  "type": "settledOutcome"
+}
+```
+
+## Response fields
+
+| Field    | Description                   |
+| -------- | ----------------------------- |
+| Response | spec, settleFraction, details |
+
+## Response example
+
+```json
+null
+```

@@ -1,0 +1,37 @@
+---
+title: "Spot metadata"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Spot metadata
+
+Spot market metadata.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description |
+| --------------------- | ------ | ----------- |
+| `type`                | string | `spotMeta`  |
+| Additional parameters | varies | —           |
+
+```json
+{
+  "type": "spotMeta"
+}
+```
+
+## Response fields
+
+| Field    | Description                                 |
+| -------- | ------------------------------------------- |
+| Response | universe[].tokens, name, index, isCanonical |
+
+## Response example
+
+```json
+{ "universe": [] }
+```

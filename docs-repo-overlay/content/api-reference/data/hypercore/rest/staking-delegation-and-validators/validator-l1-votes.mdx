@@ -1,0 +1,37 @@
+---
+title: "Validator L1 votes"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Validator L1 votes
+
+Validator L1 votes.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description        |
+| --------------------- | ------ | ------------------ |
+| `type`                | string | `validatorL1Votes` |
+| Additional parameters | varies | —                  |
+
+```json
+{
+  "type": "validatorL1Votes"
+}
+```
+
+## Response fields
+
+| Field    | Description  |
+| -------- | ------------ |
+| Response | Vote records |
+
+## Response example
+
+```json
+[]
+```

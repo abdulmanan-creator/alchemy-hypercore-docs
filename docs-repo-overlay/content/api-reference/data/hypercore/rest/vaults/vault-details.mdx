@@ -1,0 +1,37 @@
+---
+title: "Vault details"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Vault details
+
+Details for a vault address.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description    |
+| --------------------- | ------ | -------------- |
+| `type`                | string | `vaultDetails` |
+| Additional parameters | varies | vaultAddress   |
+
+```json
+{
+  "type": "vaultDetails"
+}
+```
+
+## Response fields
+
+| Field    | Description                                        |
+| -------- | -------------------------------------------------- |
+| Response | name, vaultAddress, leader, description, portfolio |
+
+## Response example
+
+```json
+{ "portfolio": [] }
+```

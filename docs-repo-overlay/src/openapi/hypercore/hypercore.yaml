@@ -31,27 +31,13 @@ tags:
     description: Roles, agents, fee approvals, and rate-limit reads.
   - name: Outcome markets
     description: Outcome-market metadata and settlement reads.
-x-info-operation: &infoOperation
-  parameters:
-    - "$ref": "#/components/parameters/apiKey"
-  requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          "$ref": "#/components/schemas/InfoTypeRequest"
-  responses:
-    "200":
-      "$ref": "#/components/responses/InfoResponse"
-    "400":
-      description: Invalid request.
 paths:
   "/{apiKey}/info":
     post:
       operationId: get-info
       summary: Execute a native-compatible HyperCore read
       description: |
-        Execute a native-compatible HyperCore read selected by the required type discriminator. The remaining native methods will be documented as the service is finalized.
+        Execute a native-compatible HyperCore read selected by the required type discriminator.
       parameters:
         - "$ref": "#/components/parameters/apiKey"
       requestBody:
@@ -73,11 +59,7 @@ paths:
                   endTime: 1780086400000
       responses:
         "200":
-          description: Successful response. The currently modeled shapes are selected by the requested type.
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/InfoResponse"
+          "$ref": "#/components/responses/InfoResponse"
   "/{apiKey}/user-fills":
     post:
       tags: [Orders and fills]
@@ -222,7 +204,7 @@ paths:
                   "$ref": "#/components/examples/PortfolioStateResponse"
   "/{apiKey}/extra-agents":
     post:
-      tags: [Roles, agents, and limits]
+      tags: ["Roles, agents, and limits"]
       operationId: get-extra-agents
       summary: Get agent and API-wallet state
       description: |
@@ -277,230 +259,6 @@ paths:
               examples:
                 default:
                   "$ref": "#/components/examples/L2BookDiffSnapshotResponse"
-  "/{apiKey}/open-orders":
-    post:
-      tags: [Orders and fills]
-      operationId: get-open-orders
-      summary: Retrieve a user's open orders
-      <<: *infoOperation
-  "/{apiKey}/frontend-open-orders":
-    post:
-      tags: [Orders and fills]
-      operationId: get-frontend-open-orders
-      summary: Retrieve a user's open orders with additional frontend info
-      <<: *infoOperation
-  "/{apiKey}/user-funding":
-    post:
-      tags: [Ledger and funding]
-      operationId: get-user-funding
-      summary: Retrieve a user's funding payments
-      <<: *infoOperation
-  "/{apiKey}/user-non-funding-ledger-updates":
-    post:
-      tags: [Ledger and funding]
-      operationId: get-user-non-funding-ledger-updates
-      summary: Retrieve a user's non-funding ledger updates
-      <<: *infoOperation
-  "/{apiKey}/spot-clearinghouse-state":
-    post:
-      tags: [Account state]
-      operationId: get-spot-clearinghouse-state
-      summary: Retrieve a user's spot clearinghouse state
-      <<: *infoOperation
-  "/{apiKey}/sub-accounts":
-    post:
-      tags: [Account state]
-      operationId: get-sub-accounts
-      summary: Retrieve a user's subaccounts
-      <<: *infoOperation
-  "/{apiKey}/user-dex-abstraction":
-    post:
-      tags: [Account state]
-      operationId: get-user-dex-abstraction
-      summary: Query a user's HIP-3 DEX abstraction state
-      <<: *infoOperation
-  "/{apiKey}/all-mids":
-    post:
-      tags: [Market data and snapshots]
-      operationId: get-all-mids
-      summary: Retrieve mids for all coins
-      <<: *infoOperation
-  "/{apiKey}/candle-snapshot":
-    post:
-      tags: [Market data and snapshots]
-      operationId: get-candle-snapshot
-      summary: Retrieve a candle snapshot
-      <<: *infoOperation
-  "/{apiKey}/l4-book-snapshot":
-    post:
-      tags: [Market data and snapshots]
-      operationId: get-l4-book-snapshot
-      summary: Retrieve an L4 book snapshot
-      description: Retrieve the full onchain order information derived from L4 snapshots.
-      <<: *infoOperation
-  "/{apiKey}/trigger-order-snapshot":
-    post:
-      tags: [Market data and snapshots]
-      operationId: get-trigger-order-snapshot
-      summary: Retrieve a trigger-order snapshot
-      description: Retrieve trigger orders derived from L4 snapshots.
-      <<: *infoOperation
-  "/{apiKey}/meta":
-    post:
-      tags: [Metadata]
-      operationId: get-meta
-      summary: Retrieve perpetual metadata
-      <<: *infoOperation
-  "/{apiKey}/spot-meta":
-    post:
-      tags: [Metadata]
-      operationId: get-spot-meta
-      summary: Retrieve spot metadata
-      <<: *infoOperation
-  "/{apiKey}/meta-and-asset-ctxs":
-    post:
-      tags: [Asset context]
-      operationId: get-meta-and-asset-ctxs
-      summary: Retrieve perpetual metadata and asset contexts
-      <<: *infoOperation
-  "/{apiKey}/spot-meta-and-asset-ctxs":
-    post:
-      tags: [Asset context]
-      operationId: get-spot-meta-and-asset-ctxs
-      summary: Retrieve spot metadata and asset contexts
-      <<: *infoOperation
-  "/{apiKey}/active-asset-data":
-    post:
-      tags: [Asset context]
-      operationId: get-active-asset-data
-      summary: Retrieve active asset data
-      <<: *infoOperation
-  "/{apiKey}/predicted-fundings":
-    post:
-      tags: [Asset context]
-      operationId: get-predicted-fundings
-      summary: Retrieve predicted fundings
-      <<: *infoOperation
-  "/{apiKey}/spot-deploy-state":
-    post:
-      tags: [Token deployment]
-      operationId: get-spot-deploy-state
-      summary: Retrieve spot deployment state
-      <<: *infoOperation
-  "/{apiKey}/perp-deploy-auction-status":
-    post:
-      tags: [Token deployment]
-      operationId: get-perp-deploy-auction-status
-      summary: Retrieve perpetual deployment auction status
-      <<: *infoOperation
-  "/{apiKey}/spot-pair-deploy-auction-status":
-    post:
-      tags: [Token deployment]
-      operationId: get-spot-pair-deploy-auction-status
-      summary: Retrieve spot-pair deployment auction status
-      <<: *infoOperation
-  "/{apiKey}/vault-summaries":
-    post:
-      tags: [Vaults]
-      operationId: get-vault-summaries
-      summary: Retrieve vault summaries
-      <<: *infoOperation
-  "/{apiKey}/vault-details":
-    post:
-      tags: [Vaults]
-      operationId: get-vault-details
-      summary: Retrieve vault details
-      <<: *infoOperation
-  "/{apiKey}/leading-vaults":
-    post:
-      tags: [Vaults]
-      operationId: get-leading-vaults
-      summary: Retrieve leading vaults
-      <<: *infoOperation
-  "/{apiKey}/user-vault-equities":
-    post:
-      tags: [Vaults]
-      operationId: get-user-vault-equities
-      summary: Retrieve a user's vault deposits
-      <<: *infoOperation
-  "/{apiKey}/delegations":
-    post:
-      tags: [Staking, delegation, and validators]
-      operationId: get-delegations
-      summary: Query a user's staking delegations
-      <<: *infoOperation
-  "/{apiKey}/delegator-summary":
-    post:
-      tags: [Staking, delegation, and validators]
-      operationId: get-delegator-summary
-      summary: Query a user's staking summary
-      <<: *infoOperation
-  "/{apiKey}/delegator-history":
-    post:
-      tags: [Staking, delegation, and validators]
-      operationId: get-delegator-history
-      summary: Retrieve delegation history
-      <<: *infoOperation
-  "/{apiKey}/delegator-rewards":
-    post:
-      tags: [Staking, delegation, and validators]
-      operationId: get-delegator-rewards
-      summary: Retrieve delegation rewards
-      <<: *infoOperation
-  "/{apiKey}/validator-l1-votes":
-    post:
-      tags: [Staking, delegation, and validators]
-      operationId: get-validator-l1-votes
-      summary: Retrieve validator L1 votes
-      <<: *infoOperation
-  "/{apiKey}/user-role":
-    post:
-      tags: [Roles, agents, and limits]
-      operationId: get-user-role
-      summary: Query a user's role
-      <<: *infoOperation
-  "/{apiKey}/max-builder-fee":
-    post:
-      tags: [Roles, agents, and limits]
-      operationId: get-max-builder-fee
-      summary: Check builder fee approval
-      <<: *infoOperation
-  "/{apiKey}/user-rate-limit":
-    post:
-      tags: [Roles, agents, and limits]
-      operationId: get-user-rate-limit
-      summary: Query user rate limits
-      <<: *infoOperation
-  "/{apiKey}/user-fees":
-    post:
-      tags: [Roles, agents, and limits]
-      operationId: get-user-fees
-      summary: Query a user's fees
-      <<: *infoOperation
-  "/{apiKey}/outcome-meta":
-    post:
-      tags: [Outcome markets]
-      operationId: get-outcome-meta
-      summary: Retrieve outcome-market metadata
-      <<: *infoOperation
-  "/{apiKey}/settled-outcome":
-    post:
-      tags: [Outcome markets]
-      operationId: get-settled-outcome
-      summary: Retrieve a settled outcome
-      <<: *infoOperation
-  "/{apiKey}/settled-outcomes":
-    post:
-      tags: [Outcome markets]
-      operationId: get-settled-outcomes
-      summary: Retrieve settled outcomes
-      <<: *infoOperation
-  "/{apiKey}/outcome-templates":
-    post:
-      tags: [Outcome markets]
-      operationId: get-outcome-templates
-      summary: Retrieve outcome templates
-      <<: *infoOperation
 components:
   parameters:
     apiKey:
@@ -517,6 +275,50 @@ components:
         type:
           type: string
           description: Native Hyperliquid info request discriminator.
+          enum:
+            - openOrders
+            - frontendOpenOrders
+            - userFills
+            - userFillsByTime
+            - historicalOrders
+            - userFunding
+            - userNonFundingLedgerUpdates
+            - clearinghouseState
+            - spotClearinghouseState
+            - portfolioState
+            - extraAgents
+            - userRateLimit
+            - maxBuilderFee
+            - subAccounts
+            - userVaultEquities
+            - userRole
+            - userFees
+            - userDexAbstraction
+            - allMids
+            - candleSnapshot
+            - l4Snapshots
+            - triggerOrderSnapshot
+            - meta
+            - spotMeta
+            - metaAndAssetCtxs
+            - spotMetaAndAssetCtxs
+            - activeAssetData
+            - predictedFundings
+            - spotDeployState
+            - perpDeployAuctionStatus
+            - spotPairDeployAuctionStatus
+            - vaultSummaries
+            - vaultDetails
+            - leadingVaults
+            - delegations
+            - delegatorSummary
+            - delegatorHistory
+            - delegatorRewards
+            - validatorL1Votes
+            - outcomeMeta
+            - settledOutcome
+            - settledOutcomes
+            - outcomeTemplates
         user:
           "$ref": "#/components/schemas/Address"
         dex:
@@ -572,7 +374,7 @@ components:
           items:
             type: string
     InfoRequest:
-      oneOf:
+      anyOf:
         - "$ref": "#/components/schemas/UserFillsRequest"
         - "$ref": "#/components/schemas/UserFillsByTimeRequest"
         - "$ref": "#/components/schemas/HistoricalOrdersRequest"
@@ -583,6 +385,7 @@ components:
         - "$ref": "#/components/schemas/ClearinghouseStateRequest"
         - "$ref": "#/components/schemas/SpotClearinghouseStateRequest"
         - "$ref": "#/components/schemas/FrontendOpenOrdersRequest"
+        - "$ref": "#/components/schemas/InfoTypeRequest"
       discriminator:
         propertyName: type
         mapping:
@@ -596,6 +399,37 @@ components:
           clearinghouseState: "#/components/schemas/ClearinghouseStateRequest"
           spotClearinghouseState: "#/components/schemas/SpotClearinghouseStateRequest"
           frontendOpenOrders: "#/components/schemas/FrontendOpenOrdersRequest"
+          openOrders: "#/components/schemas/InfoTypeRequest"
+          userRateLimit: "#/components/schemas/InfoTypeRequest"
+          maxBuilderFee: "#/components/schemas/InfoTypeRequest"
+          subAccounts: "#/components/schemas/InfoTypeRequest"
+          userVaultEquities: "#/components/schemas/InfoTypeRequest"
+          userRole: "#/components/schemas/InfoTypeRequest"
+          userFees: "#/components/schemas/InfoTypeRequest"
+          userDexAbstraction: "#/components/schemas/InfoTypeRequest"
+          allMids: "#/components/schemas/InfoTypeRequest"
+          candleSnapshot: "#/components/schemas/InfoTypeRequest"
+          l4Snapshots: "#/components/schemas/InfoTypeRequest"
+          triggerOrderSnapshot: "#/components/schemas/InfoTypeRequest"
+          meta: "#/components/schemas/InfoTypeRequest"
+          spotMeta: "#/components/schemas/InfoTypeRequest"
+          metaAndAssetCtxs: "#/components/schemas/InfoTypeRequest"
+          spotMetaAndAssetCtxs: "#/components/schemas/InfoTypeRequest"
+          activeAssetData: "#/components/schemas/InfoTypeRequest"
+          predictedFundings: "#/components/schemas/InfoTypeRequest"
+          spotDeployState: "#/components/schemas/InfoTypeRequest"
+          perpDeployAuctionStatus: "#/components/schemas/InfoTypeRequest"
+          spotPairDeployAuctionStatus: "#/components/schemas/InfoTypeRequest"
+          vaultSummaries: "#/components/schemas/InfoTypeRequest"
+          vaultDetails: "#/components/schemas/InfoTypeRequest"
+          leadingVaults: "#/components/schemas/InfoTypeRequest"
+          delegatorSummary: "#/components/schemas/InfoTypeRequest"
+          delegatorRewards: "#/components/schemas/InfoTypeRequest"
+          validatorL1Votes: "#/components/schemas/InfoTypeRequest"
+          outcomeMeta: "#/components/schemas/InfoTypeRequest"
+          settledOutcome: "#/components/schemas/InfoTypeRequest"
+          settledOutcomes: "#/components/schemas/InfoTypeRequest"
+          outcomeTemplates: "#/components/schemas/InfoTypeRequest"
     InfoResponse:
       oneOf:
         - "$ref": "#/components/schemas/UserFillsResponse"

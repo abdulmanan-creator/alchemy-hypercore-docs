@@ -1,0 +1,37 @@
+---
+title: "Spot deployment state"
+description: "HyperCore private-preview documentation."
+---
+
+<Markdown src="../../../../shared/preview-notice-october.mdx" />
+
+# Spot deployment state
+
+Spot token deployment state.
+
+## Request
+
+`POST /{apiKey}/info`
+
+| Parameter             | Type   | Description                   |
+| --------------------- | ------ | ----------------------------- |
+| `type`                | string | `spotDeployState`             |
+| Additional parameters | varies | type-specific fields required |
+
+```json
+{
+  "type": "spotDeployState"
+}
+```
+
+## Response fields
+
+| Field    | Description                   |
+| -------- | ----------------------------- |
+| Response | No non-error payload observed |
+
+## Response example
+
+```json
+null
+```
