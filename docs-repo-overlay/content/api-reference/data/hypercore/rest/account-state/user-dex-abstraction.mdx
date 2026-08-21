@@ -27,12 +27,25 @@ Returns whether a user has enabled HIP-3 DEX abstraction.
 
 ## Response fields
 
-| Field      | Type    | Description      |
-| ---------- | ------- | ---------------- |
-| `Response` | boolean | Scalar response. |
+| Field      | Type            | Description                                                                                          |
+| ---------- | --------------- | ---------------------------------------------------------------------------------------------------- |
+| `Response` | boolean \| null | `true` when DEX abstraction is enabled; the native API can return `null` when no state is available. |
 
 ## Response example
+
+<Tabs>
+<Tab title="Enabled">
 
 ```json
 true
 ```
+
+</Tab>
+<Tab title="No state">
+
+```json
+null
+```
+
+</Tab>
+</Tabs>

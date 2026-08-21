@@ -27,21 +27,21 @@ Returns a master's named sub-accounts with their perpetual and spot account stat
 
 ## Response fields
 
-| Field                                      | Type   | Description                                 |
-| ------------------------------------------ | ------ | ------------------------------------------- |
-| `data[]`                                   | varies | Response object.                            |
-| `data[].name`                              | varies | Name.                                       |
-| `data[].subAccountUser`                    | varies | `subAccountUser` value in the response.     |
-| `data[].master`                            | varies | `master` value in the response.             |
-| `data[].clearinghouseState`                | varies | `clearinghouseState` value in the response. |
-| `data[].clearinghouseState.marginSummary`  | varies | `marginSummary` value in the response.      |
-| `data[].clearinghouseState.withdrawable`   | varies | `withdrawable` value in the response.       |
-| `data[].clearinghouseState.assetPositions` | varies | `assetPositions` value in the response.     |
-| `data[].clearinghouseState.time`           | varies | Timestamp in milliseconds.                  |
-| `data[].spotState.balances[]`              | varies | `balances` value in the response.           |
-| `data[].spotState.balances[].coin`         | varies | Market identifier.                          |
-| `data[].spotState.balances[].total`        | varies | Total amount.                               |
-| `data[].spotState.balances[].hold`         | varies | Amount reserved by orders.                  |
+| Field                                      | Type          | Description                                                                       |
+| ------------------------------------------ | ------------- | --------------------------------------------------------------------------------- |
+| `data[]`                                   | array \| null | Sub-account entries; the native API can return `null` when no state is available. |
+| `data[].name`                              | varies        | Name.                                                                             |
+| `data[].subAccountUser`                    | varies        | `subAccountUser` value in the response.                                           |
+| `data[].master`                            | varies        | `master` value in the response.                                                   |
+| `data[].clearinghouseState`                | varies        | `clearinghouseState` value in the response.                                       |
+| `data[].clearinghouseState.marginSummary`  | varies        | `marginSummary` value in the response.                                            |
+| `data[].clearinghouseState.withdrawable`   | varies        | `withdrawable` value in the response.                                             |
+| `data[].clearinghouseState.assetPositions` | varies        | `assetPositions` value in the response.                                           |
+| `data[].clearinghouseState.time`           | varies        | Timestamp in milliseconds.                                                        |
+| `data[].spotState.balances[]`              | varies        | `balances` value in the response.                                                 |
+| `data[].spotState.balances[].coin`         | varies        | Market identifier.                                                                |
+| `data[].spotState.balances[].total`        | varies        | Total amount.                                                                     |
+| `data[].spotState.balances[].hold`         | varies        | Amount reserved by orders.                                                        |
 
 ## Response example
 
